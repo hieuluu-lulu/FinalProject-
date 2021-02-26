@@ -1,13 +1,15 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
+const User = require('../models/usersModel');
 
 class CourseController {
     index(req, res, next) {
         Course.find({})
             .then((course) => {
+                res.locals.title = "Courses"
                 res.render('courses/courses', {
                     course: course,
-                    user: req.user
+                    user: req.user,
                 });
             })
             .catch(next);
@@ -54,11 +56,19 @@ class CourseController {
             )
             .catch(next);
     }
+    // [PUT]/courses/:id/
     update(req, res, next) {
         Course.updateOne({ _id: req.params.id }, req.body)
             .then(() => {
                 res.redirect('manage/stored/courses');
             })
+            .catch(next);
+    }
+    //khôi phục dữ liệu
+    // [PATCH]/courses/:id/restore
+    restore(req, res, next) {
+        Course.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
             .catch(next);
     }
     // sử dụng thư viện moogose-delete để xóa và đưa vào thúng rác

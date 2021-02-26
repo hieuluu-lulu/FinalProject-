@@ -1,5 +1,5 @@
 <%- include('../partials/header')%>
-    <div class="container-fluid mt-4">
+    <!-- <div class="container-fluid mt-4">
         <div class="row courses-content">
             <div class="d-none d-xl-block col-xl-3">
                 <div class="Course__Sidebar">
@@ -185,4 +185,53 @@
                     });
             });
         });
-    </script>
+    </script> -->
+
+    <div class="row no-gutters head-course courses-content">
+        <div class="container">
+            <h2>Free online programming lessons. Get started with your first course!</h2>
+            <div class="block-search">
+                <div class="input-group">
+                    <form action="" id="form-search">
+                        <input name="name" type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-icon"><i class="fas fa-search"></i></i></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="list">
+            <section class="list__courses">
+                <h2 class="list__courses-title">Basic Knowledge</h2>
+                <div class="row">
+                    <% course.forEach(function(course) { %>
+                        <% if (course.type==="basic-knowledge" ) { %>
+                            <div class="col-sm-12 col-md-6 col-xl-3 mb-4">
+                                <div class="card">
+                                    <a href="/courses/<%- course.slug %>" class="card-course-img">
+                                        <img src="<%= course.image %>" class="card-img-top" alt="" />
+                                    </a>
+                                    <div class="card-body">
+                                        <a class="text-decoration-none" href="/courses/<%- course.slug %>">
+                                            <h5 class="card-title">
+                                                <%= course.name %>
+                                            </h5>
+                                        </a>
+                                        <p class="card-text">
+                                            <%= course.description %>
+                                        </p>
+                                        <a href="#" class="btn btn-primary">Mua Khóa Học</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% }) %>
+                </div>
+            </section>
+            <section class="list__courses">
+                <h2 class="list__courses-title">Advanced Programming</h2>
+                <div class="row"></div>
+            </section>
+        </div>
+    </div>

@@ -1,7 +1,7 @@
 module.exports = {
     ensureAuth: function (req, res, next) {
         if (req.isAuthenticated()) return next();
-        req.flash('error_message', 'Trước tiên bạn cần phải đăng nhập');
+        req.flash('error_message', 'First you need to login!');
         res.redirect('/users/login');
     },
     forwardAuth: function (req, res, next) {

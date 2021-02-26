@@ -4,9 +4,12 @@ const passport = require('passport');
 
 class UserController {
     indexLogin(req, res, next) {
+        res.locals.title = "Login";   
         res.render('account/login');
+        
     }
     indexRegister(req, res, next) {
+        res.locals.title = "Resgister";   
         res.render('account/register');
     }
     registerHandler(req, res) {

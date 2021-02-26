@@ -75,7 +75,7 @@ class LessonController {
             .then(() => res.redirect('/manage/stored/lessons'))
             .catch(next);
     }
-    //khôi phục dữ li
+    //khôi phục dữ liệu
     // [PATCH]/lesson/:id/restore
     restore(req, res, next) {
         Lesson.restore({ _id: req.params.id })
