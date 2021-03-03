@@ -3,4 +3,4 @@ const route = express.Router();
 
 const lessonController = require('../app/controllers/LessonController');
 
-module.exports = route
+module.exports = route;

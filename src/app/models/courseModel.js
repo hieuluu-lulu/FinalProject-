@@ -12,7 +12,7 @@ const CourseSchema = new Schema(
         image: { type: String, maxLength: 255 },
         videoId: { type: String },
         level: { type: String, maxLength: 255 },
-        type: { type: String},
+        type: { type: String },
         tag: { type: String },
         slug: { type: String, slug: 'name', unique: true },
     },

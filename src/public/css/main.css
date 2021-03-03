@@ -39,11 +39,12 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace; }
+        'Liberation Mono', 'Courier New', monospace; }
 
 @font-face {
   font-family: Poppins-Regular;
@@ -287,7 +288,7 @@ iframe {
   padding-top: 3px; }
 
 .focus-input100::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   bottom: -2px;
@@ -408,7 +409,7 @@ iframe {
   transition: opacity 0.4s; }
 
 .alert-validate::after {
-  content: "\f06a";
+  content: '\f06a';
   font-family: FontAwesome;
   display: block;
   position: absolute;
@@ -7134,7 +7135,7 @@ iframe {
 
 /* ------------------------------------ */
 .lh-1-0 {
-  line-height: 1.0; }
+  line-height: 1; }
 
 .lh-1-1 {
   line-height: 1.1; }
@@ -7164,7 +7165,7 @@ iframe {
   line-height: 1.9; }
 
 .lh-2-0 {
-  line-height: 2.0; }
+  line-height: 2; }
 
 .lh-2-1 {
   line-height: 2.1; }
@@ -8300,7 +8301,7 @@ body {
 .form-control {
   padding: 16px 45px 16px 16px;
   border-radius: 3px;
-  border: none !important; }
+  border: 1px solid #e1e1e1; }
 
 .form-control:focus {
   outline: none !important; }

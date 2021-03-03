@@ -6,7 +6,7 @@ class CourseController {
     index(req, res, next) {
         Course.find({})
             .then((course) => {
-                res.locals.title = "Courses"
+                res.locals.title = 'Courses';
                 res.render('courses/courses', {
                     course: course,
                     user: req.user,
@@ -32,7 +32,7 @@ class CourseController {
     }
     createCourses(req, res, next) {
         res.render('courses/create', {
-           user: req.user
+            user: req.user,
         });
     }
     // post dữ liệu mới tạo vào db
