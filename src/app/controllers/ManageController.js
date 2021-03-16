@@ -6,6 +6,7 @@ class ManageController {
     storedCourses(req, res, next) {
         Promise.all([Course.find({}), Course.countDocumentsDeleted()]) // bất đồng bộ trong js
             .then(([courses, deletedCount]) => {
+                res.locals.title = 'Manange Courses';
                 res.render('manage/stored-courses', {
                     deletedCount,
                     courses: courses,
@@ -17,6 +18,7 @@ class ManageController {
         Promise.all([Course.findDeleted({}), Course.countDocuments()])
             .then(([courses, countDocuments]) => {
                 if (account) {
+                    res.locals.title = 'Manange Courses';
                     res.render('manage/trash-courses', {
                         courses: courses,
                         countDocuments,
@@ -26,11 +28,9 @@ class ManageController {
             .catch(next);
     }
     storedLesson(req, res, next) {
-        Promise.all([
-            Lesson.find({}).sortable(req),
-            Lesson.countDocumentsDeleted(),
-        ]) // bất đồng bộ trong js
+        Promise.all([Lesson.find({}), Lesson.countDocumentsDeleted()]) // bất đồng bộ trong js
             .then(([lesson, deletedCount]) => {
+                res.locals.title = 'Manage Lessons';
                 res.render('manage/stored-courses', {
                     deletedCount,
                     lesson: lesson,

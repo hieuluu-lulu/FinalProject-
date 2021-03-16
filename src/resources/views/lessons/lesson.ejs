@@ -1,0 +1,75 @@
+<!-- <div class="container">
+
+    <h1 style="margin-top: 18px;">Khóa học <span style="text-transform: uppercase;">
+            <%= tag %>
+        </span>:<%= name %>
+    </h1>
+
+    <div class="mt-4">
+        <div class="pen" style="display:flex;justify-content: space-between">
+            <iframe class="col-sm-8 col-lg-8 embed-responsive-item" width="660" height="415"
+                src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            <div class="right">
+                <% lessons.forEach(function(lesson) { %>
+                    <div class="col-sm-2 col-lg-4">
+                        <div class="alert alert-primary float-left" role="alert">
+                            <img class="card-img-top" style="width: 80px;" src="<%= lesson.image %>" alt="">
+                            <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Bài <%= name %></a>
+                        </div>
+
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+<div class="container-fluid ">
+    <div class="row">
+        <div class=" lessons__heading">
+            <a href="/courses"><i class="fas fa-chevron-left"></i></a>
+            <a href="/" class="logo"></a>
+            <p class="lessons__heading-title">
+                Khóa học <%= tag %> : <%= name %>
+            </p>
+        </div>
+        <div class=" lessons__body col col-xl-8 col-md-12">
+            <div class="embed-responsive embed-responsive-16by9 ">
+                <iframe class="embed-responsive-item" allowfullscreen
+                    src="https://www.youtube.com/embed/<%= videoID %>"></iframe>
+            </div>
+        </div>
+        <div class=" col col-xl-4 d-xl-block d-none table__content content">
+            <div class="list">
+                <div class="list__heading">
+                    <h1 class="m-0">
+                        <%= course.name%>
+                    </h1>
+                    <% if(user.progress===0) { %>
+                        <p>You have not completed any lessons yet!</p>
+                        <% } else { %>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <% } %>
+                </div>
+                <div class="list__body">
+                    <% lessons.forEach(function(lesson,index) { %>
+                        <div>
+                            <div class="list__body-details">
+                                <input class="check" type="checkbox" value="" id="checkProgress">
+                                <img class="card-img-top mr-2" style="width: 80px;" src="<%= lesson.image %>" alt="">
+                                <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Bài <%= index + 1 %>:<%=
+                                            lesson.name %></a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

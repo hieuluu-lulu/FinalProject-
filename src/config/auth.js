@@ -13,8 +13,8 @@ module.exports = {
     },
     admin(req, res, next) {
         if (
-            req.user.email !== 'hieulvtgcd17213@fpt.edu.vn' &&
-            req.user.name !== 'Admin'
+            req.user.email !== 'trunghieucute99@gmail.com' &&
+            req.user.name !== 'admin'
         ) {
             res.redirect('/dashboard');
         }

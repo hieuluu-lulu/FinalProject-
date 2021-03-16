@@ -1,6 +1,6 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
-const User = require('../models/userModel');
+const User = require('../models/usersModel');
 
 class LessonController {
     index(req, res, next) {
@@ -8,37 +8,47 @@ class LessonController {
     }
     //[GET] /learning/:slug
     checkLesson(req, res, next) {
-        Lesson.findOne({ tag: req.params.tag }).then((lesson) => {
+        Lesson.findOne({ tag: req.params.slug }).then((lesson) => {
             lesson
-                ? res.redirect('/lesson/' + lesson.tag + '/' + lesson.slug)
+                ? res.redirect('/lessons/' + lesson.tag + '/' + lesson.slug)
                 : res.status(404).json('Chưa có bài học nào trong khóa này');
         });
     }
     //GET learning/:tag/:slug
     showLessionDetails(req, res, next) {
         Promise.all([
+            Course.findOne({ tag: req.params.tag }),
             Lesson.find({ tag: req.params.tag }),
             Lesson.findOne({ tag: req.params.tag, slug: req.params.slug }),
+            Lesson.countDocuments({ tag: req.params.tag }),
         ])
-            .then(([lessons, details]) => {
-                res.render('lessons/lesson'),
-                    {
-                        lesson: lessons,
-                        videoID: details.videoId,
-                        tag: details.tag,
-                        name: details.name,
-                        slug: details.slug,
-                    };
+            .then(([course, lessons, lesson, count]) => {
+                if (lesson) {
+                    res.locals.title = lesson.name;
+                    res.render('lessons/lesson', {
+                        course: course,
+                        lessons: lessons,
+                        user: req.user,
+                        videoID: lesson.videoId,
+                        tag: lesson.tag,
+                        name: lesson.name,
+                        slug: lesson.slug,
+                        count: count,
+                    });
+                }
+                console.log(lessons);
             })
+
             .catch(next);
     }
     // [GET] /learning/create
     createLesson(req, res, next) {
         Course.find({}).then((tag) => {
-            res.render('lessons/createLesson'),
-                {
-                    tag: tag,
-                };
+            res.locals.title = 'Create Lesson';
+            res.render('lessons/createLesson', {
+                user: req.user,
+                tag: tag,
+            });
         });
     }
     // [POST] /learning/store
@@ -54,11 +64,12 @@ class LessonController {
     editLesson(req, res, next) {
         Promise.all([Course.find({}), Lesson.findById(req.params.id)])
             .then(([tag, lesson]) => {
-                res.render('lessons/edit'),
-                    {
-                        tag: tag,
-                        lesson: lesson,
-                    };
+                res.locals.title = 'Edit Lesson';
+                res.render('lessons/edit', {
+                    tag: tag,
+                    lesson: lesson,
+                    user: req.user,
+                });
             })
             .catch(next);
     }

@@ -5,14 +5,15 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const UserSchema = new Schema(
     {
         userID: { type: Number },
-        name: { type: String, require: true },
-        email: { type: String, required: true },
+        name: { type: String },
+        email: { type: String },
         password: { type: String, require: true },
         date: { type: Date, default: Date.now },
         facebookId: { type: String },
         googleId: { type: String },
         resetPasswordToken: String,
         resetPasswordExpires: Date,
+        progress: { type: Number, default: 0 },
     },
     {
         timestamps: true,

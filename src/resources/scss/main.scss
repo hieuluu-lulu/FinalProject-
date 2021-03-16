@@ -4,6 +4,7 @@
 @import 'reset';
 @import 'login_template';
 @import 'util';
+
 html {
     scroll-behavior: smooth;
 }
@@ -264,7 +265,7 @@ body {
 }
 // home page
 // section header
-.wrapper .header {
+.wrap .header {
     padding: 7.5rem 0 2rem;
     position: relative;
     align-items: center;
@@ -397,20 +398,20 @@ body {
 //   display: flex;
 //   justify-content: flex-end;
 // }
-// .btn-signin {
-//   margin: 15px 0;
-//   padding: 10px;
-//   font-size: 1.4rem;
-//   background-color: #3a88ec;
-//   border-radius: 50px;
-//   color: var(--white);
-//   font-weight: 400;
-//   transition: all linear 0.2s;
-// }
-// .btn-signin:hover {
-//   background-color: #1561c4;
-//   color: var(--white);
-// }
+.btn-signin {
+    margin: 15px 0;
+    padding: 10px;
+    font-size: 1.4rem;
+    background-color: #3a88ec;
+    border-radius: 50px;
+    color: var(--white);
+    font-weight: 400;
+    transition: all linear 0.2s;
+}
+.btn-signin:hover {
+    background-color: #1561c4;
+    color: var(--white);
+}
 //form
 .form {
     padding: 32px 48px;
@@ -426,8 +427,8 @@ body {
 .form-control:focus {
     outline: none !important;
 }
-// courses
-.courses-content {
+// content
+.content {
     margin-top: 70px;
 }
 .head-course {
@@ -698,6 +699,65 @@ button {
     width: 100%;
     height: 100%;
     margin-top: 70px;
+}
+// lessons
+
+.lessons__heading {
+    display: flex;
+    background: #29313b;
+    min-height: 50px;
+    padding: 18px 20px;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--white);
+}
+.lessons__heading-title {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin: 0 20px;
+    position: relative;
+}
+.lessons__heading-title::after {
+    content: '';
+    border: 1px solid #e1e1e1;
+    position: absolute;
+    display: block;
+    left: -30px;
+    top: 0;
+    height: 30px;
+    margin: 0 1rem;
+}
+.lessons__body {
+    background-color: var(--dark);
+    padding: 0 0.8rem;
+}
+.table__content {
+    background-color: #eff1f5;
+    position: fixed;
+    right: 0;
+}
+.list__heading {
+    padding: 12px 0;
+}
+.list__heading h1 {
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.list__heading p {
+    padding: 0 12px;
+    font-size: 14px;
+}
+.list__body-details {
+    width: 100%;
+    background: #d1ddf7;
+    padding: 12px;
+    align-items: center;
+    display: flex;
+}
+.check {
+    margin-right: 7px;
+    padding: 0;
 }
 
 @media (max-width: 1023px) {

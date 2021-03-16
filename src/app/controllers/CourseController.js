@@ -21,6 +21,7 @@ class CourseController {
                     Lesson.countDocuments({ tag: course.tag }),
                     Lesson.find({ tag: course.tag }),
                 ]).then(([count, lesson]) => {
+                    res.locals.title = course.name;
                     res.render('courses/showCourse', {
                         lesson: lesson,
                         course: course,
@@ -31,6 +32,7 @@ class CourseController {
             .catch(next);
     }
     createCourses(req, res, next) {
+        res.locals.title = 'Create Courses';
         res.render('courses/create', {
             user: req.user,
         });
@@ -52,6 +54,7 @@ class CourseController {
             .then((course) =>
                 res.render('courses/edit', {
                     course: course,
+                    user: req.user,
                 }),
             )
             .catch(next);

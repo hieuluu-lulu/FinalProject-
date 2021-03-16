@@ -108,11 +108,12 @@ class UserController {
             });
         }
     }
+
     loginHandler(req, res, next) {
         passport.authenticate('local', {
             successRedirect: '/dashboard',
             failureRedirect: '/users/login',
-            failureFlash: 'Username or password is incorrect.',
+            failureFlash: 'Invalid email or password',
         })(req, res, next);
     }
     loginFacebook(req, res, next) {
@@ -139,7 +140,6 @@ class UserController {
         async.waterfall(
             [
                 //create token
-
                 function (done) {
                     crypto.randomBytes(20, (err, buf) => {
                         var token = buf.toString('hex');
@@ -254,35 +254,24 @@ class UserController {
                             } else {
                                 user.resetPasswordToken = undefined;
                                 user.resetPasswordExpires = undefined;
-
-                                const newUser = new User({
-                                    name: user.name,
-                                    email: user.email,
-                                    password: req.body.password,
-                                });
                                 bcrypt.hash(
-                                    newUser.password,
+                                    req.body.password,
                                     10,
                                     (err, hash) => {
                                         if (err) throw err;
-                                        newUser.password = hash;
-                                        newUser
-                                            .save()
-                                            .then((user) => {
-                                                req.flash(
-                                                    'success_message',
-                                                    'Password changed successfully',
-                                                );
-                                                res.redirect('/users/login');
-                                            })
-                                            .catch((err) => console.log(err));
+                                        user.password = hash;
+                                        user.save();
                                     },
                                 );
-                                // user.save(function(err) {
-                                //     req.logIn(user, function(err) {
-                                //         done(err, user);
-                                //     });
-                                // });
+                                user.save()
+                                    .then((user) => {
+                                        req.flash(
+                                            'success_message',
+                                            'Password changed successfully',
+                                        );
+                                        res.redirect('/users/login');
+                                    })
+                                    .catch((err) => console.log(err));
                             }
                         },
                     );
