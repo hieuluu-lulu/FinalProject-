@@ -1,6 +1,7 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
+const Category = require('../models/categoryModel');
 class ManageController {
     //[GET]/manage/stored/courses
     storedCourses(req, res, next) {
@@ -15,15 +16,12 @@ class ManageController {
             .catch(next);
     }
     trashCourses(req, res, next) {
-        Promise.all([Course.findDeleted({}), Course.countDocuments()])
-            .then(([courses, countDocuments]) => {
-                if (account) {
-                    res.locals.title = 'Manange Courses';
-                    res.render('manage/trash-courses', {
-                        courses: courses,
-                        countDocuments,
-                    });
-                }
+        Course.findDeleted({})
+            .then((courses) => {
+                res.locals.title = 'Trash Courses';
+                res.render('manage/trash-courses', {
+                    courses: courses,
+                });
             })
             .catch(next);
     }
@@ -31,7 +29,7 @@ class ManageController {
         Promise.all([Lesson.find({}), Lesson.countDocumentsDeleted()]) // bất đồng bộ trong js
             .then(([lesson, deletedCount]) => {
                 res.locals.title = 'Manage Lessons';
-                res.render('manage/stored-courses', {
+                res.render('manage/stored-lesson', {
                     deletedCount,
                     lesson: lesson,
                 });
@@ -39,14 +37,12 @@ class ManageController {
             .catch(next);
     }
     trashLesson(req, res, next) {
-        Promise.all([Lesson.findDeleted({}), Lesson.countDocuments()])
-            .then(([lesson, countLesson]) => {
-                if (account) {
-                    res.render('manage/trash-courses', {
-                        lesson: lesson,
-                        countLesson,
-                    });
-                }
+        Lesson.findDeleted({})
+            .then((lessons) => {
+                res.locals.title = 'Trash Lesson';
+                res.render('manage/trash-lessons', {
+                    lessons: lessons,
+                });
             })
             .catch(next);
     }
@@ -61,6 +57,17 @@ class ManageController {
                         account: account,
                         username: user.name,
                     };
+            })
+            .catch(next);
+    }
+    storedCategory(req, res, next) {
+        Promise.all([Category.find({}), Category.countDocumentsDeleted()]) // bất đồng bộ trong js
+            .then(([category, deletedCount]) => {
+                res.locals.title = 'Manange Category';
+                res.render('manage/stored-category', {
+                    deletedCount,
+                    category: category,
+                });
             })
             .catch(next);
     }

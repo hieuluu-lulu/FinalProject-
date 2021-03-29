@@ -18,8 +18,6 @@ const oAuth2Client = new google.auth.OAuth2(
     REDIRECT_URI,
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
-let tokenForgot;
-
 class UserController {
     indexLogin(req, res, next) {
         res.locals.title = 'Login';
@@ -50,6 +48,7 @@ class UserController {
             errors.push({ message: 'Password does not match' });
         }
         if (errors.length > 0) {
+            res.locals.title = 'Resgister';
             res.render('account/register', {
                 errors,
                 name,
@@ -66,6 +65,7 @@ class UserController {
                 if (username) {
                     //check user exist
                     errors.push({ message: `Name ${name} has been used` });
+                    res.locals.title = 'Resgister';
                     res.render('account/register', {
                         errors,
                         name,
@@ -76,6 +76,7 @@ class UserController {
                 }
                 if (useremail) {
                     errors.push({ message: `Email ${email} has been used` });
+                    res.locals.title = 'Resgister';
                     res.render('account/register', {
                         errors,
                         name,
@@ -108,7 +109,6 @@ class UserController {
             });
         }
     }
-
     loginHandler(req, res, next) {
         passport.authenticate('local', {
             successRedirect: '/dashboard',

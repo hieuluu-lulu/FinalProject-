@@ -7,23 +7,23 @@
   <!--===============================================================================================-->
 
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../fonts/iconic/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/css-hamburgers/hamburgers.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/animsition/css/animsition.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../vendor/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../../../../css/main.css">
+  <link rel="stylesheet" type="text/css" href="/../css/main.css">
 
   <!--===============================================================================================-->
 </head>
@@ -31,22 +31,28 @@
 <body>
 
   <div class="limiter no-gutters p-0">
-    <div class="container-login100" style="background-image: url('../../../images/bg-01.jpg');">
+    <div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
       <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
         <form class="loginno-gutters100-form validate-form" action="/users/login" method="post">
           <span class="login100-form-title p-b-49">
             Login
           </span>
           <%- include('../partials/messages')%>
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+            <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
               <span class="label-input100">Email</span>
               <input class="input100" type="email" id="email" name="email" placeholder="Type your username">
               <span class="focus-input100" data-symbol="&#xf206;"></span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <div class="wrap-input100 ">
               <span class="label-input100">Password</span>
-              <input class="input100" type="password" id="password" name="password" placeholder="Type your password">
+              <div class="pass" style="position: relative">
+                <input class="input100" type="password" id="password" name="password" placeholder="Type your password">
+                <div class="showpass">
+                  <span class="btneye btn" style="display: none;"><i class="fas fa-eye" aria-hidden="true"></i></span>
+                  <span class="btneye btn"><i class="fas fa-eye-slash" aria-hidden="true"></i></span>
+                </div>
+              </div>
               <span class="focus-input100" data-symbol="&#xf190;"></span>
             </div>
 
@@ -103,21 +109,36 @@
   <div id="dropDownSelect1"></div>
 
   <!--===============================================================================================-->
-  <script src="../../../vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../vendor/animsition/js/animsition.min.js"></script>
+  <script src="/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../vendor/bootstrap/js/popper.js"></script>
-  <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/vendor/bootstrap/js/popper.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../vendor/select2/select2.min.js"></script>
+  <script src="/vendor/select2/select2.min.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../vendor/daterangepicker/moment.min.js"></script>
-  <script src="../../../vendor/daterangepicker/daterangepicker.js"></script>
+  <script src="/vendor/daterangepicker/moment.min.js"></script>
+  <script src="/vendor/daterangepicker/daterangepicker.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../vendor/countdowntime/countdowntime.js"></script>
+  <script src="/vendor/countdowntime/countdowntime.js"></script>
   <!--===============================================================================================-->
-  <script src="../../../js/main.js"></script>
+  <script src="/js/main.js"></script>
+
+  <script>
+    var passText = document.getElementById('password');
+    var btnEye = document.getElementsByClassName('btneye');
+    btnEye[1].onclick = function () {
+      btnEye[0].style.display = "";
+      btnEye[1].style.display = "none";
+      passText.type = "text";
+    }
+    btnEye[0].onclick = function () {
+      btnEye[1].style.display = "";
+      btnEye[0].style.display = "none";
+      passText.type = "password";
+    }
+  </script>
 
 </body>
 

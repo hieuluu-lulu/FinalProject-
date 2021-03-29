@@ -11,11 +11,19 @@ module.exports = {
         }
         res.redirect('/dashboard');
     },
+    forwardAdmin: function (req, res, next) {
+        if (!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/admin/dashboard');
+    },
+    ensureAdmin: function (req, res, next) {
+        if (req.isAuthenticated()) return next();
+        req.flash('error_message', 'First you need to login!');
+        res.redirect('/admin');
+    },
     admin(req, res, next) {
-        if (
-            req.user.email !== 'trunghieucute99@gmail.com' &&
-            req.user.name !== 'admin'
-        ) {
+        if (req.user.email !== 'admin@gmail.com' && req.user.name !== 'admin') {
             res.redirect('/dashboard');
         }
         next();

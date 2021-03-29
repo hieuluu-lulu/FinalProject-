@@ -3,16 +3,18 @@ const route = express.Router();
 
 const lessonController = require('../app/controllers/LessonController');
 const { ensureAuth, admin } = require('../config/auth');
+const router = require('./course');
 
-route.post('/handle-form-actions', lessonController.handleFormActions);
-route.post('/save', lessonController.storedLesson);
-route.get('/create', admin, lessonController.createLesson);
-route.get('/:id/edit', lessonController.editLesson);
+router.put('/progress', lessonController.updateProgress);
+route.post('/handle-actions', lessonController.handleFormActions);
+route.post('/save', ensureAuth, admin, lessonController.storedLesson);
+route.get('/create', ensureAuth, admin, lessonController.createLesson);
+route.get('/:id/edit', ensureAuth, admin, lessonController.editLesson);
 route.put('/:id', lessonController.updateLesson);
-route.get('/:id/restore', lessonController.restore);
+route.get('/:id/restore', ensureAuth, admin, lessonController.restore);
 route.delete('/:id', lessonController.delete);
 route.delete('/:id/force', lessonController.forceDelete);
-route.get('/:tag/:slug', lessonController.showLessionDetails);
-route.get('/:slug', lessonController.checkLesson);
-route.get('/', lessonController.index);
+route.get('/:tag/:slug', ensureAuth, lessonController.showLessionDetails);
+route.get('/:slug', ensureAuth, lessonController.checkLesson);
+route.get('/', ensureAuth, lessonController.index);
 module.exports = route;

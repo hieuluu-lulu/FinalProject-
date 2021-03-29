@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const Lesson = new Schema(
     {
+        lessonID: { type: Number },
         name: { type: String, required: true },
         image: { type: String },
         videoId: { type: String, required: true },
@@ -19,6 +20,7 @@ const Lesson = new Schema(
 
 // Add plugins
 mongoose.plugin(slug);
+Lesson.plugin(AutoIncrement, { inc_field: 'lessonID' });
 Lesson.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',

@@ -6,24 +6,24 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const CourseSchema = new Schema(
     {
-        _id: { type: Number },
-        name: { type: String, maxLength: 255, require: true },
-        description: { type: String, maxLength: 600 },
+        courseID: { type: Number },
+        name: { type: String, maxLength: 255, required: true },
+        author: { type: String, required: true },
+        description: { type: String, maxLength: 600, required: true },
         image: { type: String, maxLength: 255 },
-        videoId: { type: String },
-        level: { type: String, maxLength: 255 },
-        type: { type: String },
-        tag: { type: String },
+        videoId: { type: String, required: true },
+        level: { type: String, maxLength: 255, required: true },
+        tag: { type: String, required: true },
+        category: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
     },
     {
-        _id: false,
         timestamps: true,
     },
 );
 
 mongoose.plugin(slug);
-CourseSchema.plugin(AutoIncrement);
+CourseSchema.plugin(AutoIncrement, { inc_field: 'courseID' });
 CourseSchema.plugin(mongooseDelete, {
     deletedAt: true,
     overrideMethods: 'all',

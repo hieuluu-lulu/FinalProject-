@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+
+<head>
+
+    <!-- Favicon icon -->
+    <link rel="stylesheet" type="text/css" href="/admin/assets/extra-libs/multicheck/multicheck.css">
+    <link href="/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/admin/dist/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div> -->
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="/dashboard">
+                        <!-- Logo icon -->
+                        <b class="logo-icon ps-2">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="/admin/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="/images/logo.png" style="width:152px; height:30px" alt="homepage"
+                                class="light-logo" />
+
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <!-- <img src="/admin/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+
+                        <!-- </b> -->
+                        <!--End Logo icon -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav  me-auto" style="margin-left:250px">
+                        <li class="nav-item d-none d-lg-block"><a
+                                class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        <!-- ============================================================== -->
+                        <!-- create new -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
+                                    class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-end">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-bell font-24"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/admin/assets/images/users/1.jpg" alt="user" class="rounded-circle"
+                                    width="31">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated"
+                                aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                                    My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet me-1 ms-1"></i>
+                                    My Balance</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
+                                    Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i>
+                                    Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/users/logout"><i class="fa fa-power-off me-1 ms-1"></i>
+                                    Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="ps-4 p-10"><a href="javascript:void(0)"
+                                        class="btn btn-sm btn-success btn-rounded text-white">View Profile</a></div>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="pt-4">
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Courses </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/manage/stored/courses" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Course
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="/courses/create" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Create Course
+                                        </span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Category</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/manage/stored/category" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Category
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="/categories/create" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Create Category
+                                        </span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
+                                    class="hide-menu">Lessons </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/manage/stored/lessons" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Lessons
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="/lessons/create" class="sidebar-link"><i
+                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Add Lessons
+                                        </span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span
+                                    class="hide-menu">User</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/manage/store/user" class="sidebar-link"><i
+                                            class="mdi mdi-face"></i><span class="hide-menu"> Manage User
+                                        </span></a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span
+                                    class="hide-menu">Errors </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i
+                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i
+                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i
+                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405
+                                        </span></a></li>
+                                <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i
+                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500
+                                        </span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+
+        <div class="page-wrapper">
+
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Manage</h4>
+                        <div class="ms-auto text-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Courses</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Stored Courses</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Trash Lessons</h5>
+                                <div class="table-responsive">
+                                    <form method="POST" action="/lessons/handle-actions" name="container-form">
+                                        <a class="btn btn-primary flex" href="/manage/stored/lessons">
+                                            <i class="mdi mdi-backburger"></i>
+                                            Back to Manage Lessons
+                                        </a>
+                                        <div class="d-flex mt-4 align-items-center mb-2 px-2">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" type="checkbox" id="checkbox-all">
+                                                <label class="form-check-label" for="checkbox-all">Select All</label>
+                                            </div>
+                                            <div class="mr-2 ml-2">
+                                                <select class="form-control" name="action" required>
+                                                    <option value="">-- Choose Action --</option>
+                                                    <option value="restore">Restore</option>
+                                                    <option value="force-delete">Delete</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary btn-submit-all "
+                                                disabled="disabled">Submit</button>
+                                        </div>
+                                        <table id="zero_config" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>No.</th>
+                                                    <th>Name of Less0ns</th>
+                                                    <th>Tag</th>
+                                                    <th>Create At</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% lessons.forEach(function(lesson,index) { %>
+                                                    <tr>
+                                                        <th>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    name="LessonIds[]" value="<%= lesson.lessonID %>">
+                                                            </div>
+                                                        </th>
+                                                        <td>
+                                                            <%= index + 1 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= lesson.name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= lesson.tag %>
+                                                        </td>
+                                                        <td>
+                                                            <%= lesson.createdAt %>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="btn-group btn-group-sm" role="group"
+                                                                aria-label="Basic example">
+                                                                <a data-id="<%= lesson.lessonID %>"
+                                                                    class="btn btn-primary btn-restore">Restore</a>
+                                                                <a href="" class="btn btn-danger" data-bs-toggle="modal"
+                                                                    data-id="<%= lesson.lessonID %>"
+                                                                    data-bs-target="#delete-lesson-modal">Delete</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>No.</th>
+                                                    <th>Name of Lessons</th>
+
+                                                    <th>Tag</th>
+                                                    <th>Create At</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="delete-lesson-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Course</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This action cannot be undone, do you want to continue?
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-delete" type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form name="delete-courses-form" class="mt-4" method="POST"></form>
+        <form name="restore-courses-form" class="mt-4" method="POST"></form>
+        <script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- this page js -->
+
+        <script src="/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+        <script src="/admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+        <script src="/admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+
+        <script>
+            // add sự kiện để có thể chạy code jquery sau khi loaded DOM
+            document.addEventListener('DOMContentLoaded', function () {
+                var lessonId;  // tạo biến để function onclick có thể nhận đc id của khóa học
+                var btnDelete = document.getElementById("btn-delete");
+                var btnRestore = $('.btn-restore');
+
+                var deleteForm = document.forms['delete-courses-form'];
+                var restoreForm = document.forms['restore-courses-form'];
+                //var containerForm = document.forms['container-form'];
+                var containerForm = $('form[name="container-form"]');
+                var checkboxAll = $("#checkbox-all");
+                var lessonItemsCheckbox = $('input[name="LessonIds[]"]');
+                var btnSubmitAll = $(".btn-submit-all"); // sử dụng jquery để lấy ra element trong DOM
+
+                var delete_course_modal = document.getElementById('delete-lesson-modal')
+                //when dialog confirm clicked
+
+                $('#delete-lesson-modal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget);
+                    lessonId = button.data('id');
+                    console.log(lessonId)
+
+
+                });
+
+                btnRestore.click(function (e) {
+                    e.preventDefault();
+                    var lessonId = $(this).data('id');
+                    restoreForm.action = '/lessons/' + lessonId + '/restore?_method=PATCH'; // khôi phục dữ liệu
+                    restoreForm.submit();
+                });
+
+                // when delete course btn clicked
+                btnDelete.onclick = function () {
+                    deleteForm.action = '/lessons/' + lessonId + '?_method=DELETE';// override phương thức post mặc định
+                    deleteForm.submit();
+                }
+
+                // ---------------Select all checkbox--------------------------------
+
+                //checkbox-all changed
+                checkboxAll.change(function () {
+                    var isCheckedAll = $(this).prop('checked');
+                    lessonItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
+                    renderCheckAllbtn();
+                });
+                //coures item checkbox changed
+                lessonItemsCheckbox.change(function () {
+                    // kiểm tra tổng số lượng checked có bằng tổng số lượng checkbox đang có hay ko, từ đó khi bỏ check 1 thì sẽ ko check all
+                    var isCheckedAll = lessonItemsCheckbox.length === $('input[name="LessonIds[]"]:checked').length;
+                    checkboxAll.prop('checked', isCheckedAll);
+                    renderCheckAllbtn();
+                });
+
+                //  button check all ( re-render)
+                function renderCheckAllbtn() {
+                    var checkedCount = $('input[name="LessonIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
+                    if (checkedCount > 0) {
+                        btnSubmitAll.attr('disabled', false); // remove attribute
+                    }
+                    else {
+                        btnSubmitAll.attr('disabled', true);
+                    }
+                }
+
+            });
+        </script>
+        <script>
+            $('#zero_config').DataTable();
+        </script>
+
+
+    </div>
+</body>
+
+</html>

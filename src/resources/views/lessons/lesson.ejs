@@ -32,7 +32,7 @@
             <a href="/courses"><i class="fas fa-chevron-left"></i></a>
             <a href="/" class="logo"></a>
             <p class="lessons__heading-title">
-                Khóa học <%= tag %> : <%= name %>
+                Course <%= tag %> : <%= name %>
             </p>
         </div>
         <div class=" lessons__body col col-xl-8 col-md-12">
@@ -47,22 +47,14 @@
                     <h1 class="m-0">
                         <%= course.name%>
                     </h1>
-                    <% if(user.progress===0) { %>
-                        <p>You have not completed any lessons yet!</p>
-                        <% } else { %>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <% } %>
                 </div>
                 <div class="list__body">
                     <% lessons.forEach(function(lesson,index) { %>
                         <div>
                             <div class="list__body-details">
-                                <input class="check" type="checkbox" value="" id="checkProgress">
+
                                 <img class="card-img-top mr-2" style="width: 80px;" src="<%= lesson.image %>" alt="">
-                                <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Bài <%= index + 1 %>:<%=
+                                <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Bài <%= index + 1 %>: <%=
                                             lesson.name %></a>
                             </div>
                         </div>

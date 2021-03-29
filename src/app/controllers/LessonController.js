@@ -36,7 +36,6 @@ class LessonController {
                         count: count,
                     });
                 }
-                console.log(lessons);
             })
 
             .catch(next);
@@ -62,7 +61,10 @@ class LessonController {
     }
     // [GET] /learning/:id/edit
     editLesson(req, res, next) {
-        Promise.all([Course.find({}), Lesson.findById(req.params.id)])
+        Promise.all([
+            Course.find({}),
+            Lesson.findById({ lessonID: req.params.id }),
+        ])
             .then(([tag, lesson]) => {
                 res.locals.title = 'Edit Lesson';
                 res.render('lessons/edit', {
@@ -75,40 +77,46 @@ class LessonController {
     }
     // [PUT] /learning/:id
     updateLesson(req, res, next) {
-        Lesson.updateOne({ _id: req.params.id }, req.body)
+        Lesson.updateOne({ lessonID: req.params.id }, req.body)
             .then(() => res.redirect('manage/stored/lessons'))
             .catch(next);
     }
+    updateProgress(req, res, next) {}
     // sử dụng thư viện moogose-delete để xóa và đưa vào thúng rác
     //[DELETE]/courses/:id/
     delete(req, res, next) {
-        Lesson.delete({ _id: req.params.id })
+        Lesson.delete({ lessonID: req.params.id })
             .then(() => res.redirect('/manage/stored/lessons'))
             .catch(next);
     }
     //khôi phục dữ liệu
     // [PATCH]/lesson/:id/restore
     restore(req, res, next) {
-        Lesson.restore({ _id: req.params.id })
+        Lesson.restore({ lessonID: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }
     //[DELETE]/courses/:id/force  // xóa vĩnh viễn khóa học
     forceDelete(req, res, next) {
-        Lesson.deleteOne({ _id: req.params.id })
+        Lesson.deleteOne({ lessonID: req.params.id })
             .then(() => res.redirect('/manage/stored/lessons'))
             .catch(next);
     }
     // [POST]/courses/handle-form-actions
     handleFormActions(req, res, next) {
         switch (req.body.action) {
+            case 'force-delete':
+                Lesson.deleteMany({ lessonID: { $in: req.body.LessonIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
             case 'delete':
-                Lesson.delete({ _id: { $in: req.body.LessonIds } }) //
+                Lesson.delete({ lessonID: { $in: req.body.LessonIds } }) //
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
             case 'restore':
-                Lesson.restore({ _id: { $in: req.body.LessonIds } }) //
+                Lesson.restore({ lessonID: { $in: req.body.LessonIds } }) //
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;

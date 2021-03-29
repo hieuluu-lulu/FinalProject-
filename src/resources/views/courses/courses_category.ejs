@@ -1,0 +1,274 @@
+<%- include('../partials/header')%>
+    <link href="/admin/dist/css/style.min.css" rel="stylesheet">
+
+    <div class="head-course main-content">
+        <div class="container">
+            <h2>Free online programming lessons. Get started with your first course!</h2>
+            <div class="block-search">
+                <div class="input-group">
+                    <form action="/courses" id="form-search" value="<%=searchOptions.name %>">
+                        <input name="name" type="text" class="form-control" placeholder="Search..."
+                            value="<%=searchOptions.name %>">
+                        <button type='submit' class="input-group-icon"><i class="fas fa-search"></i></i></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl px-5">
+        <div class="row">
+            <div class="col col-lg-3 d-md-none d-sm-none d-lg-block">
+                <!-- <h1 class="display-6 fs-3 mb-3">Web Development</h1>
+                <div class="accordion" id="WebDevelopment">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="front-endHeadingOne">
+                            <a class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#front-endCollapseOne" aria-expanded="false"
+                                aria-controls="front-endCollapseOne">
+                                Front-end
+                            </a>
+                        </h2>
+                        <div id="front-endCollapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="front-endHeadingOne" data-bs-parent="#WebDevelopment">
+                            <div class="accordion-body">
+                                <ul class="list-group">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='front-end' ) { %>
+                                            <li class="list-group-item">
+                                                <a href="/categories/<%= category.slug%>">
+                                                    <%=category.title%>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="mobile-headingTwo">
+                            <a class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#front-endCollapseTwo" aria-expanded="false"
+                                aria-controls="front-endCollapseTwo">
+                                Back-end
+                            </a>
+                        </h2>
+                        <div id="front-endCollapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="mobile-headingTwo" data-bs-parent="#WebDevelopment">
+                            <div class=" accordion-body">
+                                <ul class="list-group">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='back-end' ) { %>
+                                            <li class="list-group-item">
+                                                <a href="/categories/<%= category.slug%>">
+                                                    <%=category.title%>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="display-6 fs-3 my-3">Mobile Development</h1>
+                <div class="accordion" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="mobile-headingOne">
+                            <a class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#mobileCollapseOne" aria-expanded="false"
+                                aria-controls="mobileCollapseOne">
+                                Android
+                            </a>
+                        </h2>
+                        <div id="mobileCollapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="mobile-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="list-group">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='android' ) { %>
+                                            <li class="list-group-item">
+                                                <a href="/categories/<%= category.slug%>">
+                                                    <%=category.title%>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="mobile-headingTwo">
+                            <a class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#mobileCollapseTwo" aria-expanded="false"
+                                aria-controls="mobileCollapseTwo">
+                                IOS
+                            </a>
+                        </h2>
+                        <div id="mobileCollapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="mobile-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="list-group">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='ios' ) { %>
+                                            <li class="list-group-item">
+                                                <a href="/categories/<%= category.slug%>">
+                                                    <%=category.title%>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="scroll-sidebar menu-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="in">
+                            <li class="sidebar-item  ">
+                                <a class="sidebar-link sidebar-links waves-effect waves-dark sidebar-link sidebar-links"
+                                    href="/courses" aria-expanded="false"><i class="fab fa-codepen"></i><span
+                                        class="hide-menu">All Courses</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a class="sidebar-link sidebar-links has-arrow has-arrows waves-effect waves-dark"
+                                    href="javascript:void(0)" aria-expanded="false"><i class="fab fa-html5"></i></i>
+                                    <span class="hide-menu">Front-end </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='front-end' ) { %>
+                                            <li class="sidebar-item  ">
+                                                <a href="/categories/<%= category.slug%>"
+                                                    class="sidebar-link sidebar-links">
+                                                    <i class=""></i>
+                                                    <span class="hide-menu">
+                                                        <%=category.title%>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a class="sidebar-link sidebar-links has-arrow has-arrows waves-effect waves-dark"
+                                    href="javascript:void(0)" aria-expanded="false"><i class="fas fa-file-code"></i>
+                                    <span class="hide-menu">Back-end </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='back-end' ) { %>
+                                            <li class="sidebar-item  ">
+                                                <a href="/categories/<%= category.slug%>"
+                                                    class="sidebar-link sidebar-links">
+                                                    <i class=""></i>
+                                                    <span class="hide-menu">
+                                                        <%=category.title%>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a class="sidebar-link sidebar-links has-arrow has-arrows waves-effect waves-dark"
+                                    href="javascript:void(0)" aria-expanded="false"><i class="fab fa-android"></i>
+                                    <span class="hide-menu">Android</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='android' ) { %>
+                                            <li class="sidebar-item  ">
+                                                <a href="/categories/<%= category.slug%>"
+                                                    class="sidebar-link sidebar-links">
+                                                    <i class=""></i>
+                                                    <span class="hide-menu">
+                                                        <%=category.title%>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item  ">
+                                <a class="sidebar-link sidebar-links has-arrow has-arrows waves-effect waves-dark"
+                                    href="javascript:void(0)" aria-expanded="false"><i class="fab fa-apple"></i>
+                                    <span class="hide-menu">IOS</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <%category.forEach(function(category){ %>
+                                        <%if (category.type=='ios' ) { %>
+                                            <li class="sidebar-item  ">
+                                                <a href="/categories/<%= category.slug%>"
+                                                    class="sidebar-link sidebar-links">
+                                                    <i class=""></i>
+                                                    <span class="hide-menu">
+                                                        <%=category.title%>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% }) %>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+            </div>
+            <div class="col col-lg-9 col-md-12 col-sm-12 ">
+                <div class="list">
+                    <section class="list__courses">
+                        <% if(course !=="" ) { %>
+                            <div class="row">
+                                <% course.forEach(function(course) { %>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                                        <div class="card">
+                                            <a href="/lessons/<%- course.tag %>" class="card-course-img">
+                                                <img src="<%= course.image %>" class="card-img-top" alt="" />
+                                            </a>
+                                            <div class="card-body card-body-custom">
+                                                <a href="/lessons/<%- course.tag %>">
+                                                    <h3 class="card-title">
+                                                        <%= course.name %>
+                                                    </h3>
+                                                </a>
+                                                <p class="card-text">
+                                                    <%= course.description %>
+                                                </p>
+                                                <div class="content-footer">
+                                                    <p class="">
+                                                        <%= course.author%>
+                                                    </p>
+                                                    <a href="/lessons/<%- course.tag %>"
+                                                        class="btn btn-primary">Free</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <% } if (course=="" ){ %>
+                                <section class="list_courses">
+                                    <div class="row">
+                                        <div class="no-data">
+                                            <img src="/images/not-found.svg" alt="">
+                                            <h2>No Courses Found</h2>
+                                        </div>
+                                    </div>
+                                </section>
+                                <% } %>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>

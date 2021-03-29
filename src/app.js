@@ -4,6 +4,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
+const expressValidator = require('express-validator');
 const methodOverride = require('method-override'); //ghi đè phương thức mặc định Post, Get của html thành DELETE,PUT,PATCH
 const app = express();
 const db = require('./config/dbconnect');

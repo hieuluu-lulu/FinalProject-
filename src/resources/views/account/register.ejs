@@ -1,36 +1,112 @@
-<div class="row mt-4">
-  <div class="col-md-5 m-auto">
-    <div class="form">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> Register
-      </h1>
-      <%- include('../partials/messages')%>
-        <form action="/users/register" method="POST">
-          <div class="form-group">
-            <label class="text" for="name">Name</label>
-            <input type="name" id="name" name="name" class="form-control" placeholder=" Enter your name"
-              value="<%= typeof name != 'undefined' ? name : '' %>" />
-          </div>
-          <div class="form-group">
-            <label class="text" for="email">Email</label>
-            <input type="" id="email" name="email" class="form-control" placeholder="Enter your email address"
-              value="<%= typeof email != 'undefined' ? email : '' %>" />
-          </div>
-          <div class="form-group">
-            <label class="text" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password"
-              value="<%= typeof password != 'undefined' ? password : '' %>" />
-          </div>
-          <div class="form-group">
-            <label class="text" for="password2">Confirm Password</label>
-            <input type="password" id="password2" name="password2" class="form-control" placeholder="Confirm Password"
-              value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
-          </div>
-          <button type="submit" class="btn btn-signin btn-block">
-            Register
-          </button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/../css/main.css">
+
+  <!--===============================================================================================-->
+</head>
+
+<body>
+
+  <div class="limiter no-gutters p-0">
+    <div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <form class="loginno-gutters100-form validate-form" action="/users/register" method="post">
+          <span class="login100-form-title p-b-49">
+            Sign up
+          </span>
+          <%- include('../partials/messages')%>
+            <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+              <span class="label-input100">Name</span>
+              <input class="input100" type="text" id="name" name="name" placeholder="Type your username">
+              <span class="focus-input100" data-symbol="&#xf206;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
+              <span class="label-input100">Email</span>
+              <input class="input100" type="email" id="email" name="email" placeholder="Type your Email">
+              <span class="focus-input100" data-symbol="&#xf15a;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+              <span class="label-input100">Password</span>
+              <input class="input100" type="password" id="password" name="password" placeholder="Type your password">
+              <span class="focus-input100" data-symbol="&#xf190;"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input  m-b-23" data-validate="Password confirm is required">
+              <span class="label-input100">Confirm Password</span>
+              <input class="input100" type="password" id="password2" name="password2"
+                placeholder="Type your confirm password">
+              <span class="focus-input100" data-symbol="&#xf190;"></span>
+            </div>
+
+            <div class="text-right p-t-8 p-b-31"></div>
+
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn" type="submit">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+            <div class="flex-col-c p-t-25">
+              <span class="txt1 p-b-17">
+                Have an account?
+              </span>
+
+              <a href="/users/login" class="txt2">
+                Login
+              </a>
+            </div>
         </form>
-        <p class="lead mt-4">Have an account? <a class="text-decoration-none" href="/users/login">Login</a></p>
+      </div>
     </div>
   </div>
-</div>
+
+
+  <div id="dropDownSelect1"></div>
+
+  <!--===============================================================================================-->
+  <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/bootstrap/js/popper.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/daterangepicker/moment.min.js"></script>
+  <script src="/vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="/js/main.js"></script>
+
+</body>
+
+</html>

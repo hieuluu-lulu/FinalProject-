@@ -1,15 +1,21 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
-
+const Category = require('../models/categoryModel');
 class CourseController {
     index(req, res, next) {
-        Course.find({})
-            .then((course) => {
-                res.locals.title = 'Courses';
+        let searchOptions = {};
+        if (req.query.name !== null && req.query.name !== '') {
+            searchOptions.name = new RegExp(req.query.name, 'i');
+        }
+        Promise.all([Course.find(searchOptions), Category.find({})])
+            .then(([course, category]) => {
+                res.locals.title = 'All Courses';
                 res.render('courses/courses', {
-                    course: course,
+                    course,
                     user: req.user,
+                    searchOptions: req.query,
+                    category: category,
                 });
             })
             .catch(next);
@@ -32,9 +38,12 @@ class CourseController {
             .catch(next);
     }
     createCourses(req, res, next) {
-        res.locals.title = 'Create Courses';
-        res.render('courses/create', {
-            user: req.user,
+        Category.find({}).then((categories) => {
+            res.locals.title = 'Create Courses';
+            res.render('courses/create', {
+                user: req.user,
+                categories: categories,
+            });
         });
     }
     // post dữ liệu mới tạo vào db
@@ -50,7 +59,7 @@ class CourseController {
     }
     // [GET] /courses/:id/edit
     edit(req, res, next) {
-        Course.findById(req.params.id)
+        Course.findById({ ID: req.params.id })
             .then((course) =>
                 res.render('courses/edit', {
                     course: course,
@@ -61,7 +70,7 @@ class CourseController {
     }
     // [PUT]/courses/:id/
     update(req, res, next) {
-        Course.updateOne({ _id: req.params.id }, req.body)
+        Course.updateOne({ ID: req.params.id }, req.body)
             .then(() => {
                 res.redirect('manage/stored/courses');
             })
@@ -70,33 +79,38 @@ class CourseController {
     //khôi phục dữ liệu
     // [PATCH]/courses/:id/restore
     restore(req, res, next) {
-        Course.restore({ _id: req.params.id })
+        Course.restore({ ID: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }
     // sử dụng thư viện moogose-delete để xóa và đưa vào thúng rác
     //[DELETE]/courses/:id/
     delete(req, res, next) {
-        Course.delete({ _id: req.params.id })
+        Course.delete({ courseID: req.params.id })
             .then(() => res.redirect('/manage/stored/courses'))
             .catch(next);
     }
     //[DELETE]/courses/:id/force  // xóa vĩnh viễn khóa học
     forceDelete(req, res, next) {
-        Course.deleteOne({ _id: req.params.id })
+        Course.deleteOne({ courseID: req.params.id })
             .then(() => res.redirect('/manage/stored/courses'))
             .catch(next);
     }
     // [POST]/courses/handle-fsorm-actions
     handleFormActions(req, res, next) {
         switch (req.body.action) {
+            case 'force-delete':
+                Course.deleteMany({ courseID: { $in: req.body.CourseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
             case 'delete':
-                Course.delete({ _id: { $in: req.body.CourseIds } }) // xóa tất cả thằng nào có id nằm trong CourseIds
+                Course.delete({ courseID: { $in: req.body.CourseIds } }) // xóa tất cả thằng nào có id nằm trong CourseIds
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
             case 'restore':
-                Course.restore({ _id: { $in: req.body.CourseIds } }) // khôi phục tất cả thằng nào có id nằm trong CourseIds
+                Course.restore({ courseID: { $in: req.body.CourseIds } }) // khôi phục tất cả thằng nào có id nằm trong CourseIds
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
