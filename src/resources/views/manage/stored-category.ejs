@@ -13,12 +13,12 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div> -->
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -106,7 +106,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-bell font-24"></i>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li>
@@ -160,7 +160,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                href="/dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
@@ -270,8 +270,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">Manage Category</h5>
                                 <div class="table-responsive">
-                                    <form method="POST" action="/courses/handle-actions" name="container-form">
-                                        <a class="btn btn-primary" href="/manage/trash/courses">
+                                    <form method="POST" action="/categories/handle-actions" name="container-form">
+                                        <a class="btn btn-primary" href="/manage/trash/category">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash"
                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -331,7 +331,7 @@
                                                                     class="btn btn-primary">Update</a>
                                                                 <a href="" class="btn btn-danger" data-bs-toggle="modal"
                                                                     data-id="<%= category._id %>"
-                                                                    data-bs-target="#delete-courses-modal">Delete</a>
+                                                                    data-bs-target="#delete-category-modal">Delete</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -356,7 +356,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="delete-courses-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="delete-category-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -382,7 +382,7 @@
         <!-- this page js -->
 
         <script src="/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-        <script src="/admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+        <!-- <script src="/admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script> -->
         <script src="/admin/assets/extra-libs/DataTables/datatables.min.js"></script>
 
         <script>
@@ -394,13 +394,13 @@
                 //var containerForm = document.forms['container-form'];
                 var containerForm = $('form[name="container-form"]');
                 var checkboxAll = $("#checkbox-all");
-                var courseItemsCheckbox = $('input[name="CategoryIds[]"]');
+                var categoryItemsCheckbox = $('input[name="CategoryIds[]"]');
                 var btnSubmitAll = $(".btn-submit-all"); //
 
-                var delete_course_modal = document.getElementById('delete-courses-modal')
+                var delete_course_modal = document.getElementById('delete-category-modal')
                 //when dialog confirm clicked
 
-                $('#delete-courses-modal').on('show.bs.modal', function (event) {
+                $('#delete-category-modal').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget);
                     categoryId = button.data('id');
                     console.log(categoryId)
@@ -422,13 +422,13 @@
                 //checkbox-all changed
                 checkboxAll.change(function () {
                     var isCheckedAll = $(this).prop('checked');
-                    courseItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
+                    categoryItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
                     renderCheckAllbtn();
                 });
                 //coures item checkbox changed
-                courseItemsCheckbox.change(function () {
+                categoryItemsCheckbox.change(function () {
                     // kiểm tra tổng số lượng checked có bằng tổng số lượng checkbox đang có hay ko, từ đó khi bỏ check 1 thì sẽ ko check all
-                    var isCheckedAll = courseItemsCheckbox.length === $('input[name="CategoryIds[]"]:checked').length;
+                    var isCheckedAll = categoryItemsCheckbox.length === $('input[name="CategoryIds[]"]:checked').length;
                     checkboxAll.prop('checked', isCheckedAll);
                     renderCheckAllbtn();
                 });

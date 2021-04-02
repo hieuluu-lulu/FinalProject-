@@ -1,7 +1,7 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
-
+const { validationResult } = require('express-validator');
 class LessonController {
     index(req, res, next) {
         res.status(404).send('Xin lỗi trang không tồn tại');
@@ -47,11 +47,27 @@ class LessonController {
             res.render('lessons/createLesson', {
                 user: req.user,
                 tag: tag,
+                data: {},
+                errors: {},
             });
         });
     }
     // [POST] /learning/store
     storedLesson(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return [
+                Course.find({}).then((tag) => {
+                    res.locals.title = 'Error';
+                    res.render('lessons/createLesson', {
+                        user: req.user,
+                        tag: tag,
+                        data: req.body,
+                        errors: errors.mapped(),
+                    });
+                }),
+            ];
+        }
         req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const lesson = new Lesson(req.body);
         lesson
@@ -61,24 +77,23 @@ class LessonController {
     }
     // [GET] /learning/:id/edit
     editLesson(req, res, next) {
-        Promise.all([
-            Course.find({}),
-            Lesson.findById({ lessonID: req.params.id }),
-        ])
+        Promise.all([Course.find({}), Lesson.findById({ _id: req.params.id })])
             .then(([tag, lesson]) => {
                 res.locals.title = 'Edit Lesson';
                 res.render('lessons/edit', {
                     tag: tag,
                     lesson: lesson,
                     user: req.user,
+                    errors: {},
+                    data: {},
                 });
             })
             .catch(next);
     }
     // [PUT] /learning/:id
     updateLesson(req, res, next) {
-        Lesson.updateOne({ lessonID: req.params.id }, req.body)
-            .then(() => res.redirect('manage/stored/lessons'))
+        Lesson.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/manage/stored/lessons'))
             .catch(next);
     }
     updateProgress(req, res, next) {}

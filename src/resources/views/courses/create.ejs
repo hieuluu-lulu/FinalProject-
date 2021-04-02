@@ -16,12 +16,12 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div> -->
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -105,18 +105,20 @@
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="mdi mdi-bell font-24"></i>
+                            </a> -->
+                            <a class="nav-link dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="mdi mdi-bell font-24"></i>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end  animated" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
+
                         </li>
                         <!-- ============================================================== -->
                         <!-- End Comment -->
@@ -283,6 +285,11 @@
                                         <div class="">
                                             <input type="text" class="form-control" id="name" name="name"
                                                 placeholder="">
+                                            <% if (errors.name ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.name.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group  ">
@@ -290,6 +297,11 @@
                                         <div class="">
                                             <input type="text" class="form-control" id="author" name="author"
                                                 placeholder="">
+                                            <% if (errors.author ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.author.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -298,6 +310,11 @@
                                         <div class="">
                                             <textarea type="text" class="form-control" id="description"
                                                 name="description" placeholder=""></textarea>
+                                            <% if (errors.description ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.description.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group  ">
@@ -306,6 +323,11 @@
                                         <div class="">
                                             <input type="text" class="form-control" id="videoId" name="videoId"
                                                 placeholder="">
+                                            <% if (errors.videoId ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.videoId.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group  ">
@@ -313,23 +335,39 @@
                                         <div class="">
                                             <input type="text" class="form-control" id="level" name="level"
                                                 placeholder="">
+                                            <% if (errors.level ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.level.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="tag" class="  control-label col-form-label">Tag</label>
                                         <div class="">
                                             <input type="text" class="form-control" id="tag" name="tag" placeholder="">
+                                            <% if (errors.tag ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.tag.msg %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="category">Category</label>
                                         <select name="category" id="category" class="form-select">
+                                            <option selected>-- Category --</option>
                                             <% categories.forEach(function(category) { %>
                                                 <option value="<%= category.slug %>">
                                                     <%= category.title %>
                                                 </option>
                                                 <% }) %>
                                         </select>
+                                        <% if (errors.category ){ %>
+                                            <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                <%= errors.category.msg %>
+                                            </div>
+                                            <% } %>
                                     </div>
                                 </div>
                                 <div class="border-top">

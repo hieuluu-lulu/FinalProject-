@@ -3261,6 +3261,7 @@ fieldset:disabled .btn {
   position: absolute;
   top: 100%;
   left: 0;
+  right: 15px;
   z-index: 1000;
   display: none;
   min-width: 10rem;

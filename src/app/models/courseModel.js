@@ -16,6 +16,7 @@ const CourseSchema = new Schema(
         tag: { type: String, required: true },
         category: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
+        member: { type: Number },
     },
     {
         timestamps: true,

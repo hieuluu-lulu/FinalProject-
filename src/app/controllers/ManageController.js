@@ -71,5 +71,13 @@ class ManageController {
             })
             .catch(next);
     }
+    trashCategory(req, res, next) {
+        Category.findDeleted({}).then((category) => {
+            res.locals.title = 'Trash Category';
+            res.render('manage/trash-category', {
+                category: category,
+            });
+        });
+    }
 }
 module.exports = new ManageController();

@@ -50,9 +50,21 @@
                                 class="light-logo" />
 
                         </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <!-- <img src="/admin/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
 
+                        <!-- </b> -->
+                        <!--End Logo icon -->
                     </a>
-
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
                             class="ti-menu ti-close"></i></a>
                 </div>
@@ -67,6 +79,13 @@
                         <li class="nav-item d-none d-lg-block"><a
                                 class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
                                 data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        <!-- ============================================================== -->
+                        <!-- create new -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
                         <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
                                 href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search position-absolute">
@@ -79,7 +98,9 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-end">
-
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -139,7 +160,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                href="/dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
@@ -156,7 +177,7 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">Category</span></a>
+                                    class="hide-menu">Category </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="/manage/stored/category" class="sidebar-link"><i
                                             class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Category
@@ -178,6 +199,8 @@
                                         </span></a></li>
                             </ul>
                         </li>
+
+
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
                                 href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span
                                     class="hide-menu">User</span></a>
@@ -223,8 +246,8 @@
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Courses</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Stored Courses</li>
+                                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Stored Category</li>
                                 </ol>
                             </nav>
                         </div>
@@ -245,12 +268,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Trash Lessons</h5>
+                                <h5 class="card-title">Manage Category</h5>
                                 <div class="table-responsive">
-                                    <form method="POST" action="/lessons/handle-actions" name="container-form">
-                                        <a class="btn btn-primary flex" href="/manage/stored/lessons">
+                                    <form method="POST" action="/categories/handle-actions" name="container-form">
+                                        <a class="btn btn-primary flex" href="/manage/stored/category">
                                             <i class="mdi mdi-backburger"></i>
-                                            Back to Manage Lessons
+                                            Back to Manage Category
                                         </a>
                                         <div class="d-flex mt-4 align-items-center mb-2 px-2">
                                             <div class="form-check mb-0">
@@ -260,8 +283,9 @@
                                             <div class="mr-2 ml-2">
                                                 <select class="form-control" name="action" required>
                                                     <option value="">-- Choose Action --</option>
-                                                    <option value="restore">Restore</option>
                                                     <option value="force-delete">Delete</option>
+                                                    <option value="restore">Restore</option>
+
                                                 </select>
                                             </div>
                                             <button class="btn btn-primary btn-submit-all "
@@ -272,42 +296,38 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>No.</th>
-                                                    <th>Name of Less0ns</th>
-                                                    <th>Tag</th>
+                                                    <th>Name of Category</th>
                                                     <th>Create At</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <% lessons.forEach(function(lesson,index) { %>
+                                                <% category.forEach(function(category,index) { %>
                                                     <tr>
                                                         <th>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    name="LessonIds[]" value="<%= lesson.lessonID %>">
+                                                                    name="CategoryIds[]" value="<%= category._id %>">
                                                             </div>
                                                         </th>
                                                         <td>
                                                             <%= index + 1 %>
                                                         </td>
                                                         <td>
-                                                            <%= lesson.name %>
+                                                            <%= category.title %>
                                                         </td>
                                                         <td>
-                                                            <%= lesson.tag %>
-                                                        </td>
-                                                        <td>
-                                                            <%= lesson.createdAt %>
+                                                            <%= category.createdAt %>
                                                         </td>
 
                                                         <td>
                                                             <div class="btn-group btn-group-sm" role="group"
                                                                 aria-label="Basic example">
-                                                                <a data-id="<%= lesson.lessonID %>"
+                                                                <a data-id="<%= category._id%>"
                                                                     class="btn btn-primary btn-restore">Restore</a>
                                                                 <a href="" class="btn btn-danger" data-bs-toggle="modal"
-                                                                    data-id="<%= lesson.lessonID %>"
-                                                                    data-bs-target="#delete-lesson-modal">Delete</a>
+                                                                    data-id="<%= category._id %>"
+                                                                    data-bs-target="#delete-category-modal">Delete</a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -317,9 +337,7 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>No.</th>
-                                                    <th>Name of Lessons</th>
-
-                                                    <th>Tag</th>
+                                                    <th>Name of Category</th>
                                                     <th>Create At</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -327,34 +345,37 @@
                                         </table>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="delete-lesson-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="delete-category-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Course</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        This action cannot be undone, do you want to continue?
+                        Do you want delete this category?
                     </div>
                     <div class="modal-footer">
-                        <button id="btn-delete" type="button" class="btn btn-danger">Delete</button>
+                        <button id="btn-delete" type="button" class="btn btn-danger">Delete
+                        </button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-        <form name="delete-courses-form" class="mt-4" method="POST"></form>
-        <form name="restore-courses-form" class="mt-4" method="POST"></form>
+        <form name="delete-category-form" class="mt-4" method="POST"></form>
+        <form name="restore-category-form" class="mt-4" method="POST"></form>
+
         <script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
         <!-- this page js -->
 
@@ -365,61 +386,58 @@
         <script>
             // add sự kiện để có thể chạy code jquery sau khi loaded DOM
             document.addEventListener('DOMContentLoaded', function () {
-                var lessonId;  // tạo biến để function onclick có thể nhận đc id của khóa học
+                var categoryId;  // 
                 var btnDelete = document.getElementById("btn-delete");
-                var btnRestore = $('.btn-restore');
-
-                var deleteForm = document.forms['delete-courses-form'];
-                var restoreForm = document.forms['restore-courses-form'];
-                //var containerForm = document.forms['container-form'];
+                var deleteForm = document.forms['delete-category-form'];
+                var restoreForm = document.forms['restore-category-form'];
                 var containerForm = $('form[name="container-form"]');
                 var checkboxAll = $("#checkbox-all");
-                var lessonItemsCheckbox = $('input[name="LessonIds[]"]');
-                var btnSubmitAll = $(".btn-submit-all"); // sử dụng jquery để lấy ra element trong DOM
-
-                var delete_course_modal = document.getElementById('delete-lesson-modal')
+                var categoryItemsCheckbox = $('input[name="CategoryIds[]"]');
+                var btnSubmitAll = $(".btn-submit-all"); //
+                var btnRestore = $('.btn-restore');
+                // var delete_category_modal = document.getElementById('delete-category-modal')
                 //when dialog confirm clicked
 
-                $('#delete-lesson-modal').on('show.bs.modal', function (event) {
+                $('#delete-category-modal').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget);
-                    lessonId = button.data('id');
-                    console.log(lessonId)
-
-
+                    categoryId = button.data('id');
+                    console.log(categoryId)
                 });
+
+                //restore
 
                 btnRestore.click(function (e) {
                     e.preventDefault();
-                    var lessonId = $(this).data('id');
-                    restoreForm.action = '/lessons/' + lessonId + '/restore?_method=PATCH'; // khôi phục dữ liệu
+                    var categoryId = $(this).data('id');
+                    restoreForm.action = '/categories/' + categoryId + '/restore?_method=PATCH'; // khôi phục dữ liệu
                     restoreForm.submit();
                 });
 
                 // when delete course btn clicked
                 btnDelete.onclick = function () {
-                    deleteForm.action = '/lessons/' + lessonId + '/force?_method=DELETE';// override phương thức post mặc định
+                    deleteForm.action = '/categories/' + categoryId + '?_method=DELETE';// override phương thức post mặc định
                     deleteForm.submit();
                 }
+
 
                 // ---------------Select all checkbox--------------------------------
 
                 //checkbox-all changed
                 checkboxAll.change(function () {
                     var isCheckedAll = $(this).prop('checked');
-                    lessonItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
+                    categoryItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
                     renderCheckAllbtn();
                 });
                 //coures item checkbox changed
-                lessonItemsCheckbox.change(function () {
+                categoryItemsCheckbox.change(function () {
                     // kiểm tra tổng số lượng checked có bằng tổng số lượng checkbox đang có hay ko, từ đó khi bỏ check 1 thì sẽ ko check all
-                    var isCheckedAll = lessonItemsCheckbox.length === $('input[name="LessonIds[]"]:checked').length;
+                    var isCheckedAll = categoryItemsCheckbox.length === $('input[name="CategoryIds[]"]:checked').length;
                     checkboxAll.prop('checked', isCheckedAll);
                     renderCheckAllbtn();
                 });
 
-                //  button check all ( re-render)
                 function renderCheckAllbtn() {
-                    var checkedCount = $('input[name="LessonIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
+                    var checkedCount = $('input[name="CategoryIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
                     if (checkedCount > 0) {
                         btnSubmitAll.attr('disabled', false); // remove attribute
                     }

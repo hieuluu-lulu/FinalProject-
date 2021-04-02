@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const { validate } = require('../app/middlewares/validate');
 
 const courseController = require('../app/controllers/CourseController');
 const { ensureAuth, admin } = require('../config/auth');
 router.post('/handle-actions', admin, courseController.handleFormActions);
 router.get('/create', ensureAuth, admin, courseController.createCourses);
-router.post('/save', courseController.storedCourses);
+router.post(
+    '/save',
+    validate.validateCreateCourses(),
+    courseController.storedCourses,
+);
 router.get('/:slug', ensureAuth, courseController.showCourse);
 router.get('/:id/edit', courseController.edit);
 router.put('/:id', courseController.update);

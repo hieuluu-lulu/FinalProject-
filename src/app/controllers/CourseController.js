@@ -2,6 +2,8 @@ const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
 const Category = require('../models/categoryModel');
+
+const { validationResult } = require('express-validator');
 class CourseController {
     index(req, res, next) {
         let searchOptions = {};
@@ -43,12 +45,28 @@ class CourseController {
             res.render('courses/create', {
                 user: req.user,
                 categories: categories,
+                data: {},
+                errors: {},
             });
         });
     }
     // post dữ liệu mới tạo vào db
     // [POST]/courses/store
     storedCourses(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return [
+                Category.find({}).then((categories) => {
+                    res.locals.title = 'Error';
+                    res.render('courses/create', {
+                        data: req.body,
+                        errors: errors.mapped(),
+                        user: req.user,
+                        categories: categories,
+                    });
+                }),
+            ];
+        }
         const formData = req.body;
         formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const course = new Course(formData);
@@ -59,27 +77,34 @@ class CourseController {
     }
     // [GET] /courses/:id/edit
     edit(req, res, next) {
-        Course.findById({ ID: req.params.id })
-            .then((course) =>
+        Promise.all([
+            Course.findById({ _id: req.params.id }),
+            Category.find({}),
+        ])
+            .then(([course, category]) => {
+                res.locals.title = 'Update Courses';
                 res.render('courses/edit', {
                     course: course,
                     user: req.user,
-                }),
-            )
+                    data: {},
+                    errors: {},
+                    categories: category,
+                });
+            })
             .catch(next);
     }
     // [PUT]/courses/:id/
     update(req, res, next) {
-        Course.updateOne({ ID: req.params.id }, req.body)
+        Course.updateOne({ _id: req.params.id }, req.body)
             .then(() => {
-                res.redirect('manage/stored/courses');
+                res.redirect('/manage/stored/courses');
             })
             .catch(next);
     }
     //khôi phục dữ liệu
     // [PATCH]/courses/:id/restore
     restore(req, res, next) {
-        Course.restore({ ID: req.params.id })
+        Course.restore({ courseID: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }

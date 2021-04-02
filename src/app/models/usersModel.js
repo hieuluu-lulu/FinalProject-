@@ -14,6 +14,7 @@ const UserSchema = new Schema(
         resetPasswordToken: String,
         resetPasswordExpires: Date,
         progress: { type: Number, default: 0 },
+        learning: { type: Array },
     },
     {
         timestamps: true,

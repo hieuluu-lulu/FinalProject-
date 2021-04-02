@@ -601,13 +601,11 @@
                         return;
                     }
                     this.getSize(a),
-                        this.tooltip
-                            .html(a)
-                            .css({
-                                width: this.width,
-                                height: this.height,
-                                visibility: 'visible',
-                            }),
+                        this.tooltip.html(a).css({
+                            width: this.width,
+                            height: this.height,
+                            visibility: 'visible',
+                        }),
                         this.hidden &&
                             ((this.hidden = !1), this.updatePosition());
                 },

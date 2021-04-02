@@ -13,12 +13,12 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div> -->
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -160,7 +160,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                href="/dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
@@ -332,7 +332,7 @@
                                                         <td>
                                                             <div class="btn-group btn-group-sm" role="group"
                                                                 aria-label="Basic example">
-                                                                <a href="/lessons/<%- lesson.lessonID %>/edit"
+                                                                <a href="/lessons/<%- lesson._id %>/edit"
                                                                     class="btn btn-primary">Update</a>
                                                                 <a href="" class="btn btn-danger" data-bs-toggle="modal"
                                                                     data-id="<%= lesson.lessonID %>"
