@@ -38,7 +38,7 @@
                                             d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z">
                                         </path>
                                     </svg>
-                                    <span>Dark mode</span>
+                                    <span onclick="addDarkmodeWidget()">Dark mode</span>
                                 </li>
                                 <li class="dropdown__item"><svg aria-hidden="true" focusable="false" data-prefix="fas"
                                         data-icon="cog" class="svg-inline--fa fa-cog fa-w-16 drop-icon" role="img"
@@ -115,6 +115,13 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+    function addDarkmodeWidget() {
+        new Darkmode().showWidget();
+    }
+
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         $(window).scroll(function () {

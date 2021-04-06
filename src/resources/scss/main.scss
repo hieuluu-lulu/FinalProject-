@@ -628,6 +628,18 @@ body {
     margin-bottom: 0;
     font-weight: 700;
 }
+.card {
+    border-radius: 3px !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+.card__img {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid #eee;
+}
 .card-title {
     margin-top: 0;
     font-size: 20px;
@@ -777,8 +789,11 @@ body {
 .card-course-img {
     overflow: hidden;
     position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 .card-course-img img {
+    width: 100%;
     transition: all 0.3s ease-in-out;
     background-position: 50% 50%;
     background-repeat: no-repeat;
