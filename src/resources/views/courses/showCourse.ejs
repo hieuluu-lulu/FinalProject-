@@ -1,27 +1,159 @@
 <%- include('../partials/header')%>
-    <div class="container">
-        <div class="row">
-            <section class="wrap">
-                <section class="col col-lg-9">
-                    <ul class="course__detais-breadcrumb">
-                        <li>
-                            <a href="/courses">Courses</a>
-                        </li>
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
-                            class="svg-inline--fa fa-chevron-right fa-w-10 CourseDetail_icon__2RurH" role="img"
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                            <path fill="currentColor"
-                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
-                            </path>
-                        </svg>
-                        <li>
-                            <a href="/categories/<%= category.slug%>">
-                                <%=category.title%>
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="col col-lg-3"></section>
+    <div class="container-fluid main-content px-5 pb-5 ">
+        <div class="row course__details">
+            <section class=" col col-lg-8 col-md-12 col-sm-12">
+                <ul class="course__details-breadcrumb">
+                    <li>
+                        <a href="/courses">Courses</a>
+                    </li>
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+                        class="svg-inline--fa fa-chevron-right fa-w-10 course__details-icon" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path fill="currentColor"
+                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                        </path>
+                    </svg>
+                    <li>
+                        <a href="/categories/<%- category.slug%>">
+                            <%= category.title%>
+                        </a>
+                    </li>
+                </ul>
+
+                <h1 class="course__detais-name">
+                    <%= course.name%>
+                </h1>
+                <div class="course__details-description">
+                    <%= course.description%>
+                </div>
+                <div class="course__details-topList">
+                    <section class="row">
+                        <section class="col col-lg-12 col-md-12 col-sm-12">
+                            <h3>What will you learn?</h3>
+                            <section class="row mt-3">
+                                <section class="col col-lg-12 col-md-12 col-sm-12">
+                                    <ul class="course__details-list">
+                                        <li>
+                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                data-icon="check"
+                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                </path>
+                                            </svg>
+                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
+                                                phí</span>
+                                        </li>
+                                        <li>
+                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                data-icon="check"
+                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                </path>
+                                            </svg>
+                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
+                                                phí</span>
+                                        </li>
+                                        <li>
+                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                data-icon="check"
+                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                </path>
+                                            </svg>
+                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
+                                                phí</span>
+                                        </li>
+                                        <li>
+                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                data-icon="check"
+                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                </path>
+                                            </svg>
+                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
+                                                phí</span>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+            </section>
+
+            <section class="col col-lg-4 col-md-12 col-sm-12 d-lg-block">
+                <div class="course__details-purchase">
+                    <div class="course__details-preview">
+                        <img src="<%= course.image %>" class="card-img-top" alt="">
+                    </div>
+                    <h5 id="free" style="display:block">Free</h5>
+                    <p class="my-4" id="registed" style="display:none">You have signed up for this course !</p>
+                    <a href="/lessons/<%- course.tag %>" id="btn-register" class="course__details-learnNow">Resgister
+                        Now</a>
+                    <input type="hidden" value="<%=course.tag%>">
+                    <% if(user) { %>
+                        <script>
+                            var userLearning = "<%-user.learning%>".split(',')
+                            var course_tag = "<%=course.tag%>"
+                            var btn = document.getElementById("btn-register")
+                            var info = document.getElementById("free")
+                            var registed = document.getElementById("registed")
+                            if (userLearning.includes(course_tag)) {
+                                info.style.display = "none";
+                                registed.style.display = "block";
+                                registed.style.fontSize = "16px";
+                                btn.innerHTML = "CONTINUTE"
+                            }
+
+                        </script>
+                        <% } %>
+                            <ul>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                        data-icon="tachometer-alt"
+                                        class="svg-inline--fa fa-tachometer-alt fa-w-18 course__details-purchaseIcon"
+                                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                        <path fill="currentColor"
+                                            d="M288 32C128.94 32 0 160.94 0 320c0 52.8 14.25 102.26 39.06 144.8 5.61 9.62 16.3 15.2 27.44 15.2h443c11.14 0 21.83-5.58 27.44-15.2C561.75 422.26 576 372.8 576 320c0-159.06-128.94-288-288-288zm0 64c14.71 0 26.58 10.13 30.32 23.65-1.11 2.26-2.64 4.23-3.45 6.67l-9.22 27.67c-5.13 3.49-10.97 6.01-17.64 6.01-17.67 0-32-14.33-32-32S270.33 96 288 96zM96 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm48-160c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm246.77-72.41l-61.33 184C343.13 347.33 352 364.54 352 384c0 11.72-3.38 22.55-8.88 32H232.88c-5.5-9.45-8.88-20.28-8.88-32 0-33.94 26.5-61.43 59.9-63.59l61.34-184.01c4.17-12.56 17.73-19.45 30.36-15.17 12.57 4.19 19.35 17.79 15.17 30.36zm14.66 57.2l15.52-46.55c3.47-1.29 7.13-2.23 11.05-2.23 17.67 0 32 14.33 32 32s-14.33 32-32 32c-11.38-.01-20.89-6.28-26.57-15.22zM480 384c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z">
+                                        </path>
+                                    </svg>
+                                    <span>
+                                        <%= course.level %>
+                                    </span>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="film"
+                                        class="svg-inline--fa fa-film fa-w-16 course__details-purchaseIcon" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor"
+                                            d="M488 64h-8v20c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12V64H96v20c0 6.6-5.4 12-12 12H44c-6.6 0-12-5.4-12-12V64h-8C10.7 64 0 74.7 0 88v336c0 13.3 10.7 24 24 24h8v-20c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v20h320v-20c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v20h8c13.3 0 24-10.7 24-24V88c0-13.3-10.7-24-24-24zM96 372c0 6.6-5.4 12-12 12H44c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40zm0-96c0 6.6-5.4 12-12 12H44c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40zm0-96c0 6.6-5.4 12-12 12H44c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40zm272 208c0 6.6-5.4 12-12 12H156c-6.6 0-12-5.4-12-12v-96c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v96zm0-168c0 6.6-5.4 12-12 12H156c-6.6 0-12-5.4-12-12v-96c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v96zm112 152c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40zm0-96c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40zm0-96c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40z">
+                                        </path>
+                                    </svg>
+                                    <span>
+                                        Total <%=num_lesson%> lesson
+                                    </span>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="battery-full"
+                                        class="svg-inline--fa fa-battery-full fa-w-20 course__details-purchaseIcon"
+                                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                        <path fill="currentColor"
+                                            d="M544 160v64h32v64h-32v64H64V160h480m16-64H48c-26.51 0-48 21.49-48 48v224c0 26.51 21.49 48 48 48h512c26.51 0 48-21.49 48-48v-16h8c13.255 0 24-10.745 24-24V184c0-13.255-10.745-24-24-24h-8v-16c0-26.51-21.49-48-48-48zm-48 96H96v128h416V192z">
+                                        </path>
+                                    </svg>
+                                    <span>Study every time, everywhere</span>
+                                </li>
+                            </ul>
+
+                </div>
             </section>
         </div>
     </div>

@@ -26,11 +26,14 @@ class CourseController {
         Course.findOne({ slug: req.params.slug })
             .then((course) => {
                 Promise.all([
+                    Category.findOne({ slug: course.category }),
                     Lesson.countDocuments({ tag: course.tag }),
                     Lesson.find({ tag: course.tag }),
-                ]).then(([count, lesson]) => {
+                ]).then(([cate, count, lesson]) => {
                     res.locals.title = course.name;
                     res.render('courses/showCourse', {
+                        user: req.user,
+                        category: cate,
                         lesson: lesson,
                         course: course,
                         num_lesson: count,
@@ -59,17 +62,16 @@ class CourseController {
                 Category.find({}).then((categories) => {
                     res.locals.title = 'Error';
                     res.render('courses/create', {
-                        data: req.body,
-                        errors: errors.mapped(),
                         user: req.user,
                         categories: categories,
+                        data: req.body,
+                        errors: errors.mapped(),
                     });
                 }),
             ];
         }
-        const formData = req.body;
-        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
-        const course = new Course(formData);
+        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+        const course = new Course(req.body);
         course
             .save()
             .then(() => res.redirect('/manage/stored/courses'))

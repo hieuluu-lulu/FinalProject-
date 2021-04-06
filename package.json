@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --inspect src/app.js",
     "listen": "node-sass --watch src/resources/scss/ --output src/public/css/",
-    "beautiful": "prettier --single-quote --trailing-comma all --write --tab-width 4 src/**/*.{js,json,scss}"
+    "beautiful": "prettier --single-quote --trailing-comma all --write --tab-width 4 src/**/*.{js,json,scss,ejs}"
   },
   "author": "hieuluu",
   "license": "ISC",

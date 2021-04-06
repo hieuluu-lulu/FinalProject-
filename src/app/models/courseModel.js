@@ -7,17 +7,15 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const CourseSchema = new Schema(
     {
         courseID: { type: Number },
-        name: { type: String, maxLength: 255, required: true },
-        author: { type: String, required: true },
-        description: { type: String, maxLength: 600, required: true },
+        name: { type: String, maxLength: 255, require: true },
+        author: { type: String, maxLength: 255, require: true },
+        description: { type: String, maxLength: 600, require: true },
         image: { type: String, maxLength: 255 },
         videoId: { type: String, required: true },
+        category: { type: String, required: true },
         level: { type: String, maxLength: 255, required: true },
         tag: { type: String, required: true },
-        category: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
-        member: { type: Number },
-        comment: { type: Array },
     },
     {
         timestamps: true,

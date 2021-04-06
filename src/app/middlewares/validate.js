@@ -22,7 +22,7 @@ let validateCreateCourses = () => {
             .not()
             .isEmpty(),
         check('videoId', 'Video Id for Course is required').not().isEmpty(),
-        check('image', 'Image for course is required').not().isEmpty(),
+        // check('image', 'Image for course is required').not().isEmpty(),
         check('level', 'Level of Course is required').not().isEmpty(),
         check('tag', 'Tag of Course is required').not().isEmpty(),
         check('category').custom((value) => {

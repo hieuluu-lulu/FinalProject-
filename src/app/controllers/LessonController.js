@@ -23,7 +23,22 @@ class LessonController {
             Lesson.countDocuments({ tag: req.params.tag }),
         ])
             .then(([course, lessons, lesson, count]) => {
+                if (course) {
+                    User.findOne({ _id: req.user }).then((user) => {
+                        if (user.learning.includes(req.params.tag) == false) {
+                            User.updateOne(
+                                { _id: req.user },
+                                { $push: { learning: req.params.tag } },
+                            ).then();
+                            Course.updateOne(
+                                { tag: req.params.tag },
+                                { __v: course.__v + 1 },
+                            ).then();
+                        }
+                    });
+                }
                 if (lesson) {
+                    req.flash('success', 'Register course successfully');
                     res.locals.title = lesson.name;
                     res.render('lessons/lesson', {
                         course: course,
@@ -37,7 +52,6 @@ class LessonController {
                     });
                 }
             })
-
             .catch(next);
     }
     // [GET] /learning/create
