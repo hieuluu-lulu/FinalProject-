@@ -273,11 +273,26 @@ body {
     }
 }
 .logo {
+    display: block;
     width: 100px;
     height: 30px;
     margin-left: 32px;
     background: url(../images/logo.png) no-repeat center;
     background-size: contain;
+}
+.footer__img {
+    display: block;
+    width: 100px;
+    height: 30px;
+    margin-left: -6px;
+    background: url(../images/logo.png) no-repeat center;
+    background-size: contain;
+}
+.footer {
+    background-color: rgba(223, 221, 221, 0.76);
+    border-top: 1px solid rgba(1, 0, 0, 0.12);
+    padding: 80px 0 110px 0 !important;
+    z-index: 1000;
 }
 // home page
 // section header
@@ -728,10 +743,10 @@ body {
 }
 .menu-sidebar {
     background-color: #fff;
-    width: 100%;
     padding-bottom: 32px;
     position: sticky !important;
     top: 100px;
+    margin-bottom: 64px;
 }
 .sidebar-nav ul .sidebar-item.selected > .sidebar-links {
     color: #fff !important;
@@ -792,7 +807,7 @@ body {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
-.card-course-img img {
+.course__img {
     width: 100%;
     transition: all 0.3s ease-in-out;
     background-position: 50% 50%;
@@ -801,6 +816,7 @@ body {
     position: relative;
     background-color: #ccc;
 }
+
 .card-course-img:hover > img {
     transform: scale(1.5);
 }

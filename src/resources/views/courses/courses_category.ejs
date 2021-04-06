@@ -143,25 +143,22 @@
                                                         <%= course.author%>
                                                     </p>
                                                     <input type="hidden" value="<%= course.tag%>" id="tag">
-                                                    <%if(user) { %>
-                                                        <a id="learned" href="/lessons/<%= course.tag%>"
-                                                            class="btn btn-primary">Free</a>
-                                                        <% } else {%>
-                                                            <a id="learned" href="/courses/<%= course.slug%>"
-                                                                class="btn btn-primary"></a>
-                                                            <% } %>
-                                                                <% if(user) { %>
-                                                                    <script>
-                                                                        var learning = "<%=user.learning %>"
-                                                                        var tag = document.querySelectorAll('#tag')
-                                                                        var learned = document.querySelectorAll('#learned')
-                                                                        for (var i = 0; i < learned.length; i++) {
-                                                                            if (learning.includes(tag[i].value)) {
-                                                                                learned[i].innerHTML = 'Continute';
-                                                                            }
-                                                                        }
-                                                                    </script>
-                                                                    <% } %>
+                                                    <a id="learned" href="/courses/<%= course.slug%>"
+                                                        class="btn btn-primary">Free</a>
+
+                                                    <% if(user) { %>
+                                                        <script>
+                                                            var learning = "<%=user.learning %>"
+                                                            var tag = document.querySelectorAll('#tag')
+                                                            var learned = document.querySelectorAll('#learned')
+                                                            for (var i = 0; i < learned.length; i++) {
+                                                                if (learning.includes(tag[i].value)) {
+                                                                    learned[i].innerHTML = 'Continute';
+                                                                    learned[i].href = `/lessons/${tag[i].value}`
+                                                                }
+                                                            }
+                                                        </script>
+                                                        <% } %>
 
                                                 </div>
                                             </div>
