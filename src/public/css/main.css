@@ -7936,7 +7936,7 @@ body {
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  font-family: "Nunito Sans", sans-serif; }
+  font-family: 'Nunito Sans', sans-serif; }
 
 .progress {
   height: 20px;
@@ -8007,7 +8007,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 12px rgba(0, 0, 0, 0.01); }
 
 .dropdown__user::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 160px;
@@ -8102,7 +8102,7 @@ body {
   color: var(--white); }
 
 .nav__user-name-seperate::after {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   height: 18px;
@@ -8307,7 +8307,7 @@ body {
   margin-bottom: 15px; }
 
 .process::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 100%;
   top: 0;
@@ -8432,7 +8432,7 @@ body {
   position: relative; }
 
 .course__details-preview::after {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 0;
@@ -8686,7 +8686,7 @@ body {
 
 .has-arrows::after {
   position: absolute;
-  content: "";
+  content: '';
   width: 7px;
   height: 7px;
   border-width: 1px 0 0 1px;
@@ -8772,7 +8772,7 @@ button {
   position: relative; }
 
 .lessons__heading-title::after {
-  content: "";
+  content: '';
   border: 1px solid #e1e1e1;
   position: absolute;
   display: block;
