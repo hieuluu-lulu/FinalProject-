@@ -1,4 +1,5 @@
 const User = require('../models/usersModel');
+const Profile = require('../models/profile');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const async = require('async');
@@ -26,6 +27,31 @@ class UserController {
     indexRegister(req, res, next) {
         res.locals.title = 'Resgister';
         res.render('account/register');
+    }
+    indexInformation(req, res, next) {
+        User.findOne({ _id: req.user })
+            .then(() => {
+                res.locals.title = 'Infomation';
+                res.render('account/infomation', {
+                    user: req.user,
+                });
+            })
+            .catch(next);
+    }
+    addProfile(req, res, next) {
+        User.findOne({ _id: req.user }, (err, user) => {
+            user.profile = req.body;
+            user.image = req.file.filename;
+            user.save()
+                .then(() => {
+                    req.flash(
+                        'success_message',
+                        'Updated profile successfully',
+                    );
+                    res.redirect('back');
+                })
+                .catch((err) => console.log(err));
+        });
     }
     registerHandler(req, res) {
         const { name, email, password, password2 } = req.body;

@@ -6,6 +6,7 @@ const UserSchema = new Schema(
     {
         userID: { type: Number },
         name: { type: String },
+        image: { type: {} },
         email: { type: String },
         password: { type: String, require: true },
         date: { type: Date, default: Date.now },
@@ -13,8 +14,8 @@ const UserSchema = new Schema(
         googleId: { type: String },
         resetPasswordToken: String,
         resetPasswordExpires: Date,
-        progress: { type: Number, default: 0 },
         learning: { type: Array },
+        profile: { type: Object, default: '' },
     },
     {
         timestamps: true,

@@ -9094,9 +9094,6 @@ html[dir="ltr"] body .p-l-0 {
   padding: 20px;
   min-height: calc(100vh - 180px);
 }
-.footer {
-  padding: 15px 20px;
-}
 #main-wrapper {
 }
 #main-wrapper[data-sidebartype="full"] .page-wrapper {

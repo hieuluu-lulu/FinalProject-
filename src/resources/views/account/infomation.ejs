@@ -1,0 +1,224 @@
+<%- include('../partials/header')%>
+    <div class="container main-content">
+        <ul class="course__details-breadcrumb mt-3">
+            <li>
+                <a href="/dashboard">Home</a>
+            </li>
+
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+                class="svg-inline--fa fa-chevron-right fa-w-10 course__details-icon" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path fill="currentColor"
+                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                </path>
+            </svg>
+            <li>
+                <a href="/users/infomation">
+                    My infomation
+                </a>
+            </li>
+        </ul>
+        <%- include('../partials/messages')%>
+    </div>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col col-lg-4 ">
+                <div class="user__profile-left">
+                    <ul class="user__profile-list-function">
+                        <li><a href="/users/infomation" class="user__profile-active">Information & Contact</a></li>
+                        <li><a href="/change-username"> Change user name</a></li>
+                        <li><a href="/change-password"> Change password</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col col-lg-8 ">
+                <div class="user__profile-right p-3">
+                    <h2 class="user__profile-title">Information</h2>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            <div class="row">
+                                <div id="no-img" class="img-preview"></div>
+                                <div class=" imgPreview">
+                                    <img src="" alt="" id="avatar">
+                                    <%if(user.image) { %>
+                                        <script>
+                                            var avatar = "<%= user.image%>"
+                                            var img = document.getElementById('avatar');
+                                            var no_img = document.getElementById('no-img');
+                                            no_img.style.display = 'none';
+                                            img.style.display = 'block';
+                                            img.src = `../images/${avatar}`
+                                        </script>
+                                        <% } %>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-9 col-sm-12 pb-4">
+                            <div class="editing ml-3" id="edit">
+                                <form action="/users/profile" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control " id="fullname" name="fullname"
+                                                placeholder="" value="<%=user.profile.fullname%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Your Photo</label>
+                                        <div class="col-sm-9 input-file-container">
+                                            <input type="file" class="" id="img" name="img" hidden>
+                                            <label tabindex="0" for="img" class="input-file-trigger">Select a
+                                                picture...
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Birthday</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="date" name="date" placeholder=""
+                                                value="<%=user.profile.date%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Phone Number</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                                                placeholder="" value="<%=user.profile.phonenumber%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="email" class="col-form-label col-sm-3">Email Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="email" name="email" disabled
+                                                placeholder="" value="<%=user.email%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Country</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="country" name="country"
+                                                placeholder="" value="<%=user.profile.country%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">City</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="city" name="city" placeholder=""
+                                                value="<%=user.profile.city%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="" value="<%=user.profile.address%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="facebook" name="facebook"
+                                                placeholder="" value="<%=user.profile.facebook%>">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button" class=" btn btn-outline-secondary mr-3"
+                                            onClick="Cancel()">Cancel</button>
+                                        <button type="submit" class=" btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="non-edit ml-3" id="non-edit">
+                                <form action="">
+                                    <div class="mb-3 row">
+                                        <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="fullname"
+                                                value="<%=user.profile.fullname%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="date" class="col-form-label col-sm-3">Birthday</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="date"
+                                                value="<%=user.profile.date%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="fullname" class="col-form-label col-sm-3">Email</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="fullname"
+                                                value="<%=user.email%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Phone
+                                            Number</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext"
+                                                name="phonenumber" value="<%=user.profile.phonenumber%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Country</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="country"
+                                                value="<%=user.profile.country%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">City</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="city"
+                                                value="<%=user.profile.city%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="address"
+                                                value="<%=user.profile.address%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" name="facebook"
+                                                value="<%=user.profile.facebook%>">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <p id="pencil" class="mx-4" style="float: right;cursor: pointer;" onClick="handleChange()">
+                                <i class="fas fa-pencil-alt"></i>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/vendor/bootstrap/js/popper.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        var edit = document.getElementById('edit')
+        var non_edit = document.getElementById('non-edit');
+        var pencil = document.getElementById('pencil')
+        function handleChange() {
+            edit.style.display = 'block';
+            non_edit.style.display = 'none';
+            pencil.style.display = 'none';
+        }
+        function Cancel() {
+            edit.style.display = 'none';
+            non_edit.style.display = 'block';
+            pencil.style.display = 'block';
+        }
+
+    </script>
+    <%- include('../partials/footer')%>

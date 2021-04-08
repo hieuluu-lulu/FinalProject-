@@ -222,15 +222,7 @@
                             checkboxAll.prop('checked', isCheckedAll);
                             renderCheckAllbtn();
                         });
-                        // check all submit btn clicked
-                        // trường hợp này vẫn đc nhưng vẫn có thể click đc
-                        //containerForm.on('submit', function(e){
-                        //var isSubmittable = btnSubmitAll.hasClass('disabled');// kiểm tra xem btn submit có class disabled hay ko
-                        //if(isSubmittable){
-                        //e.preventDefault();
-                        //}
-                        //});
-                        //  button check all ( re-render)
+                   
                         function renderCheckAllbtn() {
                             var checkedCount = $('input[name="CategoryIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
                             if (checkedCount > 0) {
