@@ -13,3 +13,16 @@
         width: 100%;
     }
 }
+
+@media (max-width: 1023px) {
+    .nav__bar-btn {
+        display: block !important;
+        margin-right: 32px;
+        margin-left: auto;
+    }
+}
+@media (max-width: 739px) {
+    .home-image {
+        display: none !important;
+    }
+}

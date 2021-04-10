@@ -10,6 +10,16 @@
   .nav__mobile {
     width: 100%; } }
 
+@media (max-width: 1023px) {
+  .nav__bar-btn {
+    display: block !important;
+    margin-right: 32px;
+    margin-left: auto; } }
+
+@media (max-width: 739px) {
+  .home-image {
+    display: none !important; } }
+
 :root {
   --footer: #2c31cf;
   --primary-color: #f05123;
@@ -7936,7 +7946,7 @@ body {
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  font-family: 'Nunito Sans', sans-serif; }
+  font-family: "Nunito Sans", sans-serif; }
 
 .progress {
   height: 20px;
@@ -8007,7 +8017,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 12px rgba(0, 0, 0, 0.01); }
 
 .dropdown__user::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 160px;
@@ -8102,7 +8112,7 @@ body {
   color: var(--white); }
 
 .nav__user-name-seperate::after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   height: 18px;
@@ -8249,7 +8259,7 @@ body {
   font-size: 1.2rem; }
 
 .header .header-title-section .header-title {
-  font-size: 3.6rem;
+  font-size: 3.3rem;
   color: #303669;
   font-weight: 500; }
 
@@ -8307,7 +8317,7 @@ body {
   margin-bottom: 15px; }
 
 .process::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 100%;
   top: 0;
@@ -8343,6 +8353,9 @@ body {
 .img-home {
   max-width: 100%;
   max-height: 650px; }
+
+.home-image {
+  display: block; }
 
 .content-2 {
   background-color: #fff;
@@ -8432,7 +8445,7 @@ body {
   position: relative; }
 
 .course__details-preview::after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   top: 0;
@@ -8629,7 +8642,10 @@ body {
 
 .wrap-reason {
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .wrap-reason p {
   margin: 0 1.5rem; }
@@ -8686,7 +8702,7 @@ body {
 
 .has-arrows::after {
   position: absolute;
-  content: '';
+  content: "";
   width: 7px;
   height: 7px;
   border-width: 1px 0 0 1px;
@@ -8772,7 +8788,7 @@ button {
   position: relative; }
 
 .lessons__heading-title::after {
-  content: '';
+  content: "";
   border: 1px solid #e1e1e1;
   position: absolute;
   display: block;
@@ -8812,12 +8828,6 @@ button {
 .check {
   margin-right: 7px;
   padding: 0; }
-
-@media (max-width: 1023px) {
-  .nav__bar-btn {
-    display: block;
-    margin-right: 32px;
-    margin-left: auto; } }
 
 .user__profile-left {
   background-color: #fff;
