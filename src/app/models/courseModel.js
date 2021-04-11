@@ -14,6 +14,7 @@ const CourseSchema = new Schema(
         videoId: { type: String, required: true },
         category: { type: String, required: true },
         level: { type: String, maxLength: 255, required: true },
+        price: { type: Number },
         tag: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
     },

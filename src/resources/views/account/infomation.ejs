@@ -1,5 +1,5 @@
 <%- include('../partials/header')%>
-    <div class="container-xxl main-content">
+    <div class="container main-content">
         <ul class="course__details-breadcrumb pt-4">
             <li>
                 <a href="/dashboard">Home</a>
@@ -13,27 +13,27 @@
                 </path>
             </svg>
             <li>
-                <a href="/users/infomation">
+                <a href="/users/information">
                     My infomation
                 </a>
             </li>
         </ul>
         <%- include('../partials/messages')%>
     </div>
-    <div class="container-xxl mb-5">
+    <div class="container mb-5">
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 ">
+            <div class="col-lg-3 col-md-12 col-sm-12 ">
                 <div class="user__profile-left">
                     <ul class="user__profile-list-function">
-                        <li><a href="/users/infomation" class="user__profile-active">Information & Contact</a></li>
-                        <li><a href="/change-username"> Change user name</a></li>
-                        <li><a href="/change-password"> Change password</a></li>
+                        <li><a href="/users/information" class="user__profile-active">Information & Contact</a></li>
+                        <li><a href="/users/change-username"> Change user name</a></li>
+                        <li><a href="/users/change-password"> Change password</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class=" col-lg-8 col-md-12 col-xs-12 ">
-                <div class="user__profile-right p-3">
+            <div class=" col-lg-9 col-md-12 col-xs-12 px-0">
+                <div class="user__profile-right">
                     <h2 class="user__profile-title">Information</h2>
                     <div class="row">
                         <div class="col-lg-2 col-md-12 col-sm-12">
@@ -55,7 +55,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-9 col-md-12 col-xs-12 pb-4">
+                        <div class="col-lg-9 col-md-12 col-xs-12 pb-4 ">
                             <div class="editing ml-3" id="edit">
                                 <form action="/users/profile" method="post" enctype="multipart/form-data">
                                     <div class="mb-3 row ">
@@ -191,7 +191,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-1  d-flex justify-content-center">
+                        <div class="col-md-1 d-flex justify-content-center">
                             <p id="pencil" class="mx-4" style="float: right;cursor: pointer;" onClick="handleChange()">
                                 <i class="fas fa-pencil-alt"></i>
                             </p>

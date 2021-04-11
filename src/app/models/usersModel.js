@@ -9,6 +9,7 @@ const UserSchema = new Schema(
         image: { type: {} },
         email: { type: String },
         password: { type: String, require: true },
+        coin: { type: Number, default: 3000 },
         date: { type: Date, default: Date.now },
         facebookId: { type: String },
         googleId: { type: String },

@@ -1,8 +1,9 @@
 const { check, body } = require('express-validator');
 
+const User = require('../models/usersModel');
 const Course = require('../models/courseModel');
 const Category = require('../models/categoryModel');
-
+const bcrypt = require('bcryptjs');
 let validateCategory = () => {
     return [
         check('title', 'Title does not Empty')
@@ -59,10 +60,30 @@ let validateCreateLesson = () => {
         }),
     ];
 };
+let validateChangePassword = () => {
+    return [
+        check('newpassword', 'Password is required')
+            .not()
+            .isEmpty()
+            .isLength({ min: 6 })
+            .withMessage('Password must contain at least 6 characters'),
+        check('passwordconfirm', 'Password is required').not().isEmpty(),
+        check('passwordconfirm').custom((value, { req }) => {
+            if (value !== req.body.newpassword) {
+                throw new Error(
+                    'Password confirmation does not match password',
+                );
+            } else {
+                return true;
+            }
+        }),
+    ];
+};
 let validate = {
     validateCategory: validateCategory,
     validateCreateCourses: validateCreateCourses,
     validateCreateLesson: validateCreateLesson,
+    validateChangePassword: validateChangePassword,
 };
 
 module.exports = { validate };

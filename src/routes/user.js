@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../app/controllers/userController');
 const passport = require('passport');
+const { validate } = require('../app/middlewares/validate');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -15,12 +16,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('img');
 
+// forgot password
 router.get('/reset/:token', userController.resetPasswordToken);
 router.post('/reset/:token', userController.resetPasswordHandler);
 router.get('/forgot', userController.forgotPassword);
 router.post('/forgot', userController.forgotPasswordHandler);
+
+//user profile
 router.post('/profile', upload, userController.addProfile);
 router.get('/information', userController.indexInformation);
+router.post('/change-username', userController.changeUsernameHandler);
+router.get('/change-username', userController.indexChangeUsername);
+router.post('/change-username', userController.changeUsernameHandler);
+router.post(
+    '/change-password',
+    validate.validateChangePassword(),
+    userController.changePasswordHandler,
+);
+router.get('/change-password', userController.indexChangePassword);
+
+//login and resgister
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback', userController.loginFacebook);
 router.get('/fail', userController.fail);

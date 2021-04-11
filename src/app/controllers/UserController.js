@@ -7,6 +7,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const config = require('../../config/config');
+const { validationResult } = require('express-validator');
 
 const CLIENT_ID = config.googleAPI.clientID;
 const CLIENT_SECRET = config.googleAPI.clientSecret;
@@ -28,31 +29,7 @@ class UserController {
         res.locals.title = 'Resgister';
         res.render('account/register');
     }
-    indexInformation(req, res, next) {
-        User.findOne({ _id: req.user })
-            .then(() => {
-                res.locals.title = 'Infomation';
-                res.render('account/infomation', {
-                    user: req.user,
-                });
-            })
-            .catch(next);
-    }
-    addProfile(req, res, next) {
-        User.findOne({ _id: req.user }, (err, user) => {
-            user.profile = req.body;
-            user.image = req.file.filename;
-            user.save()
-                .then(() => {
-                    req.flash(
-                        'success_message',
-                        'Updated profile successfully',
-                    );
-                    res.redirect('back');
-                })
-                .catch((err) => console.log(err));
-        });
-    }
+
     registerHandler(req, res) {
         const { name, email, password, password2 } = req.body;
         let errors = [];
@@ -290,7 +267,7 @@ class UserController {
                                     },
                                 );
                                 user.save()
-                                    .then((user) => {
+                                    .then(() => {
                                         req.flash(
                                             'success_message',
                                             'Password changed successfully',
@@ -308,6 +285,98 @@ class UserController {
                 res.redirect('/users/login');
             },
         );
+    }
+    indexInformation(req, res, next) {
+        User.findOne({ _id: req.user })
+            .then(() => {
+                res.locals.title = 'Infomation';
+                res.render('account/infomation', {
+                    user: req.user,
+                });
+            })
+            .catch(next);
+    }
+    addProfile(req, res, next) {
+        User.findOne({ _id: req.user }, (err, user) => {
+            user.profile = req.body;
+            user.image = req.file.filename;
+            user.save()
+                .then(() => {
+                    req.flash(
+                        'success_message',
+                        'Updated profile successfully',
+                    );
+                    res.redirect('back');
+                })
+                .catch((err) => console.log(err));
+        });
+    }
+    indexChangeUsername(req, res, next) {
+        User.findOne({ _id: req.user })
+            .then(() => {
+                res.locals.title = 'Change username';
+                res.render('account/changeUsername', {
+                    user: req.user,
+                });
+            })
+            .catch(next);
+    }
+    changeUsernameHandler(req, res, next) {
+        User.findOne({ _id: req.user }, (err, user) => {
+            user.name = req.body.username;
+            user.save()
+                .then(() => {
+                    req.flash(
+                        'success_message',
+                        'Change username successfully!',
+                    );
+                    res.redirect('/users/information');
+                })
+                .catch(next);
+        });
+    }
+    indexChangePassword(req, res, next) {
+        User.findOne({ _id: req.user })
+            .then(() => {
+                res.locals.title = 'Change Password';
+                res.render('account/changePassword', {
+                    user: req.user,
+                    data: {},
+                    errors: {},
+                });
+            })
+            .catch(next);
+    }
+    changePasswordHandler(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return [
+                User.findOne({ _id: req.user }).then(() => {
+                    res.locals.title = 'Error';
+                    res.render('account/changePassword', {
+                        user: req.user,
+                        data: req.body,
+                        errors: errors.mapped(),
+                    });
+                }),
+            ];
+        }
+        User.findOne({ _id: req.user }).then((user) => {
+            // hash password
+            bcrypt.hash(req.body.newpassword, 10, (err, hash) => {
+                if (err) throw err;
+                user.password = hash;
+                user.save()
+                    .then((user) => {
+                        req.flash(
+                            'success_message',
+                            'Change password is successful',
+                        );
+                        res.redirect('/users/information');
+                    })
+                    .catch((err) => console.log(err));
+            });
+        });
     }
 }
 module.exports = new UserController();

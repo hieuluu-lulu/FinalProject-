@@ -8853,7 +8853,8 @@ button {
   font-weight: 600; }
 
 .user__profile-right {
-  background-color: #fff; }
+  background-color: #fff;
+  padding: 30px; }
 
 .user__profile-title {
   padding: 0;
@@ -8910,3 +8911,18 @@ button {
   border-radius: 50%;
   border: 1px solid #d8d8d8;
   display: none; }
+
+.btn-save {
+  padding: 10px;
+  width: 175px;
+  border-radius: 33px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  border: 1px solid #4d96ff;
+  background-color: #4d96ff;
+  transition: 0.3s all ease; }
+
+.btn-save:hover {
+  background-color: #fff;
+  color: var(--gray-dark); }
