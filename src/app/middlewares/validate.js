@@ -67,6 +67,15 @@ let validateChangePassword = () => {
             .isEmpty()
             .isLength({ min: 6 })
             .withMessage('Password must contain at least 6 characters'),
+        check('oldpassword', 'Password is required').not().isEmpty(),
+        check('oldpassword').custom(async (value, { req }) => {
+            const match = await bcrypt.compare(value, req.user.password);
+            if (match) {
+                return true;
+            } else {
+                throw new Error('Your Password is incorrect!');
+            }
+        }),
         check('passwordconfirm', 'Password is required').not().isEmpty(),
         check('passwordconfirm').custom((value, { req }) => {
             if (value !== req.body.newpassword) {
