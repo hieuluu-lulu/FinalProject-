@@ -26,9 +26,18 @@
 
                 <% } else { %>
                     <li>
+                        <div class="user-avatar">
+                            <img src="../images/<%=user.image%>" alt="">
+                        </div>
+                    </li>
+                    <li>
                         <a class=" nav__user-name">
                             <%= user.name %>
+                                <p class="m-0 fs-6">
+                                    <%=user.coin%> coin
+                                </p>
                         </a>
+
                         <div class="dropdown__user">
                             <ul class="dropdown__menu">
                                 <li class="dropdown__item"><svg aria-hidden="true" focusable="false" data-prefix="fas"
@@ -61,6 +70,9 @@
 
                             </ul>
                         </div>
+                    </li>
+                    <li class="notifi">
+                        <i class="far fa-bell"></i>
                     </li>
 
                     <% } %>

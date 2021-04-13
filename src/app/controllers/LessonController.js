@@ -30,6 +30,10 @@ class LessonController {
                                 { _id: req.user },
                                 { $push: { learning: req.params.tag } },
                             ).then();
+                            User.updateOne(
+                                { _id: req.user },
+                                { coin: user.coin - course.price },
+                            ).then();
                             Course.updateOne(
                                 { tag: req.params.tag },
                                 { __v: course.__v + 1 },

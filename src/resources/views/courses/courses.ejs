@@ -156,7 +156,9 @@
                                                     </div>
                                                     <input type="hidden" value="<%= course.tag%>" id="tag">
                                                     <a id="learned" href="/courses/<%= course.slug%>"
-                                                        class="btn btn-primary">Free</a>
+                                                        class="btn btn-primary">
+                                                        <%=course.price%> coin
+                                                    </a>
 
                                                     <% if(user) { %>
                                                         <script>
