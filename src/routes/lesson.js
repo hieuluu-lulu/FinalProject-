@@ -18,7 +18,7 @@ route.post(
 route.get('/create', ensureAuth, admin, lessonController.createLesson);
 route.get('/:id/edit', ensureAuth, admin, lessonController.editLesson);
 route.put('/:id', lessonController.updateLesson);
-route.get('/:id/restore', ensureAuth, admin, lessonController.restore);
+route.patch('/:id/restore', ensureAuth, admin, lessonController.restore);
 route.delete('/:id', lessonController.delete);
 route.delete('/:id/force', lessonController.forceDelete);
 route.get('/:tag/:slug', ensureAuth, lessonController.showLessionDetails);
