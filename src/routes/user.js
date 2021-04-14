@@ -23,7 +23,13 @@ router.get('/forgot', userController.forgotPassword);
 router.post('/forgot', userController.forgotPasswordHandler);
 
 //user profile
-router.post('/profile', upload, userController.addProfile);
+router.get('/edit-profile', userController.indexEditProfile);
+router.post(
+    '/profile',
+    upload,
+    validate.validateUpdateProfile(),
+    userController.addProfile,
+);
 router.get('/information', userController.indexInformation);
 router.post('/change-username', userController.changeUsernameHandler);
 router.get('/change-username', userController.indexChangeUsername);

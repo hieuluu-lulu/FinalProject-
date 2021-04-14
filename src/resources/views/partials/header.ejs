@@ -26,9 +26,13 @@
 
                 <% } else { %>
                     <li>
-                        <div class="user-avatar">
-                            <img src="../images/<%=user.image%>" alt="">
-                        </div>
+                        <% if(!user.image ) { %>
+                            <div id="no-img" class="no-avatar"></div>
+                            <% } else { %>
+                                <div class="user-avatar">
+                                    <img src="../images/<%=user.image%>" alt="">
+                                </div>
+                                <% } %>
                     </li>
                     <li>
                         <a class=" nav__user-name">

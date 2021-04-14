@@ -1,0 +1,201 @@
+<%- include('../partials/header')%>
+
+    <div class="container main-content">
+        <ul class="course__details-breadcrumb pt-4">
+            <li>
+                <a href="/dashboard">Home</a>
+            </li>
+
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+                class="svg-inline--fa fa-chevron-right fa-w-10 course__details-icon" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path fill="currentColor"
+                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                </path>
+            </svg>
+            <li>
+                <a href="/users/information">
+                    My infomation
+                </a>
+            </li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+                class="svg-inline--fa fa-chevron-right fa-w-10 course__details-icon" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path fill="currentColor"
+                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                </path>
+            </svg>
+            <li>
+                <a href="/users/edit-profile">
+                    Edit infomation
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-12 col-sm-12 ">
+                <div class="user__profile-left">
+                    <ul class="user__profile-list-function">
+                        <li><a href="/users/information" class="user__profile-active">Information & Contact</a></li>
+                        <li><a href="/users/change-username"> Change user name</a></li>
+                        <li><a href="/users/change-password"> Change password</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class=" col-lg-9 col-md-12 col-xs-12 ">
+
+                <div class="user__profile-right">
+                    <h2 class="user__profile-title">Information</h2>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div id="imgReview" class="img-preview"></div>
+                                <div class=" imgPreview">
+                                    <img src="" alt="" id="avatar">
+                                    <%if(user.image) { %>
+                                        <script>
+                                            var avatar = "<%= user.image%>"
+                                            var img = document.getElementById('avatar');
+                                            var noImg = document.getElementById('imgReview');
+                                            noImg.style.display = 'none';
+                                            img.style.display = 'block';
+                                            img.src = `../images/${avatar}`
+                                        </script>
+                                        <% } %>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-9 col-md-12 col-xs-12 pb-4 ">
+                            <div class=" ml-3" id="edit">
+                                <form action="/users/profile" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control " id="fullname" name="fullname"
+                                                placeholder="" value="<%=user.profile.fullname%>">
+                                            <% if (errors.fullname ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.fullname.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Your Photo</label>
+                                        <div class="col-sm-9 input-file-container">
+                                            <input type="file" class="" id="img" name="img"
+                                                onchange="showPreview(event)" hidden>
+                                            <label tabindex="0" for="img" class="input-file-trigger">Select a
+                                                picture...</label>
+                                            <% if (errors.img ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.img.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Birthday</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="date" name="date" placeholder=""
+                                                value="<%=user.profile.date%>">
+                                            <% if (errors.date ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.date.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Phone Number</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                                                placeholder="" value="<%=user.profile.phonenumber%>">
+                                            <% if (errors.phonenumber ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.phonenumber.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="email" class="col-form-label col-sm-3">Email Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="email" name="email" disabled
+                                                placeholder="" value="<%=user.email%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Country</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="country" name="country"
+                                                placeholder="" value="<%=user.profile.country%>">
+                                            <% if (errors.country ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.country.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">City</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="city" name="city" placeholder=""
+                                                value="<%=user.profile.city%>">
+                                            <% if (errors.city ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.city.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="" value="<%=user.profile.address%>">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ">
+                                        <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="facebook" name="facebook"
+                                                placeholder="" value="<%=user.profile.facebook%>">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/users/information" class=" btn btn-outline-secondary mr-3">Cancel</a>
+                                        <button type="submit" class=" btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var noImg = document.getElementById('imgReview');
+        var avatar = document.getElementById('avatar');
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                console.log(noImg);
+                noImg.style.display = 'none';
+                avatar.style.display = 'block';
+                avatar.src = src;
+
+            }
+        }
+
+    </script>
+
+    <%- include('../partials/footer')%>

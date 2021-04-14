@@ -1,4 +1,5 @@
 <%- include('../partials/header')%>
+
     <div class="container main-content">
         <ul class="course__details-breadcrumb pt-4">
             <li>
@@ -32,7 +33,7 @@
                 </div>
             </div>
 
-            <div class=" col-lg-9 col-md-12 col-xs-12 px-0">
+            <div class=" col-lg-9 col-md-12 col-xs-12 ">
                 <div class="user__profile-right">
                     <h2 class="user__profile-title">Information</h2>
                     <div class="row">
@@ -53,147 +54,72 @@
                                         <% } %>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-lg-9 col-md-12 col-xs-12 pb-4 ">
-                            <div class="editing ml-3" id="edit">
-                                <form action="/users/profile" method="post" enctype="multipart/form-data">
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control " id="fullname" name="fullname"
-                                                placeholder="" value="<%=user.profile.fullname%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Your Photo</label>
-                                        <div class="col-sm-9 input-file-container">
-                                            <input type="file" class="" id="img" name="img" hidden>
-                                            <label tabindex="0" for="img" class="input-file-trigger">Select a
-                                                picture...
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Birthday</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" class="form-control" id="date" name="date" placeholder=""
-                                                value="<%=user.profile.date%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Phone Number</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="phonenumber" name="phonenumber"
-                                                placeholder="" value="<%=user.profile.phonenumber%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="email" class="col-form-label col-sm-3">Email Address</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="email" name="email" disabled
-                                                placeholder="" value="<%=user.email%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Country</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="country" name="country"
-                                                placeholder="" value="<%=user.profile.country%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">City</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="city" name="city" placeholder=""
-                                                value="<%=user.profile.city%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Address</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="address" name="address"
-                                                placeholder="" value="<%=user.profile.address%>">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="facebook" name="facebook"
-                                                placeholder="" value="<%=user.profile.facebook%>">
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class=" btn btn-outline-secondary mr-3"
-                                            onClick="Cancel()">Cancel</button>
-                                        <button type="submit" class=" btn btn-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
                             <div class="non-edit ml-3" id="non-edit">
-                                <form action="">
-                                    <div class="mb-3 row">
-                                        <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="fullname"
-                                                value="<%=user.profile.fullname%>">
-                                        </div>
+
+                                <div class="mb-3 row">
+                                    <label for="fullname" class="col-form-label col-sm-3">Full Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="fullname"
+                                            value="<%=user.profile.fullname%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="date" class="col-form-label col-sm-3">Birthday</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="date"
-                                                value="<%=user.profile.date%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="date" class="col-form-label col-sm-3">Birthday</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="date"
+                                            value="<%=user.profile.date%>">
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="fullname" class="col-form-label col-sm-3">Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="fullname"
-                                                value="<%=user.email%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="fullname" class="col-form-label col-sm-3">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="fullname"
+                                            value="<%=user.email%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Phone
-                                            Number</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext"
-                                                name="phonenumber" value="<%=user.profile.phonenumber%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="fullname" class="col-form-label col-sm-3">Phone
+                                        Number</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="phonenumber"
+                                            value="<%=user.profile.phonenumber%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Country</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="country"
-                                                value="<%=user.profile.country%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="fullname" class="col-form-label col-sm-3">Country</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="country"
+                                            value="<%=user.profile.country%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">City</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="city"
-                                                value="<%=user.profile.city%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="fullname" class="col-form-label col-sm-3">City</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="city"
+                                            value="<%=user.profile.city%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Address</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="address"
-                                                value="<%=user.profile.address%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="fullname" class="col-form-label col-sm-3">Address</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="address"
+                                            value="<%=user.profile.address%>">
                                     </div>
-                                    <div class="mb-3 row ">
-                                        <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" readonly class="form-control-plaintext" name="facebook"
-                                                value="<%=user.profile.facebook%>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row ">
+                                    <label for="fullname" class="col-form-label col-sm-3">Facebook</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" name="facebook"
+                                            value="<%=user.profile.facebook%>">
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-1 d-flex justify-content-center">
                             <p id="pencil" class="mx-4" style="float: right;cursor: pointer;" onClick="handleChange()">
-                                <i class="fas fa-pencil-alt"></i>
+                                <a href="/users/edit-profile"><i class="fas fa-pencil-alt"></i></a>
                             </p>
                         </div>
                     </div>
@@ -205,20 +131,5 @@
     <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="/vendor/bootstrap/js/popper.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script>
-        var edit = document.getElementById('edit')
-        var non_edit = document.getElementById('non-edit');
-        var pencil = document.getElementById('pencil')
-        function handleChange() {
-            edit.style.display = 'block';
-            non_edit.style.display = 'none';
-            pencil.style.display = 'none';
-        }
-        function Cancel() {
-            edit.style.display = 'none';
-            non_edit.style.display = 'block';
-            pencil.style.display = 'block';
-        }
 
-    </script>
     <%- include('../partials/footer')%>

@@ -296,20 +296,42 @@ class UserController {
             })
             .catch(next);
     }
+    indexEditProfile(req, res, next) {
+        User.findOne({ _id: req.user })
+            .then(() => {
+                res.locals.title = 'Edit Information';
+                res.render('account/editInformation', {
+                    user: req.user,
+                    data: {},
+                    errors: {},
+                });
+            })
+            .catch(next);
+    }
     addProfile(req, res, next) {
-        User.findOne({ _id: req.user }, (err, user) => {
-            user.profile = req.body;
-            user.image = req.file.filename;
-            user.save()
-                .then(() => {
-                    req.flash(
-                        'success_message',
-                        'Updated profile successfully',
-                    );
-                    res.redirect('back');
-                })
-                .catch((err) => console.log(err));
-        });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return [
+                User.findOne({ _id: req.user }).then(() => {
+                    res.locals.title = 'Edit Information';
+                    res.render('account/editInformation', {
+                        user: req.user,
+                        data: req.body,
+                        errors: errors.mapped(),
+                    });
+                }),
+            ];
+        }
+        User.findOne({ _id: req.user })
+            .then((user) => {
+                user.profile = req.body;
+                user.image = req.file.filename;
+                user.save().then(() => {
+                    req.flash('success_message', 'Update Profile Successfully');
+                    res.redirect('/users/information');
+                });
+            })
+            .catch(next);
     }
     indexChangeUsername(req, res, next) {
         User.findOne({ _id: req.user })
@@ -352,7 +374,7 @@ class UserController {
         if (!errors.isEmpty()) {
             return [
                 User.findOne({ _id: req.user }).then(() => {
-                    res.locals.title = 'Error';
+                    res.locals.title = 'Change Password';
                     res.render('account/changePassword', {
                         user: req.user,
                         data: req.body,

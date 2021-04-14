@@ -4,6 +4,7 @@ const User = require('../models/usersModel');
 const Course = require('../models/courseModel');
 const Category = require('../models/categoryModel');
 const bcrypt = require('bcryptjs');
+
 let validateCategory = () => {
     return [
         check('title', 'Title does not Empty')
@@ -89,11 +90,26 @@ let validateChangePassword = () => {
         }),
     ];
 };
+let validateUpdateProfile = () => {
+    return [
+        body('fullname', 'This field is required').not().isEmpty(),
+        body('img').custom((value, { req }) => {
+            if (!req.file) throw new Error('Please select an image');
+            return true;
+        }),
+        body('date', 'This field is required').not().isEmpty(),
+        body('phonenumber', 'This field is required').not().isEmpty(),
+        body('country', 'This field is required').not().isEmpty(),
+        body('city', 'This field is required').not().isEmpty(),
+    ];
+};
+
 let validate = {
     validateCategory: validateCategory,
     validateCreateCourses: validateCreateCourses,
     validateCreateLesson: validateCreateLesson,
     validateChangePassword: validateChangePassword,
+    validateUpdateProfile: validateUpdateProfile,
 };
 
 module.exports = { validate };
