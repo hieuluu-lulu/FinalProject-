@@ -11,6 +11,8 @@ router.post(
     validate.validateCreateCourses(),
     courseController.storedCourses,
 );
+router.post('/comment', courseController.commentHandler);
+router.post('/comment/reply', courseController.replyHandler);
 router.get('/create', ensureAuth, admin, courseController.createCourses);
 router.get('/:id/edit', admin, courseController.edit);
 router.put('/:id', courseController.update);

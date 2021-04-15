@@ -19,76 +19,176 @@
                         </a>
                     </li>
                 </ul>
-
                 <h1 class="course__detais-name">
                     <%= course.name%>
                 </h1>
                 <div class="course__details-description">
                     <%= course.description%>
                 </div>
-                <div class="course__details-topList">
+                <div class="course__details-topList mb-5 pb-3">
                     <section class="row">
                         <section class="col col-lg-12 col-md-12 col-sm-12">
                             <h3>What will you learn?</h3>
                             <section class="row mt-3">
                                 <section class="col col-lg-12 col-md-12 col-sm-12">
-                                    <ul class="course__details-list">
-                                        <li>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                data-icon="check"
-                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
-                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                                                </path>
-                                            </svg>
-                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
-                                                phí</span>
-                                        </li>
-                                        <li>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                data-icon="check"
-                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
-                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                                                </path>
-                                            </svg>
-                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
-                                                phí</span>
-                                        </li>
-                                        <li>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                data-icon="check"
-                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
-                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                                                </path>
-                                            </svg>
-                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
-                                                phí</span>
-                                        </li>
-                                        <li>
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                                data-icon="check"
-                                                class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
-                                                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                                                </path>
-                                            </svg>
-                                            <span>Được học kiến thức miễn phí với nội dung chất lượng hơn mất
-                                                phí</span>
-                                        </li>
+                                    <ul class="course__details-list ">
+                                        <% course.topic.forEach(function(topic) { %>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                    data-icon="check"
+                                                    class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path fill="currentColor"
+                                                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                    </path>
+                                                </svg>
+                                                <span class="fs-6">
+                                                    <%=topic%>
+                                                </span>
+                                            </li>
+                                            <% }) %>
+                                    </ul>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="col col-lg-12 col-md-12 col-sm-12">
+                            <h3>Request</h3>
+                            <section class="row mt-3">
+                                <section class="col col-lg-12 col-md-12 col-sm-12">
+                                    <ul class="course__details-list course__details-list-column">
+                                        <% course.request.forEach(function(request) { %>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                                    data-icon="check"
+                                                    class="svg-inline--fa fa-check fa-w-16 course__details-list-icon"
+                                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path fill="currentColor"
+                                                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                                                    </path>
+                                                </svg>
+                                                <span class="fs-6">
+                                                    <%=request%>
+                                                </span>
+                                            </li>
+                                            <% }) %>
                                     </ul>
                                 </section>
                             </section>
                         </section>
                     </section>
                 </div>
+                <% if(user) { %>
+                    <section class=comment>
+                        <div class="container">
+                            <h3 class="comment-heading">114 Comments</h3>
+                            <div class="d-flex align-items-center" style="display: block; width: 100%">
+                                <div class="user-avatar mb-3">
+                                    <img src="../images/<%=user.image%>" alt="">
+                                </div>
+                                <div class="comment-input" style=" width: 100%">
+                                    <form action="/courses/comment" id="commentForm" method="post">
+                                        <div class="comment-box mb-3">
+                                            <input type="hidden" value="<%=course._id%>" name="course_id">
+                                            <input type="hidden" value="<%=user.name%>" name="username">
+                                            <input type="text" name="comment" id="comment" class=" form-control"
+                                                placeholder="What do you think about this course?" onfocus="onFocus()"
+                                                oninput="onChange()">
+                                        </div>
+                                        <div class="btn-comment-group" id="btn-comment-group">
+                                            <button type="button" class="btn btn-comment-cancel"
+                                                onclick="onClick()">CANCEL</button>
+                                            <button type="submit" id="btn-comment"
+                                                class="btn btn-comment">COMMENT</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <%} %>
+                        <section class="list-comment">
+                            <div class="container">
+                                <% course.comments=course.comments.reverse(); %>
+                                    <%course.comments.forEach(function(comment) {%>
+                                        <div class="d-flex mb-4">
+                                            <div class="comment-avatar ">
+                                                <%if (comment.image=="" ) { %>
+                                                    <div id="no-img" class="no-user-avatar"></div>
+                                                    <% } else { %>
+                                                        <div class="user-avatar">
+                                                            <img src="../images/<%=comment.image%>" alt="">
+                                                        </div>
+                                                        <% } %>
+                                            </div>
+                                            <div class="comment-body">
+                                                <div class="comment-content">
+                                                    <h5 class="comment-author">
+                                                        <%=comment.username%>
+                                                    </h5>
+                                                    <div class="comment-text">
+                                                        <span>
+                                                            <%=comment.comment%>
+                                                        </span>
+                                                    </div>
+                                                    <input id="createAt" value="<%=comment.createAt%>"
+                                                        type="hidden"></input>
+                                                </div>
+                                                <div class="comment-time">
+                                                    <div class="comment-createAt">
+                                                        <div class="comment-option d-flex align-items-center">
+                                                            <a href class="comment-like">Like</a>
+                                                            <p class="comment-reply" data-commentbox="<%=comment._id%>">
+                                                                Reply
+                                                            </p>
+                                                            <p class="comment-time" id="time-comment"></p>
+                                                        </div>
+                                                        <%if(user) { %>
+                                                            <div class="comment-reply-box mt-3" id="<%=comment._id%>"
+                                                                style="display:none !important;">
+                                                                <div class="comment-avatar mb-3">
+                                                                    <%if (!user.image) { %>
+                                                                        <div id="no-img" class="no-user-avatar"></div>
+                                                                        <% } else { %>
+                                                                            <div class="user-avatar ">
+                                                                                <img src="../images/<%=user.image%>"
+                                                                                    alt="">
+                                                                            </div>
+                                                                            <% } %>
+                                                                </div>
+                                                                <div class="comment-input col-lg-8"
+                                                                    style=" width: 100%">
+                                                                    <form action="/courses/comment/reply" id="replyForm"
+                                                                        method="post">
+                                                                        <div class="comment-box mb-3">
+                                                                            <input type="hidden" value="<%=course._id%>"
+                                                                                name="course_id">
+                                                                            <input type="hidden"
+                                                                                value="<%=comment._id%>"
+                                                                                name="comment_id">
+                                                                            <input type="hidden" value="<%=user.name%>"
+                                                                                name="username">
+                                                                            <input type="text" name="reply" id="reply"
+                                                                                class=" form-control" placeholder="">
+                                                                        </div>
+                                                                        <div class="btn-reply-group"
+                                                                            id="btn-reply-group">
+                                                                            <button type="button"
+                                                                                class="btn btn-reply-cancel">Cancel</button>
+                                                                            <button type="submit" id="btn-reply"
+                                                                                class="btn btn-reply">Reply</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                            </div>
+                        </section>
             </section>
-
             <section class="col col-lg-4 col-md-12 col-sm-12 d-lg-block">
                 <div class="course__details-purchase">
                     <div class="course__details-preview">
@@ -110,8 +210,10 @@
                                 info.style.display = "none";
                                 registed.style.display = "block";
                                 registed.style.fontSize = "16px";
-                                btn.innerHTML = "CONTINUTE"
+                                btn.innerHTML = "CONTINUTE";
                             }
+
+                            // commentbox
 
                         </script>
                         <% } %>
@@ -157,4 +259,49 @@
             </section>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <script>
+
+        var commentForm = document.getElementById('commentForm')
+        var comment = document.getElementById('comment');
+        var btnGroup = document.getElementById('btn-comment-group')
+        var btnComment = document.getElementById('btn-comment')
+        function onChange() {
+            btnComment.classList.remove('btn-comment')
+            btnComment.classList.add('btn-comment-active');
+        }
+        function onFocus() {
+            btnGroup.style.display = "block";
+        }
+        function onClick() {
+            commentForm.reset();
+            btnGroup.style.display = "none"
+            btnComment.classList.add('btn-comment')
+            btnComment.classList.remove('btn-comment-active');
+        }
+
+        var createAt = document.querySelectorAll('#createAt');
+        var time_comment = document.querySelectorAll('#time-comment');
+        for (var i = 0; i < time_comment.length; i++) {
+            time_comment[i].innerHTML = moment(createAt[i].value).fromNow();
+        };
+        $(function () {
+            $('.comment-reply').on('click', function () {
+                $('.comment-reply-box ').hide();
+                var commentboxId = $(this).attr('data-commentbox');
+                $('#' + commentboxId).toggle();
+            });
+
+            $('.btn-reply-cancel').on('click', function () {
+                $('.comment-reply-box ').hide();
+            })
+
+        });
+
+    </script>
     <%- include('../partials/footer')%>

@@ -330,80 +330,107 @@
                                                 <% } %>
                                         </div>
                                     </div>
-                                    <div class="form-group  ">
-                                        <label for="videoId" class="  control-label col-form-label">Video
-                                            ID</label>
+                                    <div class="form-group">
+                                        <label for="topic" class="  control-label col-form-label">Topic</label>
                                         <div class="">
-                                            <input type="text" class="form-control" id="videoId" name="videoId"
-                                                placeholder="" value="<%= course.videoId%>">
-                                            <% if (errors.videoId ){ %>
+                                            <input type="text" class="form-control" id="topic" name="topic"
+                                                placeholder="" value="<%=topic%>">
+                                            <% if (errors.topic ){ %>
                                                 <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                    <%= errors.videoId.msg %>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label for="level" class="  control-label col-form-label">Image</label>
-                                        <div class="">
-                                            <input type="text" class="form-control" id="image" name="image"
-                                                placeholder="" value="<%= course.image%>">
-                                            <% if (errors.image ){ %>
-                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                    <%= errors.image.msg %>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label for="level" class="  control-label col-form-label">Level</label>
-                                        <div class="">
-                                            <input type="text" class="form-control" id="level" name="level"
-                                                placeholder="" value="<%= course.level%>">
-                                            <% if (errors.level ){ %>
-                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                    <%= errors.level.msg %>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="tag" class="  control-label col-form-label">Tag</label>
-                                        <div class="">
-                                            <input type="text" class="form-control" id="tag" name="tag" placeholder=""
-                                                value="<%= course.tag%>">
-                                            <% if (errors.tag ){ %>
-                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                    <%= errors.tag.msg %>
+                                                    <%= errors.topic.msg %>
                                                 </div>
                                                 <% } %>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="category">Category</label>
-                                        <select name="category" id="category" class="form-select">
-                                            <option selected>-- Category --</option>
-                                            <option selected>
-                                                <%= course.category%>
-                                            </option>
-                                            <% categories.forEach(function(category) { %>
-                                                <option value="<%= category.slug %>">
-                                                    <%= category.title %>
-                                                </option>
-                                                <% }) %>
-                                        </select>
-                                        <% if (errors.category ){ %>
-                                            <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                <%= errors.category.msg %>
+                                        <label for="request" class="  control-label col-form-label">Request</label>
+                                        <div class="">
+                                            <input type="text" class="form-control" id="request" name="request"
+                                                placeholder="" value="<%=request%>">
+                                            <% if (errors.request ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.request.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label for="videoId" class="  control-label col-form-label">Video
+                                                ID</label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="videoId" name="videoId"
+                                                    placeholder="" value="<%= course.videoId%>">
+                                                <% if (errors.videoId ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.videoId.msg %>
+                                                    </div>
+                                                    <% } %>
                                             </div>
-                                            <% } %>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label for="level" class="  control-label col-form-label">Image</label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="image" name="image"
+                                                    placeholder="" value="<%= course.image%>">
+                                                <% if (errors.image ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.image.msg %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label for="level" class="  control-label col-form-label">Level</label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="level" name="level"
+                                                    placeholder="" value="<%= course.level%>">
+                                                <% if (errors.level ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.level.msg %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="tag" class="  control-label col-form-label">Tag</label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="tag" name="tag"
+                                                    placeholder="" value="<%= course.tag%>">
+                                                <% if (errors.tag ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.tag.msg %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <select name="category" id="category" class="form-select">
+                                                <option selected>-- Category --</option>
+                                                <option selected>
+                                                    <%= course.category%>
+                                                </option>
+                                                <% categories.forEach(function(category) { %>
+                                                    <option value="<%= category.slug %>">
+                                                        <%= category.title %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            <% if (errors.category ){ %>
+                                                <div class="invalid-feedback" style="display: block; font-size: 16px">
+                                                    <%= errors.category.msg %>
+                                                </div>
+                                                <% } %>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>

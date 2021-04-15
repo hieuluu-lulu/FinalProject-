@@ -28,6 +28,8 @@ let validateCreateCourses = () => {
         check('level', 'Level of Course is required').not().isEmpty(),
         check('tag', 'Tag of Course is required').not().isEmpty(),
         check('price', 'Price of Course is required').not().isEmpty(),
+        check('topic', 'Topic of Course is required').not().isEmpty(),
+        check('request', 'Request of Course is required').not().isEmpty(),
         check('category').custom((value) => {
             return Category.find({}).then((category) => {
                 const title = category.map((category) => {

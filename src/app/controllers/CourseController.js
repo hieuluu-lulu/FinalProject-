@@ -2,6 +2,7 @@ const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
 const Category = require('../models/categoryModel');
+const mongoose = require('mongoose');
 
 const { validationResult } = require('express-validator');
 class CourseController {
@@ -24,6 +25,7 @@ class CourseController {
     }
     showCourse(req, res, next) {
         Course.findOne({ slug: req.params.slug })
+
             .then((course) => {
                 Promise.all([
                     Category.findOne({ slug: course.category }),
@@ -70,8 +72,21 @@ class CourseController {
                 }),
             ];
         }
-        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
-        const course = new Course(req.body);
+
+        const course = new Course({
+            name: req.body.name,
+            author: req.body.author,
+            description: req.body.description,
+            price: req.body.price,
+            topic: req.body.topic.split('.'),
+            request: req.body.request.split('.'),
+            videoId: req.body.videoId,
+            level: req.body.level,
+            tag: req.body.tag,
+            category: req.body.category,
+            image: `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`,
+        });
+
         course
             .save()
             .then(() => res.redirect('/manage/stored/courses'))
@@ -84,10 +99,14 @@ class CourseController {
             Category.find({}),
         ])
             .then(([course, category]) => {
+                var topic = course.topic.toString();
+                var request = course.request.toString();
                 res.locals.title = 'Update Courses';
                 res.render('courses/edit', {
                     course: course,
                     user: req.user,
+                    topic,
+                    request,
                     data: {},
                     errors: {},
                     categories: category,
@@ -144,6 +163,53 @@ class CourseController {
             default:
                 res.json({ message: 'Action Invalid!' });
         }
+    }
+    commentHandler(req, res, next) {
+        var comment_id = mongoose.Types.ObjectId();
+        var createAt = new Date();
+        Course.updateOne(
+            { _id: req.body.course_id },
+            {
+                $push: {
+                    comments: {
+                        _id: comment_id,
+                        username: req.body.username,
+                        comment: req.body.comment,
+                        image: req.user.image,
+                        createAt,
+                    },
+                },
+            },
+        )
+            .then(() => {
+                res.redirect('back');
+            })
+            .catch(next);
+    }
+    replyHandler(req, res, next) {
+        var reply_id = mongoose.Types.ObjectId();
+
+        Course.updateOne(
+            {
+                _id: req.body.course_id,
+                'Course.comments._id': req.body.comment_id,
+            },
+            {
+                $push: {
+                    'comments.$.replies': {
+                        _id: reply_id,
+                        username: req.user.name,
+                        reply: req.body.reply,
+                        image: req.user.image,
+                    },
+                },
+            },
+        )
+            .then(() => {
+                console.log(req.body.comment_id);
+                res.redirect('back');
+            })
+            .catch(next);
     }
 }
 module.exports = new CourseController();
