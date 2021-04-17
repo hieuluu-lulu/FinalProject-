@@ -27,7 +27,7 @@
                 </div>
                 <div class="course__details-topList mb-5 pb-3">
                     <section class="row">
-                        <section class="col col-lg-12 col-md-12 col-sm-12">
+                        <section class="col-lg-12 col-md-12 col-sm-12 willLearn">
                             <h3>What will you learn?</h3>
                             <section class="row mt-3">
                                 <section class="col col-lg-12 col-md-12 col-sm-12">
@@ -51,7 +51,7 @@
                                 </section>
                             </section>
                         </section>
-                        <section class="col col-lg-12 col-md-12 col-sm-12">
+                        <section class="col-lg-12 col-md-12 col-sm-12">
                             <h3>Request</h3>
                             <section class="row mt-3">
                                 <section class="col col-lg-12 col-md-12 col-sm-12">
@@ -80,9 +80,11 @@
                 <% if(user) { %>
                     <section class=comment>
                         <div class="container">
-                            <h3 class="comment-heading">114 Comments</h3>
-                            <div class="d-flex align-items-center" style="display: block; width: 100%">
-                                <div class="user-avatar mb-3">
+                            <h3 class="comment-heading">
+                                <%=course.comments.length%> Comments
+                            </h3>
+                            <div class="d-flex " style="display: block; width: 100%">
+                                <div class="user-avatar mb-3 comment-avatar">
                                     <img src="../images/<%=user.image%>" alt="">
                                 </div>
                                 <div class="comment-input" style=" width: 100%">
@@ -90,7 +92,7 @@
                                         <div class="comment-box mb-3">
                                             <input type="hidden" value="<%=course._id%>" name="course_id">
                                             <input type="hidden" value="<%=user.name%>" name="username">
-                                            <input type="text" name="comment" id="comment" class=" form-control"
+                                            <input type="text" name="comment" id="comment" class="  comment-box-input  "
                                                 placeholder="What do you think about this course?" onfocus="onFocus()"
                                                 oninput="onChange()">
                                         </div>
@@ -130,18 +132,20 @@
                                                             <%=comment.comment%>
                                                         </span>
                                                     </div>
+
                                                     <input id="createAt" value="<%=comment.createAt%>"
                                                         type="hidden"></input>
                                                 </div>
                                                 <div class="comment-time">
                                                     <div class="comment-createAt">
-                                                        <div class="comment-option d-flex align-items-center">
+                                                        <div class="comment-option">
                                                             <a href class="comment-like">Like</a>
                                                             <p class="comment-reply" data-commentbox="<%=comment._id%>">
                                                                 Reply
                                                             </p>
                                                             <p class="comment-time" id="time-comment"></p>
                                                         </div>
+
                                                         <%if(user) { %>
                                                             <div class="comment-reply-box mt-3" id="<%=comment._id%>"
                                                                 style="display:none !important;">
@@ -155,8 +159,7 @@
                                                                             </div>
                                                                             <% } %>
                                                                 </div>
-                                                                <div class="comment-input col-lg-8"
-                                                                    style=" width: 100%">
+                                                                <div class="col-lg-8" style=" width: 100%">
                                                                     <form action="/courses/comment/reply" id="replyForm"
                                                                         method="post">
                                                                         <div class="comment-box mb-3">
@@ -165,10 +168,12 @@
                                                                             <input type="hidden"
                                                                                 value="<%=comment._id%>"
                                                                                 name="comment_id">
-                                                                            <input type="hidden" value="<%=user.name%>"
-                                                                                name="username">
+                                                                            <input type="hidden"
+                                                                                value="<%course.category%>"
+                                                                                name="course_category">
                                                                             <input type="text" name="reply" id="reply"
-                                                                                class=" form-control" placeholder="">
+                                                                                class="comment-box-input"
+                                                                                placeholder="">
                                                                         </div>
                                                                         <div class="btn-reply-group"
                                                                             id="btn-reply-group">
@@ -182,6 +187,60 @@
                                                             </div>
                                                             <% } %>
                                                     </div>
+                                                </div>
+                                                <div class="reply-box">
+
+
+                                                    <% if(comment.replies) { %>
+                                                        <% comment.replies.forEach(function(reply) {%>
+                                                            <div class="d-flex my-4">
+                                                                <div class="comment-avatar ">
+                                                                    <%if (comment.image=="" ) { %>
+                                                                        <div id="no-img" class="no-user-avatar"></div>
+                                                                        <% } else { %>
+                                                                            <div class="user-avatar">
+                                                                                <img src="../images/<%=comment.image%>"
+                                                                                    alt="">
+                                                                            </div>
+                                                                            <% } %>
+                                                                </div>
+                                                                <div class="reply-body">
+                                                                    <div class="comment-content">
+                                                                        <h5 class="comment-author">
+                                                                            <%=reply.username%>
+                                                                        </h5>
+                                                                        <div class="comment-text">
+                                                                            <span>
+                                                                                <%=reply.reply%>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="comment-time">
+                                                                        <div class="comment-createAt">
+                                                                            <div
+                                                                                class="comment-option d-flex align-items-center">
+                                                                                <a href class="comment-like">Like</a>
+                                                                                <!-- <p class="comment-reply"
+                                                                                data-commentbox="<%=reply._id%>">
+                                                                                Reply
+                                                                            </p> -->
+                                                                                <input type="hidden"
+                                                                                    id="reply-create-at"
+                                                                                    value="<%=reply.createAt%>">
+                                                                                <p class="reply-time ml-2"
+                                                                                    id="time-reply">
+                                                                                </p>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <%})%>
+                                                                <% } %>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,6 +349,12 @@
         for (var i = 0; i < time_comment.length; i++) {
             time_comment[i].innerHTML = moment(createAt[i].value).fromNow();
         };
+        var replyCreateAt = document.querySelectorAll('#reply-create-at');
+        var reply_time = document.querySelectorAll('#time-reply');
+
+        for (var i = 0; i < reply_time.length; i++) {
+            reply_time[i].innerHTML = moment(replyCreateAt[i].value).fromNow();
+        };
         $(function () {
             $('.comment-reply').on('click', function () {
                 $('.comment-reply-box ').hide();
@@ -299,6 +364,7 @@
 
             $('.btn-reply-cancel').on('click', function () {
                 $('.comment-reply-box ').hide();
+                $('#replyForm').trigger("reset");
             })
 
         });

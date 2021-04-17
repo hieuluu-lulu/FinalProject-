@@ -18,7 +18,9 @@
 
 @media (max-width: 739px) {
   .home-image {
-    display: none !important; } }
+    display: none !important; }
+  .course__details-list {
+    flex-direction: column; } }
 
 :root {
   --footer: #2c31cf;
@@ -8561,23 +8563,36 @@ body {
   position: relative;
   line-height: 1.4rem; }
 
+.comment-input {
+  height: 125px;
+  margin-left: 14px; }
+
 .comment-box-input {
-  margin: 16px 0 0 16px;
-  border-bottom: 1px solid #ccc;
-  padding: 16px;
-  padding-left: 0;
-  width: 100%; }
+  border: none;
+  padding: 16px 0px;
+  background-color: transparent;
+  border-bottom: 1px solid #c0bfbf;
+  width: 100%;
+  border-radius: unset; }
+
+.comment-box-input:focus {
+  background-color: transparent;
+  border-bottom: 1px solid #333 !important; }
+
+.comment-avartar {
+  position: relative;
+  top: 0; }
 
 .btn-comment-group {
   display: none;
   float: right; }
 
 .comment-reply-box {
-  display: flex;
-  align-items: center; }
+  display: flex; }
 
 .btn-reply-group {
-  float: right; }
+  float: right;
+  display: flex; }
 
 .btn-comment {
   font-size: 18px;
@@ -8627,6 +8642,12 @@ body {
   margin-left: 8px;
   flex: 1 1; }
 
+.reply-body {
+  position: relative;
+  padding-left: 4px;
+  margin-left: 8px;
+  flex: 1 1; }
+
 .comment-avatar {
   position: relative;
   top: 0; }
@@ -8644,8 +8665,10 @@ body {
   margin-bottom: 8px;
   font-weight: 600; }
 
-.comment-time {
-  margin-top: 8px; }
+.comment-option {
+  display: flex;
+  align-items: center;
+  font-size: 14px; }
 
 .comment-like,
 .comment-reply {
@@ -8663,6 +8686,10 @@ body {
   height: 50px;
   margin-right: 15px;
   background-image: url(../images/user-default.svg); }
+
+.reply-box {
+  padding: 12px 22px;
+  border-left: 1px solid var(--primary-color); }
 
 .head-course {
   width: 100%;

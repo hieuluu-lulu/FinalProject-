@@ -36,7 +36,7 @@ class LessonController {
                             ).then();
                             Course.updateOne(
                                 { tag: req.params.tag },
-                                { __v: course.__v + 1 },
+                                { members: course.members + 1 },
                             ).then();
                         }
                     });

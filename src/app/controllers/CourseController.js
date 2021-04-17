@@ -25,7 +25,6 @@ class CourseController {
     }
     showCourse(req, res, next) {
         Course.findOne({ slug: req.params.slug })
-
             .then((course) => {
                 Promise.all([
                     Category.findOne({ slug: course.category }),
@@ -188,28 +187,38 @@ class CourseController {
     }
     replyHandler(req, res, next) {
         var reply_id = mongoose.Types.ObjectId();
+        var createAt = new Date();
 
-        Course.updateOne(
-            {
-                _id: req.body.course_id,
-                'Course.comments._id': req.body.comment_id,
-            },
-            {
-                $push: {
-                    'comments.$.replies': {
-                        _id: reply_id,
-                        username: req.user.name,
-                        reply: req.body.reply,
-                        image: req.user.image,
-                    },
-                },
-            },
-        )
-            .then(() => {
-                console.log(req.body.comment_id);
-                res.redirect('back');
+        Course.findOne({ _id: req.body.course_id }).then((course) => {
+            let objIndex = course.comments.findIndex(
+                (x) => x._id.toString() == req.body.comment_id,
+            );
+
+            let reply = {
+                _id: reply_id,
+                username: req.user.name,
+                reply: req.body.reply,
+                image: req.user.image,
+                createAt,
+            };
+
+            let arr = [];
+
+            if (Array.isArray(course?.comments[objIndex]?.replies)) {
+                arr = course.comments[objIndex].replies;
+            }
+            course.comments[objIndex].replies = [...arr, reply];
+
+            const newCourse = new Course(course);
+            var upsertData = newCourse.toObject();
+            Course.updateOne({ _id: req.body.course_id }, upsertData, {
+                upsert: true,
             })
-            .catch(next);
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
     }
 }
 module.exports = new CourseController();
