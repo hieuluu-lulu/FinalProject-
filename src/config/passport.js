@@ -124,37 +124,4 @@ module.exports = (passport) => {
             done(err, user);
         });
     });
-
-    // function SessionConstructor(userId, userGroup, details) {
-    //   this.userId = userId;
-    //   this.userGroup = userGroup;
-    //   this.details = details;
-    // }
-    //   passport.serializeUser(function (userObject, done) {
-    //     // userObject could be a Model1 or a Model2... or Model3, Model4, etc.
-    //     let userGroup = "user";
-    //     let userPrototype =  Object.getPrototypeOf(userObject);
-    //     if (userPrototype === User.prototype) {
-    //       userGroup = "user";
-    //     } else if (userPrototype === Admin.prototype) {
-    //       userGroup = "admin";
-    //     }
-    //     let sessionConstructor = new SessionConstructor(userObject.id, userGroup, '');
-    //     done(null,sessionConstructor);
-    //   });
-    //   passport.deserializeUser(function (sessionConstructor, done) {
-    //     if (sessionConstructor.userGroup == 'user') {
-    //       User.findOne({
-    //           _id: sessionConstructor.userId
-    //       }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
-    //           done(err, user);
-    //       });
-    //     } else if (sessionConstructor.userGroup == 'admin') {
-    //       Admin.findOne({
-    //           _id: sessionConstructor.userId
-    //       }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
-    //           done(err, user);
-    //       });
-    //     }
-    //   });
 };

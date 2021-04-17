@@ -600,7 +600,7 @@ body {
 .course__details-purchase {
     background-color: #fff;
     position: sticky;
-    top: 100px;
+    top: 90px;
     width: 100%;
     padding: 0 0 20px;
     display: flex;
@@ -791,10 +791,9 @@ body {
     background-image: url(../images/user-default.svg);
 }
 .reply-box {
-    padding: 12px 22px;
+    padding: 10px 24px;
     border-left: 1px solid var(--primary-color);
 }
-
 //
 .head-course {
     width: 100%;
