@@ -1,5 +1,5 @@
 <%- include('../partials/header')%>
-    <div class="container-fluid main-content px-5 pb-5 ">
+    <div class="main-content px-4 pb-5 ">
         <div class="row course__details">
             <section class=" col col-lg-8 col-md-12 col-sm-12">
                 <ul class="course__details-breadcrumb">
@@ -77,189 +77,217 @@
                         </section>
                     </section>
                 </div>
-                <% if(user) { %>
-                    <section class=comment>
-                        <div class="container">
-                            <h3 class="comment-heading">
-                                <%=course.comments.length%> Comments
-                            </h3>
-                            <div class="d-flex " style="display: block; width: 100%">
-                                <div class="user-avatar mb-3 comment-avatar">
-                                    <img src="../images/<%=user.image%>" alt="">
-                                </div>
-                                <div class="comment-input" style=" width: 100%">
-                                    <form action="/courses/comment" id="commentForm" method="post">
-                                        <div class="comment-box mb-3">
-                                            <input type="hidden" value="<%=course._id%>" name="course_id">
-                                            <input type="hidden" value="<%=user.name%>" name="username">
-                                            <input type="text" name="comment" id="comment" class="  comment-box-input  "
-                                                placeholder="What do you think about this course?" onfocus="onFocus()"
-                                                oninput="onChange()">
-                                        </div>
-                                        <div class="btn-comment-group" id="btn-comment-group">
-                                            <button type="button" class="btn btn-comment-cancel"
-                                                onclick="onClick()">CANCEL</button>
-                                            <button type="submit" id="btn-comment"
-                                                class="btn btn-comment">COMMENT</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <%} %>
-                        <section class="list-comment">
-                            <div class="container">
-                                <% course.comments=course.comments.reverse(); %>
-                                    <%course.comments.forEach(function(comment) {%>
-                                        <div class="d-flex mb-4">
-                                            <div class="comment-avatar ">
-                                                <%if (comment.image=="" ) { %>
-                                                    <div id="no-img" class="no-user-avatar"></div>
-                                                    <% } else { %>
-                                                        <div class="user-avatar">
-                                                            <img src="../images/<%=comment.image%>" alt="">
-                                                        </div>
-                                                        <% } %>
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="comment-content">
-                                                    <h5 class="comment-author">
-                                                        <%=comment.username%>
-                                                    </h5>
-                                                    <div class="comment-text">
-                                                        <span>
-                                                            <%=comment.comment%>
-                                                        </span>
-                                                    </div>
 
-                                                    <input id="createAt" value="<%=comment.createAt%>"
-                                                        type="hidden"></input>
+                <section class=comment>
+                    <div class="container">
+                        <h3 class="comment-heading">
+                            <%=course.comments.length%> Comments
+                        </h3>
+                        <%if(user) {%>
+                            <div class="d-flex " style="display: block; width: 100%">
+                                <%if (!user.image) { %>
+                                    <div id="no-img" class="no-user-avatar comment-avatar"></div>
+                                    <% } else { %>
+                                        <div class="user-avatar user-avatar mb-3 comment-avatar ">
+                                            <img src="../images/<%=user.image%>" alt="">
+                                        </div>
+                                        <% } %>
+                                            <% if (user) { %>
+                                                <div class="comment-input" style=" width: 100%">
+                                                    <form action="/courses/comment" id="commentForm" method="post">
+                                                        <div class="comment-box mb-3">
+                                                            <input type="hidden" value="<%=course._id%>"
+                                                                name="course_id">
+                                                            <input type="hidden" value="<%=user.name%>" name="username">
+                                                            <input type="text" name="comment" id="comment"
+                                                                class="  comment-box-input  "
+                                                                placeholder="What do you think about this course?"
+                                                                onfocus="onFocus()" oninput="onChange()">
+                                                        </div>
+                                                        <div class="btn-comment-group" id="btn-comment-group">
+                                                            <button type="button" class="btn btn-comment-cancel"
+                                                                onclick="onClick()">CANCEL</button>
+                                                            <button type="submit" id="btn-comment"
+                                                                class="btn btn-comment">COMMENT</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="comment-time">
-                                                    <div class="comment-createAt">
-                                                        <div class="comment-option">
+                                                <% } %>
+
+                            </div>
+                            <% } %>
+
+                    </div>
+                </section>
+
+                <section class="list-comment">
+                    <div class="container">
+                        <% course.comments=course.comments.reverse(); %>
+                            <%course.comments.forEach(function(comment) {%>
+                                <div class="d-flex mb-4">
+                                    <div class="comment-avatar ">
+                                        <%if (!comment.image ) { %>
+                                            <div id="no-img" class="no-user-avatar"></div>
+                                            <% } else { %>
+                                                <div class="user-avatar">
+                                                    <img src="../images/<%=comment.image%>" alt="">
+                                                </div>
+                                                <% } %>
+                                    </div>
+                                    <% if (comment !="" ) { %>
+                                        <div class="comment-body">
+                                            <div class="comment-content">
+                                                <h5 class="comment-author">
+                                                    <%=comment.username%>
+                                                </h5>
+                                                <div class="comment-text">
+                                                    <span>
+                                                        <%=comment.comment%>
+                                                    </span>
+                                                </div>
+
+                                                <input id="createAt" value="<%=comment.createAt%>"
+                                                    type="hidden"></input>
+                                            </div>
+                                            <div class="comment-time">
+                                                <div class="comment-createAt">
+                                                    <div class="comment-option">
+                                                        <%if(user) { %>
                                                             <a href class="comment-like">Like</a>
                                                             <p class="comment-reply" data-commentbox="<%=comment._id%>">
                                                                 Reply
                                                             </p>
-                                                            <p class="comment-time" id="time-comment"></p>
-                                                        </div>
-
-                                                        <%if(user) { %>
-                                                            <div class="comment-reply-box mt-3" id="<%=comment._id%>"
-                                                                style="display:none !important;">
-                                                                <div class="comment-avatar mb-3">
-                                                                    <%if (!user.image) { %>
-                                                                        <div id="no-img" class="no-user-avatar"></div>
-                                                                        <% } else { %>
-                                                                            <div class="user-avatar ">
-                                                                                <img src="../images/<%=user.image%>"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <% } %>
-                                                                </div>
-                                                                <div class="col-lg-8" style=" width: 100%">
-                                                                    <form action="/courses/comment/reply" id="replyForm"
-                                                                        method="post">
-                                                                        <div class="comment-box mb-3">
-                                                                            <input type="hidden" value="<%=course._id%>"
-                                                                                name="course_id">
-                                                                            <input type="hidden"
-                                                                                value="<%=comment._id%>"
-                                                                                name="comment_id">
-                                                                            <input type="hidden"
-                                                                                value="<%course.category%>"
-                                                                                name="course_category">
-                                                                            <input type="text" name="reply" id="reply"
-                                                                                class="comment-box-input"
-                                                                                placeholder="">
-                                                                        </div>
-                                                                        <div class="btn-reply-group"
-                                                                            id="btn-reply-group">
-                                                                            <button type="button"
-                                                                                class="btn btn-reply-cancel">Cancel</button>
-                                                                            <button type="submit" id="btn-reply"
-                                                                                class="btn btn-reply">Reply</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
                                                             <% } %>
+                                                                <p class="comment-time" id="time-comment"></p>
+                                                                <%if(user) {%>
+                                                                    <a href="" class="edit__comment">Edit</a>
+                                                                    <form
+                                                                        action="/courses/comment/<%=comment._id%>?_method=PUT"
+                                                                        method="post">
+                                                                        <input type="hidden" name="course_id"
+                                                                            value="<%=course._id%>">
+                                                                        <input type="hidden" name="comment_id"
+                                                                            value="<%=comment._id%>">
+                                                                        <button type="submit"
+                                                                            class="delete__comment">Delete</button>
+                                                                    </form>
+                                                                    <% } %>
+
                                                     </div>
-                                                </div>
-                                                <div class="reply-box">
-
-
-                                                    <% if(comment.replies) { %>
-                                                        <% comment.replies.forEach(function(reply) {%>
-                                                            <div class="d-flex mt-4">
-                                                                <div class="comment-avatar ">
-                                                                    <%if (comment.image=="" ) { %>
-                                                                        <div id="no-img" class="no-user-avatar"></div>
-                                                                        <% } else { %>
-                                                                            <div class="user-avatar">
-                                                                                <img src="../images/<%=comment.image%>"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <% } %>
-                                                                </div>
-                                                                <div class="reply-body">
-                                                                    <div class="comment-content">
-                                                                        <h5 class="comment-author">
-                                                                            <%=reply.username%>
-                                                                        </h5>
-                                                                        <div class="comment-text">
-                                                                            <span>
-                                                                                <%=reply.reply%>
-                                                                            </span>
-                                                                        </div>
+                                                    <%if(user) { %>
+                                                        <div class="comment-reply-box mt-3" id="<%=comment._id%>"
+                                                            style="display:none !important;">
+                                                            <div class="comment-avatar mb-3">
+                                                                <%if (!user.image) { %>
+                                                                    <div id="no-img" class="no-user-avatar">
                                                                     </div>
-
-                                                                    <div class="comment-time">
-                                                                        <div class="comment-createAt">
-                                                                            <div
-                                                                                class="comment-option d-flex align-items-center">
-                                                                                <a href class="comment-like">Like</a>
-                                                                                <!-- <p class="comment-reply"
-                                                                                data-commentbox="<%=reply._id%>">
-                                                                                Reply
-                                                                            </p> -->
-                                                                                <input type="hidden"
-                                                                                    id="reply-create-at"
-                                                                                    value="<%=reply.createAt%>">
-                                                                                <p class="reply-time ml-2"
-                                                                                    id="time-reply">
-                                                                                </p>
-                                                                            </div>
-
-
+                                                                    <% } else { %>
+                                                                        <div class="user-avatar ">
+                                                                            <img src="../images/<%=user.image%>" alt="">
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-
+                                                                        <% } %>
                                                             </div>
-                                                            <%})%>
-                                                                <% } %>
+                                                            <div class="col-lg-8" style=" width: 100%">
+                                                                <form action="/courses/comment/reply" id="replyForm"
+                                                                    method="post">
+                                                                    <div class="comment-box mb-3">
+                                                                        <input type="hidden" value="<%=course._id%>"
+                                                                            name="course_id">
+                                                                        <input type="hidden" value="<%=comment._id%>"
+                                                                            name="comment_id">
+
+                                                                        <input type="text" name="reply" id="reply"
+                                                                            class="comment-box-input" placeholder="">
+                                                                    </div>
+                                                                    <div class="btn-reply-group" id="btn-reply-group">
+                                                                        <button type="button"
+                                                                            class="btn btn-reply-cancel">Cancel</button>
+                                                                        <button type="submit" id="btn-reply"
+                                                                            class="btn btn-reply">Reply</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
                                                 </div>
                                             </div>
+                                            <div class="reply-box">
+                                                <% if(comment.replies) { %>
+                                                    <% comment.replies.forEach(function(reply) {%>
+                                                        <div class="d-flex mt-4" id="replyBox">
+                                                            <div class="comment-avatar ">
+                                                                <%if (comment.image=="" ) { %>
+                                                                    <div id="no-img" class="no-user-avatar">
+                                                                    </div>
+                                                                    <% } else { %>
+                                                                        <div class="user-avatar">
+                                                                            <img src="../images/<%=comment.image%>"
+                                                                                alt="">
+                                                                        </div>
+                                                                        <% } %>
+                                                            </div>
+                                                            <div class="reply-body">
+                                                                <div class="comment-content">
+                                                                    <h5 class="comment-author">
+                                                                        <%=reply.username%>
+                                                                    </h5>
+                                                                    <div class="comment-text">
+                                                                        <span>
+                                                                            <%=reply.reply%>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="comment-time">
+                                                                    <div class="comment-createAt">
+                                                                        <div
+                                                                            class="comment-option d-flex align-items-center">
+                                                                            <a href class="comment-like">Like</a>
+                                                                            <input type="hidden" id="reply-create-at"
+                                                                                value="<%=reply.createAt%>">
+                                                                            <p class="reply-time ml-2" id="time-reply">
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <%})%>
+                                                            <% } %>
+                                            </div>
                                         </div>
-                                        <% }) %>
-                            </div>
-                        </section>
+                                        <% } %>
+
+                                </div>
+                                <% }) %>
+                    </div>
+                </section>
             </section>
             <section class="col col-lg-4 col-md-12 col-sm-12 d-lg-block">
                 <div class="course__details-purchase">
                     <div class="course__details-preview">
-                        <img src="<%= course.image %>" class="card-img-top" alt="">
+                        <img src="<%= course.image %>" class="card-img" alt="">
                     </div>
-                    <h5 id="free" style="display:block">Free</h5>
-                    <p class="my-4" id="registed" style="display:none">You have signed up for this course !</p>
+                    <h5 id="free" style="display:block">
+                        <%=course.price%> Coin
+                    </h5>
+                    <input type="hidden" value="<%=course.price%>" id="coursePrice">
+                    <p class="my-3" id="registed" style="display:none">You have signed up for this course !</p>
+                    <p class="m-2 text-center" id="error" style="display:none; color:red;">Sorry! Your coin is not
+                        enough. Please
+                        do
+                        exercise to get more coin.</p>
+
                     <a href="/lessons/<%- course.tag %>" id="btn-register" class="course__details-learnNow">Resgister
                         Now</a>
                     <input type="hidden" value="<%=course.tag%>">
                     <% if(user) { %>
                         <script>
+                            var userCoin = "<%=user.coin%>"
+                            var parseUserCoin = parseInt(userCoin, 10);
+                            var coursePrice = document.getElementById('coursePrice').value;
+                            var parseCoursePrice = parseInt(coursePrice, 10);
                             var userLearning = "<%-user.learning%>".split(',')
                             var course_tag = "<%=course.tag%>"
                             var btn = document.getElementById("btn-register")
@@ -271,8 +299,13 @@
                                 registed.style.fontSize = "16px";
                                 btn.innerHTML = "CONTINUTE";
                             }
-
-                            // commentbox
+                            if (parseUserCoin < parseCoursePrice) {
+                                btn.style.pointerEvents = "none";
+                                btn.disabled = true;
+                                info.style.display = "none";
+                                btn.style.backgroundColor = "#bfbcbc";
+                                error.style.display = "block";
+                            }
 
                         </script>
                         <% } %>
@@ -313,7 +346,6 @@
                                     <span>Study every time, everywhere</span>
                                 </li>
                             </ul>
-
                 </div>
             </section>
         </div>
@@ -343,7 +375,6 @@
             btnComment.classList.add('btn-comment')
             btnComment.classList.remove('btn-comment-active');
         }
-
         var createAt = document.querySelectorAll('#createAt');
         var time_comment = document.querySelectorAll('#time-comment');
         for (var i = 0; i < time_comment.length; i++) {

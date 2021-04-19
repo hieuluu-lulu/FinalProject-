@@ -5,6 +5,7 @@ const Category = require('../models/categoryModel');
 const mongoose = require('mongoose');
 
 const { validationResult } = require('express-validator');
+const { doc } = require('prettier');
 class CourseController {
     index(req, res, next) {
         let searchOptions = {};
@@ -175,6 +176,7 @@ class CourseController {
                         username: req.body.username,
                         comment: req.body.comment,
                         image: req.user.image,
+                        userId: req.user._id,
                         createAt,
                     },
                 },
@@ -193,7 +195,6 @@ class CourseController {
             let objIndex = course.comments.findIndex(
                 (x) => x._id.toString() == req.body.comment_id,
             );
-
             let reply = {
                 _id: reply_id,
                 username: req.user.name,
@@ -201,7 +202,6 @@ class CourseController {
                 image: req.user.image,
                 createAt,
             };
-
             let arr = [];
 
             if (Array.isArray(course?.comments[objIndex]?.replies)) {
@@ -209,6 +209,25 @@ class CourseController {
             }
             course.comments[objIndex].replies = [...arr, reply];
 
+            const newCourse = new Course(course);
+            var upsertData = newCourse.toObject();
+            Course.updateOne({ _id: req.body.course_id }, upsertData, {
+                upsert: true,
+            })
+
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
+    }
+    deleteCommentHandler(req, res, next) {
+        Course.findOne({ _id: req.body.course_id }).then((course) => {
+            var index = course.comments
+                ? course.comments.indexOf(req.params.id)
+                : -1; // check index of comments array
+            course.comments.splice(index, 1);
+            // course.save({upsert:true})
             const newCourse = new Course(course);
             var upsertData = newCourse.toObject();
             Course.updateOne({ _id: req.body.course_id }, upsertData, {

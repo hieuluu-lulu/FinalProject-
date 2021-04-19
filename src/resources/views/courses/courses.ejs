@@ -162,6 +162,8 @@
 
                                                     <% if(user) { %>
                                                         <script>
+                                                            var userCoin = "<%=user.coin%>"
+
                                                             var learning = "<%=user.learning %>"
                                                             var tag = document.querySelectorAll('#tag')
                                                             var learned = document.querySelectorAll('#learned')

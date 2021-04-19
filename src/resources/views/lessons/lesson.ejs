@@ -14,7 +14,30 @@
                         src="https://www.youtube.com/embed/<%= videoID %>"></iframe>
                 </div>
             </div>
-            <div class=" col col-xl-4 d-xl-block d-none table__content content">
+            <div class="col-xl-8 col-md-12 px-0">
+                <div class="lesson__overview">
+                    <div class="lesson__overview-header">
+                        <div class="tab">
+
+                            <button class="tabslink" id="Overview">Overview</button>
+                            <button class="tabslink">Notes</button>
+                            <button class="tabslink">Realate</button>
+                        </div>
+                        <div class="tabcontent" id="content">
+                        </div>
+                        <div class="tabcontent" id="overview">
+                            <div class="overview__body">
+                                <div class="comment">
+                                    <div class="container">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" col col-lg-4 d-xl-block d-none table__content content">
                 <div class="list">
                     <div class="list__heading">
                         <h1 class="m-0">
@@ -38,3 +61,55 @@
             </div>
         </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+<script>
+
+    var commentForm = document.getElementById('commentForm')
+    var comment = document.getElementById('comment');
+    var btnGroup = document.getElementById('btn-comment-group')
+    var btnComment = document.getElementById('btn-comment')
+    function onChange() {
+        btnComment.classList.remove('btn-comment')
+        btnComment.classList.add('btn-comment-active');
+    }
+    function onFocus() {
+        btnGroup.style.display = "block";
+    }
+    function onClick() {
+        commentForm.reset();
+        btnGroup.style.display = "none"
+        btnComment.classList.add('btn-comment')
+        btnComment.classList.remove('btn-comment-active');
+    }
+
+    var createAt = document.querySelectorAll('#createAt');
+    var time_comment = document.querySelectorAll('#time-comment');
+    for (var i = 0; i < time_comment.length; i++) {
+        time_comment[i].innerHTML = moment(createAt[i].value).fromNow();
+    };
+    var replyCreateAt = document.querySelectorAll('#reply-create-at');
+    var reply_time = document.querySelectorAll('#time-reply');
+
+    for (var i = 0; i < reply_time.length; i++) {
+        reply_time[i].innerHTML = moment(replyCreateAt[i].value).fromNow();
+    };
+    $(function () {
+        $('.comment-reply').on('click', function () {
+            $('.comment-reply-box ').hide();
+            var commentboxId = $(this).attr('data-commentbox');
+            $('#' + commentboxId).toggle();
+        });
+
+        $('.btn-reply-cancel').on('click', function () {
+            $('.comment-reply-box ').hide();
+            $('#replyForm').trigger("reset");
+        })
+
+    });
+
+</script>

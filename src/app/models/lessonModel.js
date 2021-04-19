@@ -12,6 +12,7 @@ const Lesson = new Schema(
         videoId: { type: String, required: true },
         tag: { type: String },
         slug: { type: String, slug: 'name', unique: true },
+        comments: Array,
     },
     {
         timestamps: true,
