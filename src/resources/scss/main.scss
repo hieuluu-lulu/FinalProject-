@@ -694,6 +694,9 @@ body {
 .comment-reply-box {
     display: flex;
 }
+.comment-edit-box {
+    display: flex;
+}
 .btn-reply-group {
     float: right;
     display: flex;
@@ -750,6 +753,7 @@ body {
     font-size: 14px;
     color: var(--gray-dark);
     margin: 0 5px;
+    cursor: pointer;
 }
 .edit__comment:hover {
     color: rgb(7, 101, 243);

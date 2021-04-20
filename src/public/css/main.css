@@ -8591,6 +8591,9 @@ body {
 .comment-reply-box {
   display: flex; }
 
+.comment-edit-box {
+  display: flex; }
+
 .btn-reply-group {
   float: right;
   display: flex; }
@@ -8646,7 +8649,8 @@ body {
 .edit__comment {
   font-size: 14px;
   color: var(--gray-dark);
-  margin: 0 5px; }
+  margin: 0 5px;
+  cursor: pointer; }
 
 .edit__comment:hover {
   color: #0765f3; }
