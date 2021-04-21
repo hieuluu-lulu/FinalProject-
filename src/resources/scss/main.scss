@@ -766,7 +766,10 @@ body {
 .delete__comment:hover {
     color: rgb(243, 7, 19);
 }
-
+.more__option {
+    display: flex;
+    align-items: center;
+}
 .reply-body {
     position: relative;
     padding-left: 4px;

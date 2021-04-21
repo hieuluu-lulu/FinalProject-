@@ -160,18 +160,33 @@
                                                             <% } %>
                                                                 <p class="comment-time" id="time-comment"></p>
                                                                 <%if(user) {%>
-                                                                    <p class="edit__comment"
-                                                                        data-edit="<%=course.courseID%>">Edit</p>
-                                                                    <form
-                                                                        action="/courses/comment/<%=comment._id%>?_method=PUT"
-                                                                        method="post">
-                                                                        <input type="hidden" name="course_id"
-                                                                            value="<%=course._id%>">
-                                                                        <input type="hidden" name="comment_id"
-                                                                            value="<%=comment._id%>">
-                                                                        <button type="submit"
-                                                                            class="delete__comment">Delete</button>
-                                                                    </form>
+                                                                    <div class="more__option ">
+                                                                        <p class="edit__comment"
+                                                                            data-edit="<%=course.courseID%>">Edit</p>
+                                                                        <input type="hidden" value="<%=comment.userId%>"
+                                                                            id="userId">
+                                                                        <form
+                                                                            action="/courses/comment/<%=comment._id%>?_method=PUT"
+                                                                            method="post">
+                                                                            <input type="hidden" name="course_id"
+                                                                                value="<%=course._id%>">
+                                                                            <input type="hidden" name="comment_id"
+                                                                                value="<%=comment._id%>">
+                                                                            <button type="submit"
+                                                                                class="delete__comment">Delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                    <script>
+                                                                        var userId = "<%=user._id%>";
+                                                                        var commentUserId = document.querySelectorAll('#userId');
+
+                                                                        var moreOptions = document.querySelectorAll('.more__option');
+                                                                        for (var i = 0; i < moreOptions.length; i++) {
+                                                                            if (userId !== commentUserId[i].value) {
+                                                                                moreOptions[i].style.display = "none";
+                                                                            }
+                                                                        }
+                                                                    </script>
                                                                     <% } %>
 
                                                     </div>
@@ -197,8 +212,8 @@
                                                                         <input type="hidden" value="<%=comment._id%>"
                                                                             name="comment_id">
 
-                                                                        <input type="text" name="reply" id="editComment"
-                                                                            value="<%=comment.comment%>"
+                                                                        <input type="text" name="newcomment"
+                                                                            id="newcomment" value="<%=comment.comment%>"
                                                                             class="comment-box-input" placeholder="">
                                                                     </div>
                                                                     <div class="btn-reply-group" id="btn-reply-group">
