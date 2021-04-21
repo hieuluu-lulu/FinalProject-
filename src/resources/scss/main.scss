@@ -1122,7 +1122,7 @@ button {
     display: block;
     left: -30px;
     top: 0;
-    height: 30px;
+    height: 100%;
     margin: 0 1rem;
 }
 .lessons__body {
@@ -1184,9 +1184,8 @@ button {
     background-color: rgb(7, 101, 243);
 }
 .tabcontent {
-    display: none;
+    //   display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
     border-top: none;
     animation: fadeEffect all 3s;
 }

@@ -28,4 +28,11 @@
     .course__details-list {
         flex-direction: column;
     }
+    .lessons__heading-title::after {
+        content: '';
+        border: none !important;
+    }
+    .logo-lesson {
+        display: none !important;
+    }
 }

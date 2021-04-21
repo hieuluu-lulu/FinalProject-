@@ -20,7 +20,12 @@
   .home-image {
     display: none !important; }
   .course__details-list {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .lessons__heading-title::after {
+    content: "";
+    border: none !important; }
+  .logo-lesson {
+    display: none !important; } }
 
 :root {
   --footer: #2c31cf;
@@ -9005,7 +9010,7 @@ button {
   display: block;
   left: -30px;
   top: 0;
-  height: 30px;
+  height: 100%;
   margin: 0 1rem; }
 
 .lessons__body {
@@ -9065,9 +9070,7 @@ button {
   background-color: #0765f3; }
 
 .tabcontent {
-  display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
   animation: fadeEffect all 3s; }
 

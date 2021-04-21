@@ -2,6 +2,7 @@ const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
 const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 class LessonController {
     index(req, res, next) {
         res.status(404).send('Xin lỗi trang không tồn tại');
@@ -25,7 +26,7 @@ class LessonController {
             .then(([course, lessons, lesson, count]) => {
                 if (course) {
                     User.findOne({ _id: req.user }).then((user) => {
-                        if (user.learning.includes(req.params.tag) == false) {
+                        if (!user.learning.includes(req.params.tag)) {
                             User.updateOne(
                                 { _id: req.user },
                                 { $push: { learning: req.params.tag } },
@@ -47,6 +48,7 @@ class LessonController {
                     res.render('lessons/lesson', {
                         course: course,
                         lessons: lessons,
+                        lesson: lesson,
                         user: req.user,
                         videoID: lesson.videoId,
                         tag: lesson.tag,
@@ -86,8 +88,12 @@ class LessonController {
                 }),
             ];
         }
-        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
-        const lesson = new Lesson(req.body);
+        const lesson = new Lesson({
+            name: req.body.name,
+            image: `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`,
+            videoId: req.body.videoId,
+            tag: req.body.tag,
+        });
         lesson
             .save()
             .then(() => res.redirect('/manage/stored/lessons'))
@@ -156,6 +162,102 @@ class LessonController {
             default:
                 res.json({ message: 'Action Invalid!' });
         }
+    }
+    commentHandler(req, res, next) {
+        var comment_id = mongoose.Types.ObjectId();
+        var createAt = new Date();
+        Lesson.updateOne(
+            { _id: req.body.lesson_id },
+            {
+                $push: {
+                    comments: {
+                        _id: comment_id,
+                        username: req.user.name,
+                        comment: req.body.comment,
+                        image: req.user.image,
+                        userId: req.user._id,
+                        createAt,
+                    },
+                },
+            },
+        )
+            .then(() => {
+                res.redirect('back');
+            })
+            .catch(next);
+    }
+    replyHandler(req, res, next) {
+        var reply_id = mongoose.Types.ObjectId();
+        var createAt = new Date();
+
+        Lesson.findOne({ _id: req.body.lesson_id }).then((lesson) => {
+            let objIndex = lesson.comments.findIndex(
+                (x) => x._id.toString() === req.body.comment_id,
+            );
+            let reply = {
+                _id: reply_id,
+                username: req.user.name,
+                reply: req.body.reply,
+                image: req.user.image,
+                createAt,
+            };
+            let arr = [];
+
+            if (Array.isArray(lesson?.comments[objIndex]?.replies)) {
+                arr = lesson.comments[objIndex].replies;
+            }
+            lesson.comments[objIndex].replies = [...arr, reply];
+
+            const newLesson = new Lesson(lesson);
+            var upsertData = newLesson.toObject();
+            Lesson.updateOne({ _id: req.body.lesson_id }, upsertData, {
+                upsert: true,
+            })
+
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
+    }
+    editCommentHandler(req, res, next) {
+        Lesson.findOne({ _id: req.body.lesson_id }).then((lesson) => {
+            var newComment = req.body.newcomment;
+            let objIndex = lesson.comments.findIndex(
+                (x) => x._id.toString() == req.body.comment_id,
+            );
+
+            lesson.comments[objIndex].comment = newComment;
+
+            // course.save({upsert:true})
+            const newLesson = new Lesson(lesson);
+            var upsertData = newLesson.toObject();
+            Lesson.updateOne({ _id: req.body.lesson_id }, upsertData, {
+                upsert: true,
+            })
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
+    }
+    deleteCommentHandler(req, res, next) {
+        Lesson.findOne({ _id: req.body.lesson_id }).then((lesson) => {
+            var index = lesson.comments
+                ? lesson.comments.indexOf(req.params.id)
+                : -1; // check index of comments array
+            lesson.comments.splice(index, 1);
+            // lesson.save({upsert:true})
+            const newLesson = new Lesson(lesson);
+            var upsertData = newLesson.toObject();
+            Lesson.updateOne({ _id: req.body.lesson_id }, upsertData, {
+                upsert: true,
+            })
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
     }
 }
 module.exports = new LessonController();
