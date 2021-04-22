@@ -47,17 +47,20 @@ class ManageController {
             .catch(next);
     }
     storedUser(req, res, next) {
-        Promise.all([
-            User.find({}).sortable(req),
-            User.findOne({ _id: req.user._id }),
-        ])
-            .then(([account, user]) => {
-                res.render('manage/stored-users'),
-                    {
-                        account: account,
-                        username: user.name,
-                    };
+        User.find({})
+            .then((account) => {
+                res.locals.title = 'Manange Users';
+
+                res.render('manage/stored-user', {
+                    account: account,
+                    user: req.user,
+                });
             })
+            .catch(next);
+    }
+    forceDelete(req, res, next) {
+        User.deleteOne({ userID: req.params.id })
+            .then(() => res.redirect('/manage/stored/users'))
             .catch(next);
     }
     storedCategory(req, res, next) {

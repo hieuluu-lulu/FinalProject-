@@ -4,6 +4,7 @@ const User = require('../models/usersModel');
 const Category = require('../models/categoryModel');
 const mongoose = require('mongoose');
 
+const { v4: uuidv4 } = require('uuid');
 const { validationResult } = require('express-validator');
 const { doc } = require('prettier');
 class CourseController {
@@ -178,6 +179,7 @@ class CourseController {
                         image: req.user.image,
                         userId: req.user._id,
                         createAt,
+                        commentId: uuidv4(),
                     },
                 },
             },

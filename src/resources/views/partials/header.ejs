@@ -37,9 +37,12 @@
                     <li>
                         <a class=" nav__user-name">
                             <%= user.name %>
-                                <p class="m-0 fs-6">
-                                    <%=user.coin%> coin
-                                </p>
+                                <%if(user.coin) { %>
+                                    <p class="m-0 fs-6">
+                                        <%=user.coin%> coin
+                                    </p>
+                                    <%}%>
+
                         </a>
 
                         <div class="dropdown__user">

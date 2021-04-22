@@ -27,4 +27,7 @@ router.get(
     admin,
     manageController.trashCategory,
 );
+//user
+router.get('/stored/users', ensureAuth, admin, manageController.storedUser);
+router.delete('/:id', manageController.forceDelete);
 module.exports = router;

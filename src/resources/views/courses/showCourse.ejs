@@ -162,7 +162,7 @@
                                                                 <%if(user) {%>
                                                                     <div class="more__option ">
                                                                         <p class="edit__comment"
-                                                                            data-edit="<%=course.courseID%>">Edit</p>
+                                                                            data-id="<%=comment.commentId%>">Edit</p>
                                                                         <input type="hidden" value="<%=comment.userId%>"
                                                                             id="userId">
                                                                         <form
@@ -192,7 +192,8 @@
                                                     </div>
                                                     <% if (user) {%>
                                                         <div class="comment-edit-box mt-3"
-                                                            style="display: none !important;" id="<%=course.courseID%>">
+                                                            style="display: none !important;"
+                                                            id="<%=comment.commentId%>">
                                                             <div class="comment-avatar mb-3">
                                                                 <%if (!user.image ) { %>
                                                                     <div id="no-img" class="no-user-avatar">
@@ -218,7 +219,7 @@
                                                                     </div>
                                                                     <div class="btn-reply-group" id="btn-reply-group">
                                                                         <button type="button"
-                                                                            class="btn btn-reply-cancel"
+                                                                            class="btn btn-reply-cancel btn-edit-cancel "
                                                                             id="btn-edit-cancel">Cancel</button>
                                                                         <button type="submit" id="btn-edit"
                                                                             class="btn btn-reply">Edit</button>
@@ -457,27 +458,21 @@
                 $('.comment-reply-box ').hide();
                 var commentboxId = $(this).attr('data-commentbox');
                 $('#' + commentboxId).toggle();
-                $('.comment-edit-box ').hide();
-
-
             });
-
-            $('#btn-reply-cancel').on('click', function () {
+            $('.btn-reply-cancel').on('click', function () {
                 $('.comment-reply-box ').hide();
                 $('#replyForm').trigger("reset");
             })
-
         });
         $(function () {
             $('.edit__comment').on('click', function () {
                 $('.comment-edit-box ').hide();
-                var editboxId = $(this).attr('data-edit');
+                var editboxId = $(this).attr('data-id');
                 $('#' + editboxId).toggle();
-                $('.comment-reply-box ').hide();
 
             });
 
-            $('#btn-edit-cancel').on('click', function () {
+            $('.btn-edit-cancel').on('click', function () {
                 $('.comment-edit-box').hide();
                 $('#editForm').trigger("reset");
             })
