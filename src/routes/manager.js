@@ -30,4 +30,8 @@ router.get(
 //user
 router.get('/stored/users', ensureAuth, admin, manageController.storedUser);
 router.delete('/:id', manageController.forceDelete);
+// router.post('/handle-actions',manageController.handleFormActions)
+//quiz
+
+router.get('/stored/quiz', manageController.storedQuiz);
 module.exports = router;

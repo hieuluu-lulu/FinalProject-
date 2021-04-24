@@ -19,9 +19,10 @@
                     <div class="lesson__overview-header">
                         <div class="tab">
 
-                            <button class="tabslink" id="Overview">Overview</button>
-                            <button class="tabslink">Notes</button>
-                            <button class="tabslink">Realate</button>
+                            <button class="tabslink" id="Overview"
+                                onclick="openTab(event, 'overview')">Overview</button>
+                            <button class="tabslink" onclick="openTab(event, 'note')">Notes</button>
+                            <button class="tabslink" onclick="openTab(event, 'relate')">Question</button>
                         </div>
                         <div class="tabcontent" id="content">
                         </div>
@@ -30,7 +31,7 @@
                                 <div class="comment">
                                     <div class="container">
                                         <h3 class="comment-heading">
-                                            <%=lesson.comments.length%> Comments
+                                            <%=lesson.comments.length%> Questions
                                         </h3>
                                         <%if(user) { %>
                                             <div class="d-flex " style="display: block; width: 100%">
@@ -117,7 +118,7 @@
                                                                                 <%if(user) {%>
                                                                                     <div class="more__option ">
                                                                                         <p class="edit__comment"
-                                                                                            data-edit="<%=lesson.lessonID%>">
+                                                                                            data-edit="<%=comment.commentId%>">
                                                                                             Edit</p>
                                                                                         <input type="hidden"
                                                                                             value="<%=comment.userId%>"
@@ -152,7 +153,7 @@
                                                                     <% if (user) {%>
                                                                         <div class="comment-edit-box mt-3"
                                                                             style="display: none !important;"
-                                                                            id="<%=lesson.lessonID%>">
+                                                                            id="<%=comment.commentId%>">
                                                                             <div class="comment-avatar mb-3">
                                                                                 <%if (!user.image ) { %>
                                                                                     <div id="no-img"
@@ -187,7 +188,7 @@
                                                                                     <div class="btn-reply-group"
                                                                                         id="btn-reply-group">
                                                                                         <button type="button"
-                                                                                            class="btn btn-reply-cancel"
+                                                                                            class="btn btn-reply-cancel "
                                                                                             id="btn-edit-cancel">Cancel</button>
                                                                                         <button type="submit"
                                                                                             id="btn-edit"
@@ -314,6 +315,43 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tabcontent" id="note">
+                            <div class="note-body">
+                                <p>This functionality is still in development</p>
+                            </div>
+                        </div>
+                        <div class="tabcontent p-4" id="relate">
+
+                            <form action="/lessons/do-excercise" method="post">
+                                <div class="container p-5 question">
+                                    <div class="row">
+                                        <h5 class="mb-4">
+                                            Question: <%=quiz.question%>
+                                        </h5>
+                                        <div class="radiocontainer">
+                                            <input type="radio" value="<%=quiz.answer1%>" name="quiz">
+                                            <%=quiz.answer1%>
+                                        </div>
+                                        <div class="radiocontainer">
+                                            <input type="radio" value="<%=quiz.answer2%>" name="quiz">
+                                            <%=quiz.answer2%>
+                                        </div>
+                                        <div class="radiocontainer">
+                                            <input type="radio" value="<%=quiz.answer3%>" name="quiz">
+                                            <%=quiz.answer3%>
+                                        </div>
+                                        <div class="radiocontainer">
+                                            <input type="radio" value="<%=quiz.answer4%>" name="quiz">
+                                            <%=quiz.answer4%>
+                                        </div>
+                                        <input type="hidden" value="<%=quiz.result%>" name="result">
+                                        <button type="submit" class="btn btn-primary">Answer</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -402,11 +440,25 @@
 
         });
 
-        $('#btn-edit-cancel').on('click', function () {
+        $('.btn-reply-cancel').on('click', function () {
             $('.comment-edit-box').hide();
             $('#editForm').trigger("reset");
         })
 
     });
+    function openTab(evt, tab) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tabslink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tab).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("Overview").click();
 
 </script>

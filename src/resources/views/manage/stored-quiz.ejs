@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<head>
+
+    <!-- Favicon icon -->
+    <link rel="stylesheet" type="text/css" href="/admin/assets/extra-libs/multicheck/multicheck.css">
+    <link href="/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/admin/dist/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+        <%- include('../partials/header_admin')%>
+
+            <%- include('../partials/admin')%>
+
+                <div class="page-wrapper">
+
+                    <div class="page-breadcrumb">
+                        <div class="row">
+                            <div class="col-12 d-flex no-block align-items-center">
+                                <h4 class="page-title">Manage</h4>
+                                <div class="ms-auto text-end">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">Lessons</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Stored Lessons</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manage Lessons</h5>
+                                        <div class="table-responsive">
+                                            <form method="POST" action="/lessons/handle-actions" name="container-form">
+
+                                                <div class="d-flex mt-4 align-items-center mb-2">
+                                                    <div class="form-check mb-0">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="checkbox-all">
+                                                        <label class="form-check-label" for="checkbox-all">Select
+                                                            All</label>
+                                                    </div>
+                                                    <div class="mr-2 ml-2">
+                                                        <select class="form-control" name="action" required>
+                                                            <option value="">-- Choose Action --</option>
+                                                            <option value="delete">Delete</option>
+                                                        </select>
+                                                    </div>
+                                                    <button class="btn btn-primary btn-submit-all "
+                                                        disabled="disabled">Submit</button>
+                                                </div>
+                                                <table id="zero_config" class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>No.</th>
+                                                            <th>Name of Lessons</th>
+                                                            <th>Tag</th>
+                                                            <th>Create At</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% lesson.forEach(function(lesson,index) { %>
+                                                            <tr>
+                                                                <th>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            name="LessonIds[]"
+                                                                            value="<%= lesson.lessonID %>">
+                                                                    </div>
+                                                                </th>
+                                                                <td>
+                                                                    <%= index + 1 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= lesson.name %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%= lesson.tag %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= lesson.createdAt %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div class="btn-group btn-group-sm" role="group"
+                                                                        aria-label="Basic example">
+                                                                        <a href="/lessons/<%- lesson._id %>/edit"
+                                                                            class="btn btn-primary">Update</a>
+                                                                        <a href="" class="btn btn-danger"
+                                                                            data-bs-toggle="modal"
+                                                                            data-id="<%= lesson.lessonID %>"
+                                                                            data-bs-target="#delete-courses-modal">Delete</a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>No.</th>
+                                                            <th>Name of Lessons</th>
+                                                            <th>Tag</th>
+                                                            <th>Create At</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="modal fade" id="delete-courses-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Lesson</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Do you want delete this lesson?
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-delete" type="button" class="btn btn-danger">Delete
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="delete-courses-form" class="mt-4" method="POST"></form>
+    <script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- this page js -->
+
+    <script src="/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="/admin/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="/admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+
+    <script>
+        // add sự kiện để có thể chạy code jquery sau khi loaded DOM
+        document.addEventListener('DOMContentLoaded', function () {
+            var lessonId;  // tạo biến để function onclick có thể nhận đc id của khóa học
+            var btnDelete = document.getElementById("btn-delete");
+            var deleteForm = document.forms['delete-courses-form'];
+            //var containerForm = document.forms['container-form'];
+            var containerForm = $('form[name="container-form"]');
+            var checkboxAll = $("#checkbox-all");
+            var lessonItemsCheckbox = $('input[name="LessonIds[]"]');
+            var btnSubmitAll = $(".btn-submit-all"); // sử dụng jquery để lấy ra element trong DOM
+
+            var delete_course_modal = document.getElementById('delete-courses-modal')
+            //when dialog confirm clicked
+
+            $('#delete-courses-modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                lessonId = button.data('id');
+                console.log(lessonId)
+
+            });
+
+
+
+            // when delete course btn clicked
+            btnDelete.onclick = function () {
+                deleteForm.action = '/lessons/' + lessonId + '?_method=DELETE';// override phương thức post mặc định
+                deleteForm.submit();
+            }
+
+
+            // ---------------Select all checkbox--------------------------------
+
+            //checkbox-all changed
+            checkboxAll.change(function () {
+                var isCheckedAll = $(this).prop('checked');
+                lessonItemsCheckbox.prop('checked', isCheckedAll); //true (Boolean) Will change with checkbox state
+                renderCheckAllbtn();
+            });
+            //coures item checkbox changed
+            lessonItemsCheckbox.change(function () {
+                // kiểm tra tổng số lượng checked có bằng tổng số lượng checkbox đang có hay ko, từ đó khi bỏ check 1 thì sẽ ko check all
+                var isCheckedAll = lessonItemsCheckbox.length === $('input[name="LessonIds[]"]:checked').length;
+                checkboxAll.prop('checked', isCheckedAll);
+                renderCheckAllbtn();
+            });
+
+            //  button check all ( re-render)
+            function renderCheckAllbtn() {
+                var checkedCount = $('input[name="LessonIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
+                if (checkedCount > 0) {
+                    btnSubmitAll.attr('disabled', false); // remove attribute
+                }
+                else {
+                    btnSubmitAll.attr('disabled', true);
+                }
+            }
+
+        });
+    </script>
+    <script>
+        $('#zero_config').DataTable();
+    </script>
+
+
+    </div>
+</body>
+
+</html>

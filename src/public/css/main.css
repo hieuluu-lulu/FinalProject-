@@ -22,7 +22,7 @@
   .course__details-list {
     flex-direction: column; }
   .lessons__heading-title::after {
-    content: "";
+    content: '';
     border: none !important; }
   .logo-lesson {
     display: none !important; } }
@@ -9070,15 +9070,44 @@ button {
   background-color: #0765f3; }
 
 .tabcontent {
+  display: none;
   padding: 6px 12px;
   border-top: none;
   animation: fadeEffect all 3s; }
+
+.question {
+  background-color: #fcfcfc; }
+
+.radiocontainer {
+  background-color: #e7e9eb;
+  display: block;
+  position: relative;
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  word-wrap: break-word; }
 
 @keyframes fadeEffect {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
+
+.note-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 48px 0 24px; }
+
+.note-body p {
+  font-size: 20px; }
 
 .user__profile-left {
   background-color: #fff;

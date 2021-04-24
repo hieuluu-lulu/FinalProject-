@@ -1,8 +1,10 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
+const Quiz = require('../models/quizModel');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 class LessonController {
     index(req, res, next) {
         res.status(404).send('Xin lỗi trang không tồn tại');
@@ -22,8 +24,9 @@ class LessonController {
             Lesson.find({ tag: req.params.tag }),
             Lesson.findOne({ tag: req.params.tag, slug: req.params.slug }),
             Lesson.countDocuments({ tag: req.params.tag }),
+            Quiz.findOne({ lesson: req.params.slug }),
         ])
-            .then(([course, lessons, lesson, count]) => {
+            .then(([course, lessons, lesson, count, quiz]) => {
                 if (course) {
                     User.findOne({ _id: req.user }).then((user) => {
                         if (!user.learning.includes(req.params.tag)) {
@@ -46,6 +49,7 @@ class LessonController {
                     req.flash('success', 'Register course successfully');
                     res.locals.title = lesson.name;
                     res.render('lessons/lesson', {
+                        quiz: quiz,
                         course: course,
                         lessons: lessons,
                         lesson: lesson,
@@ -177,6 +181,7 @@ class LessonController {
                         image: req.user.image,
                         userId: req.user._id,
                         createAt,
+                        commentId: uuidv4(),
                     },
                 },
             },
@@ -258,6 +263,50 @@ class LessonController {
                 })
                 .catch(next);
         });
+    }
+    quizHandler(req, res, next) {
+        User.findOne({ _id: req.user })
+        .then((user) => {
+            console.log(req.body);
+            if (req.body.quiz === req.body.result) {
+                user.coin = user.coin + 50;
+                user.save().then(() => {
+                    res.locals.title = 'Congratulation!!!';
+                    res.render('lessons/success');
+                });
+            } else {
+                res.redirect('back');
+                req.flash(
+                    'error_message',
+                    'Sorry your answer is not correct!!!',
+                );
+            }
+        });
+    }
+    createQuiz(req, res, next) {
+        Lesson.find({})
+            .then((lesson) => {
+                res.locals.title = 'Create Quiz';
+                res.render('lessons/createQuiz', {
+                    user: req.user,
+                    lesson: lesson,
+                });
+            })
+            .catch(next);
+    }
+    saveQuiz(req, res, next) {
+        const quiz = new Quiz({
+            question: req.body.question,
+            anwser1: req.body.ans1,
+            anwser2: req.body.ans2,
+            anwser3: req.body.ans3,
+            anwser4: req.body.ans4,
+            result: req.body.result,
+            lesson: req.body.lesson,
+        });
+        quiz.save()
+            .then(() => res.redirect('/courses'))
+            .catch(next);
     }
 }
 module.exports = new LessonController();

@@ -5,6 +5,10 @@ const lessonController = require('../app/controllers/LessonController');
 const { ensureAuth, admin } = require('../config/auth');
 const { validate } = require('../app/middlewares/validate');
 
+route.post('/do-excercise', lessonController.quizHandler);
+route.post('/create/quiz', lessonController.saveQuiz);
+route.get('/create/quiz', ensureAuth, admin, lessonController.createQuiz);
+route.post('/quiz', lessonController.quizHandler);
 route.post('/handle-actions', lessonController.handleFormActions);
 route.post(
     '/save',
@@ -26,4 +30,5 @@ route.delete('/:id/force', lessonController.forceDelete);
 route.get('/:tag/:slug', ensureAuth, lessonController.showLessionDetails);
 route.get('/:slug', ensureAuth, lessonController.checkLesson);
 route.get('/', ensureAuth, lessonController.index);
+
 module.exports = route;

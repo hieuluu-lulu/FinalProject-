@@ -1,6 +1,7 @@
 const Course = require('../models/courseModel');
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
+const Quiz = require('../models/quizModel');
 const Category = require('../models/categoryModel');
 class ManageController {
     //[GET]/manage/stored/courses
@@ -58,6 +59,18 @@ class ManageController {
             })
             .catch(next);
     }
+    storedQuiz(req, res, next) {
+        Quiz.find({})
+            .then((quiz) => {
+                res.locals.title = 'Manange Quiz';
+
+                res.render('manage/stored-quiz', {
+                    quiz: quiz,
+                    user: req.user,
+                });
+            })
+            .catch(next);
+    }
     forceDelete(req, res, next) {
         User.deleteOne({ userID: req.params.id })
             .then(() => res.redirect('/manage/stored/users'))
@@ -81,6 +94,27 @@ class ManageController {
                 category: category,
             });
         });
+    }
+    handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            case 'force-delete':
+                Lesson.deleteMany({ userID: { $in: req.body.UserIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'delete':
+                Lesson.delete({ userID: { $in: req.body.UserIds } }) //
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'restore':
+                Lesson.restore({ userID: { $in: req.body.UserIds } }) //
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({ message: 'Action Invalid!' });
+        }
     }
 }
 module.exports = new ManageController();

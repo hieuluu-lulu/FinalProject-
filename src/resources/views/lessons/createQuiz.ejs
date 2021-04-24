@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+
+<head>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/admin/assets/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="/admin/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <link href="/admin/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+    <link href="/admin/dist/css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <%- include('../partials/header_admin')%>
+            <%- include('../partials/admin')%>
+                <div class="page-wrapper">
+                    <div class="page-breadcrumb">
+                        <div class="row">
+                            <div class="col-12 d-flex no-block align-items-center">
+                                <h4 class="page-title">Create Quiz</h4>
+                                <div class="ms-auto text-end">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="">Quiz</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <form class="form-horizontal" method="post" action="/lessons/create/quiz">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Quiz Information</h4>
+                                            <div class="form-group">
+                                                <label for="lesson">Tag</label>
+                                                <select name="lesson" id="lesson" class="form-select" required>
+                                                    <option select>--Lesson--</option>
+                                                    <% lesson.forEach(function(lesson) { %>
+                                                        <option value="<%= lesson.slug%>">
+                                                            <%= lesson.name %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Question
+                                                        Name</label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="question"
+                                                            name="question" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Answer 1
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="ans1" name="ans1"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Answer 2
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="ans2" name="ans2"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Answer 3
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="ans3" name="ans3"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Answer 4
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="ans4" name="ans4"
+                                                            placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="  control-label col-form-label">Result
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="result"
+                                                            name="result" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="border-top">
+                                                <div class="card-body">
+                                                    <button type="submit" class="btn btn-primary">Add Quiz</button>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+</body>
+
+</html>
