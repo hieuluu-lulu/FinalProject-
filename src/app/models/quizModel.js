@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const slug = require('mongoose-slug-generator');
-const mongooseDelete = require('mongoose-delete');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const QuizSchema = new Schema(
     {
+        quizID: Number,
         question: String,
         answer1: String,
         answer2: String,
@@ -18,6 +17,7 @@ const QuizSchema = new Schema(
         timestamps: true,
     },
 );
+QuizSchema.plugin(AutoIncrement, { inc_field: 'quizID' });
 
 const Quiz = mongoose.model('Quiz ', QuizSchema);
 

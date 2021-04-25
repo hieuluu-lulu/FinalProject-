@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+
+<head>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/admin/assets/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="/admin/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <link href="/admin/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+    <link href="/admin/dist/css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+
+
+
+        <div class="page-wrapper">
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Create Lessons</h4>
+                        <div class="ms-auto text-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="">Lessons</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form class="form-horizontal" method="post"
+                                action="/lessons/quiz/<%- quiz._id%>?_method=PUT">
+                                <div class="card-body">
+                                    <h4 class="card-title">Update Question</h4>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Question
+                                                Name</label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="question" name="question"
+                                                    placeholder="" value="<%=quiz.question%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Answer 1
+                                            </label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="ans1" name="answer1"
+                                                    placeholder="" value="<%=quiz.answer1%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Answer 2
+                                            </label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="ans2" name="answer2"
+                                                    placeholder="" value="<%=quiz.answer2%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Answer 3
+                                            </label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="ans3" name="answer3"
+                                                    placeholder="" value="<%=quiz.answer3%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Answer 4
+                                            </label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="ans4" name="answer4"
+                                                    placeholder="" value="<%=quiz.answer4%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="  control-label col-form-label">Result
+                                            </label>
+                                            <div class="">
+                                                <input type="text" class="form-control" id="result" name="result"
+                                                    placeholder="" value="<%=quiz.result%>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <button type="submit" class="btn btn-primary">Update Question</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

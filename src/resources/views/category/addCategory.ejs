@@ -13,310 +13,90 @@
 </head>
 
 <body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <!-- <div class="preloader">
+
+    <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div> -->
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
+    </div>
+
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
 
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="/dashboard">
-                        <!-- Logo icon -->
-                        <b class="logo-icon ps-2">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="/admin/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
-
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="/images/logo.png" style="width:152px; height:30px" alt="homepage"
-                                class="light-logo" />
-
-                        </span>
-                        <!-- Logo icon -->
-                        <!-- <b class="logo-icon"> -->
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                        <!-- Dark Logo icon -->
-                        <!-- <img src="/admin/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-
-                        <!-- </b> -->
-                        <!--End Logo icon -->
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Toggle which is visible on mobile only -->
-                    <!-- ============================================================== -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
-                            class="ti-menu ti-close"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav me-auto" style="margin-left: 250px">
-                        <li class="nav-item d-none d-lg-block"><a
-                                class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
-                                data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
-                                href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
-                                    class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-end">
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-bell font-24"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/admin/assets/images/users/1.jpg" alt="user" class="rounded-circle"
-                                    width="31">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end user-dd animated"
-                                aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet me-1 ms-1"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
-                                    Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings me-1 ms-1"></i>
-                                    Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/users/logout"><i class="fa fa-power-off me-1 ms-1"></i>
-                                    Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="ps-4 p-10"><a href="javascript:void(0)"
-                                        class="btn btn-sm btn-success btn-rounded text-white">View Profile</a></div>
-                            </ul>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <%- include('../partials/header_admin')%>
+            <%- include('../partials/admin')%>
 
 
-        <div class="left-sidebar" data-sidebarbg="skin5">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="/dashboard" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                                    class="hide-menu">Dashboard</span></a></li>
-
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">Courses </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/manage/stored/courses" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Course
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/courses/create" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Create Course
-                                        </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">Category</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/manage/stored/category" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Category
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/categories/create" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Create Category
-                                        </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">Lessons </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/manage/stored/lessons" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Manage Lessons
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="/lessons/create" class="sidebar-link"><i
-                                            class="mdi mdi-note-plus"></i><span class="hide-menu"> Add Lessons
-                                        </span></a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span
-                                    class="hide-menu">User</span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/manage/store/user" class="sidebar-link"><i
-                                            class="mdi mdi-face"></i><span class="hide-menu"> Manage User
-                                        </span></a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span
-                                    class="hide-menu">Errors </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i
-                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i
-                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i
-                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i
-                                            class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500
-                                        </span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </div>
-
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Create Category</h4>
-                        <div class="ms-auto text-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">Category</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Create</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <form class="form-horizontal" method="post" action="/categories/create" novalidate>
-                                <div class="card-body">
-                                    <h4 class="card-title">Category Info</h4>
-                                    <div class="form-group ">
-                                        <label for="name" class="control-label col-form-label">Category
-                                            Name</label>
-                                        <div class=""></div>
-                                        <input type="text" class="form-control" id="title" name="title"
-                                            placeholder="Enter Categories Title" required>
-                                        <% if (errors.title ){ %>
-                                            <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                <%= errors.title.msg %>
-                                            </div>
-                                            <% } %>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="type" class="  control-label col-form-label">Type</label>
-                                        <select name="type" id="type" class="form-select">
-                                            <option selected>--Choose Type--</option>
-                                            <option value="front-end">Front-end</option>
-                                            <option value="back-end">Back-end</option>
-                                            <option value="android">Android</option>
-                                            <option value="ios">IOS</option>
-                                        </select>
-                                        <% if (errors.type ){ %>
-                                            <div class="invalid-feedback" style="display: block; font-size: 16px">
-                                                <%= errors.type.msg %>
-                                            </div>
-                                            <% } %>
-                                    </div>
+                <div class="page-wrapper">
+                    <div class="page-breadcrumb">
+                        <div class="row">
+                            <div class="col-12 d-flex no-block align-items-center">
+                                <h4 class="page-title">Create Category</h4>
+                                <div class="ms-auto text-end">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">Category</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Create</li>
+                                        </ol>
+                                    </nav>
                                 </div>
-                        </div>
-                        <div class="border-top">
-                            <div class="card-body">
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
-                        </form>
+                    </div>
+
+                    <div class="container-fluid">
+                        <!-- ============================================================== -->
+                        <!-- Start Page Content -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <form class="form-horizontal" method="post" action="/categories/create" novalidate>
+                                        <div class="card-body">
+                                            <h4 class="card-title">Category Info</h4>
+                                            <div class="form-group ">
+                                                <label for="name" class="control-label col-form-label">Category
+                                                    Name</label>
+                                                <div class=""></div>
+                                                <input type="text" class="form-control" id="title" name="title"
+                                                    placeholder="Enter Categories Title" required>
+                                                <% if (errors.title ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.title.msg %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="type" class="  control-label col-form-label">Type</label>
+                                                <select name="type" id="type" class="form-select">
+                                                    <option selected>--Choose Type--</option>
+                                                    <option value="front-end">Front-end</option>
+                                                    <option value="back-end">Back-end</option>
+                                                    <option value="android">Android</option>
+                                                    <option value="ios">IOS</option>
+                                                </select>
+                                                <% if (errors.type ){ %>
+                                                    <div class="invalid-feedback"
+                                                        style="display: block; font-size: 16px">
+                                                        <%= errors.type.msg %>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
     </div>
 

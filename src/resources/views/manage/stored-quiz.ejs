@@ -47,11 +47,11 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Manage Lessons</h5>
+                                        <h5 class="card-title">Manage Question</h5>
                                         <div class="table-responsive">
-                                            <form method="POST" action="/lessons/handle-actions" name="container-form">
-
-                                                <div class="d-flex mt-4 align-items-center mb-2">
+                                            <form method="POST" action="/lessons/quiz/handle-actions"
+                                                name="container-form">
+                                                <div class="d-flex mt-4 align-items-center mb-2 px-2">
                                                     <div class="form-check mb-0">
                                                         <input class="form-check-input" type="checkbox"
                                                             id="checkbox-all">
@@ -59,9 +59,9 @@
                                                             All</label>
                                                     </div>
                                                     <div class="mr-2 ml-2">
-                                                        <select class="form-control" name="action" required>
+                                                        <select class="form-control" name="action" required="">
                                                             <option value="">-- Choose Action --</option>
-                                                            <option value="delete">Delete</option>
+                                                            <option value="force-delete">Delete</option>
                                                         </select>
                                                     </div>
                                                     <button class="btn btn-primary btn-submit-all "
@@ -72,44 +72,57 @@
                                                         <tr>
                                                             <th></th>
                                                             <th>No.</th>
-                                                            <th>Name of Lessons</th>
-                                                            <th>Tag</th>
-                                                            <th>Create At</th>
+                                                            <th>Question</th>
+                                                            <th>Answer 1</th>
+                                                            <th>Answer 2</th>
+                                                            <th>Answer 3</th>
+                                                            <th>Answer 4</th>
+                                                            <th>Result</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% lesson.forEach(function(lesson,index) { %>
+                                                        <% quiz.forEach(function(quiz,index) { %>
                                                             <tr>
                                                                 <th>
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox"
-                                                                            name="LessonIds[]"
-                                                                            value="<%= lesson.lessonID %>">
+                                                                            name="QuizIds[]" value="<%= quiz.quizID %>">
                                                                     </div>
                                                                 </th>
                                                                 <td>
                                                                     <%= index + 1 %>
                                                                 </td>
                                                                 <td>
-                                                                    <%= lesson.name %>
+                                                                    <%= quiz.question %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= quiz.answer1 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= quiz.answer2 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= quiz.answer3 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= quiz.answer4 %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= quiz.result %>
                                                                 </td>
 
-                                                                <td>
-                                                                    <%= lesson.tag %>
-                                                                </td>
-                                                                <td>
-                                                                    <%= lesson.createdAt %>
-                                                                </td>
+
+
 
                                                                 <td>
                                                                     <div class="btn-group btn-group-sm" role="group"
                                                                         aria-label="Basic example">
-                                                                        <a href="/lessons/<%- lesson._id %>/edit"
+                                                                        <a href="/lessons/quiz/<%- quiz._id %>/edit"
                                                                             class="btn btn-primary">Update</a>
                                                                         <a href="" class="btn btn-danger"
                                                                             data-bs-toggle="modal"
-                                                                            data-id="<%= lesson.lessonID %>"
+                                                                            data-id="<%= quiz.quizID %>"
                                                                             data-bs-target="#delete-courses-modal">Delete</a>
                                                                     </div>
                                                                 </td>
@@ -120,9 +133,12 @@
                                                         <tr>
                                                             <th></th>
                                                             <th>No.</th>
-                                                            <th>Name of Lessons</th>
-                                                            <th>Tag</th>
-                                                            <th>Create At</th>
+                                                            <th>Question</th>
+                                                            <th>Answer 1</th>
+                                                            <th>Answer 2</th>
+                                                            <th>Answer 3</th>
+                                                            <th>Answer 4</th>
+                                                            <th>Result</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>
@@ -141,13 +157,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Lesson</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Question</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want delete this lesson?
+                    Do you want delete this Question?
                 </div>
                 <div class="modal-footer">
                     <button id="btn-delete" type="button" class="btn btn-danger">Delete
@@ -168,13 +184,13 @@
     <script>
         // add sự kiện để có thể chạy code jquery sau khi loaded DOM
         document.addEventListener('DOMContentLoaded', function () {
-            var lessonId;  // tạo biến để function onclick có thể nhận đc id của khóa học
+            var quizid;  // tạo biến để function onclick có thể nhận đc id của khóa học
             var btnDelete = document.getElementById("btn-delete");
             var deleteForm = document.forms['delete-courses-form'];
             //var containerForm = document.forms['container-form'];
             var containerForm = $('form[name="container-form"]');
             var checkboxAll = $("#checkbox-all");
-            var lessonItemsCheckbox = $('input[name="LessonIds[]"]');
+            var lessonItemsCheckbox = $('input[name="QuizIds[]"]');
             var btnSubmitAll = $(".btn-submit-all"); // sử dụng jquery để lấy ra element trong DOM
 
             var delete_course_modal = document.getElementById('delete-courses-modal')
@@ -182,8 +198,8 @@
 
             $('#delete-courses-modal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
-                lessonId = button.data('id');
-                console.log(lessonId)
+                quizid = button.data('id');
+                console.log(quizid)
 
             });
 
@@ -191,7 +207,7 @@
 
             // when delete course btn clicked
             btnDelete.onclick = function () {
-                deleteForm.action = '/lessons/' + lessonId + '?_method=DELETE';// override phương thức post mặc định
+                deleteForm.action = '/lessons/' + 'quiz/' + quizid + '?_method=DELETE';// override phương thức post mặc định
                 deleteForm.submit();
             }
 
@@ -207,14 +223,14 @@
             //coures item checkbox changed
             lessonItemsCheckbox.change(function () {
                 // kiểm tra tổng số lượng checked có bằng tổng số lượng checkbox đang có hay ko, từ đó khi bỏ check 1 thì sẽ ko check all
-                var isCheckedAll = lessonItemsCheckbox.length === $('input[name="LessonIds[]"]:checked').length;
+                var isCheckedAll = lessonItemsCheckbox.length === $('input[name="QuizIds[]"]:checked').length;
                 checkboxAll.prop('checked', isCheckedAll);
                 renderCheckAllbtn();
             });
 
             //  button check all ( re-render)
             function renderCheckAllbtn() {
-                var checkedCount = $('input[name="LessonIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
+                var checkedCount = $('input[name="QuizIds[]"]:checked').length; // kiểm tra người dùng có check vào ckeck box hay chưa
                 if (checkedCount > 0) {
                     btnSubmitAll.attr('disabled', false); // remove attribute
                 }

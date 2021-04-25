@@ -149,7 +149,12 @@ class LessonController {
     handleFormActions(req, res, next) {
         switch (req.body.action) {
             case 'force-delete':
-                Lesson.deleteMany({ lessonID: { $in: req.body.LessonIds } })
+                Promise.all([
+                    Lesson.deleteMany({
+                        lessonID: { $in: req.body.LessonIds },
+                    }),
+                    Quiz.deleteMany({ quizID: { $in: req.body.QuizIds } }),
+                ])
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
@@ -263,50 +268,6 @@ class LessonController {
                 })
                 .catch(next);
         });
-    }
-    quizHandler(req, res, next) {
-        User.findOne({ _id: req.user })
-        .then((user) => {
-            console.log(req.body);
-            if (req.body.quiz === req.body.result) {
-                user.coin = user.coin + 50;
-                user.save().then(() => {
-                    res.locals.title = 'Congratulation!!!';
-                    res.render('lessons/success');
-                });
-            } else {
-                res.redirect('back');
-                req.flash(
-                    'error_message',
-                    'Sorry your answer is not correct!!!',
-                );
-            }
-        });
-    }
-    createQuiz(req, res, next) {
-        Lesson.find({})
-            .then((lesson) => {
-                res.locals.title = 'Create Quiz';
-                res.render('lessons/createQuiz', {
-                    user: req.user,
-                    lesson: lesson,
-                });
-            })
-            .catch(next);
-    }
-    saveQuiz(req, res, next) {
-        const quiz = new Quiz({
-            question: req.body.question,
-            anwser1: req.body.ans1,
-            anwser2: req.body.ans2,
-            anwser3: req.body.ans3,
-            anwser4: req.body.ans4,
-            result: req.body.result,
-            lesson: req.body.lesson,
-        });
-        quiz.save()
-            .then(() => res.redirect('/courses'))
-            .catch(next);
     }
 }
 module.exports = new LessonController();

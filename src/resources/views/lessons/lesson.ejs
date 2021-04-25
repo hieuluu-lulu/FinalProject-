@@ -321,35 +321,39 @@
                             </div>
                         </div>
                         <div class="tabcontent p-4" id="relate">
-
-                            <form action="/lessons/do-excercise" method="post">
-                                <div class="container p-5 question">
-                                    <div class="row">
-                                        <h5 class="mb-4">
-                                            Question: <%=quiz.question%>
-                                        </h5>
-                                        <div class="radiocontainer">
-                                            <input type="radio" value="<%=quiz.answer1%>" name="quiz">
-                                            <%=quiz.answer1%>
+                            <%if (quiz) { %>
+                                <form action="/lessons/do-excercise" method="post">
+                                    <div class="container p-5 question">
+                                        <div class="row">
+                                            <h5 class="mb-4">
+                                                Question: <%=quiz.question%>
+                                            </h5>
+                                            <div class="radiocontainer">
+                                                <input type="radio" value="<%=quiz.answer1%>" name="quiz">
+                                                <%=quiz.answer1%>
+                                            </div>
+                                            <div class="radiocontainer">
+                                                <input type="radio" value="<%=quiz.answer2%>" name="quiz">
+                                                <%=quiz.answer2%>
+                                            </div>
+                                            <div class="radiocontainer">
+                                                <input type="radio" value="<%=quiz.answer3%>" name="quiz">
+                                                <%=quiz.answer3%>
+                                            </div>
+                                            <div class="radiocontainer">
+                                                <input type="radio" value="<%=quiz.answer4%>" name="quiz">
+                                                <%=quiz.answer4%>
+                                            </div>
+                                            <input type="hidden" value="<%=quiz.result%>" name="result">
+                                            <button type="submit" class="btn btn-primary">Answer</button>
                                         </div>
-                                        <div class="radiocontainer">
-                                            <input type="radio" value="<%=quiz.answer2%>" name="quiz">
-                                            <%=quiz.answer2%>
-                                        </div>
-                                        <div class="radiocontainer">
-                                            <input type="radio" value="<%=quiz.answer3%>" name="quiz">
-                                            <%=quiz.answer3%>
-                                        </div>
-                                        <div class="radiocontainer">
-                                            <input type="radio" value="<%=quiz.answer4%>" name="quiz">
-                                            <%=quiz.answer4%>
-                                        </div>
-                                        <input type="hidden" value="<%=quiz.result%>" name="result">
-                                        <button type="submit" class="btn btn-primary">Answer</button>
                                     </div>
-                                </div>
-                            </form>
-
+                                </form>
+                                <% } else {%>
+                                    <div class="note-body">
+                                        <p>This lesson has no questions yet!</p>
+                                    </div>
+                                    <% } %>
 
                         </div>
                     </div>

@@ -1,14 +1,24 @@
 const express = require('express');
 const route = express.Router();
-
+const quizController = require('../app/controllers/QuizController');
 const lessonController = require('../app/controllers/LessonController');
 const { ensureAuth, admin } = require('../config/auth');
 const { validate } = require('../app/middlewares/validate');
 
-route.post('/do-excercise', lessonController.quizHandler);
-route.post('/create/quiz', lessonController.saveQuiz);
-route.get('/create/quiz', ensureAuth, admin, lessonController.createQuiz);
-route.post('/quiz', lessonController.quizHandler);
+//  quiz
+route.put('/quiz/:id', ensureAuth, admin, quizController.editQuizHandler);
+route.get('/quiz/:id/edit', ensureAuth, admin, quizController.editQuiz);
+route.delete('/quiz/:id', ensureAuth, admin, quizController.forceDelete);
+route.post(
+    '/quiz/handle-actions',
+    ensureAuth,
+    admin,
+    quizController.handleFormActions,
+);
+route.post('/do-excercise', quizController.quizHandler);
+route.post('/create/quiz', ensureAuth, admin, quizController.saveQuiz);
+route.get('/create/quiz', ensureAuth, admin, quizController.createQuiz);
+//
 route.post('/handle-actions', lessonController.handleFormActions);
 route.post(
     '/save',
