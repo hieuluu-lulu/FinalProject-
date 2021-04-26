@@ -5,7 +5,7 @@
                 <a href="/courses"><i class="fas fa-chevron-left"></i></a>
                 <a href="/" class="logo logo-lesson"></a>
                 <p class="lessons__heading-title">
-                    Course <%= tag %> : <%= name %>
+                    <%= name %>
                 </p>
             </div>
             <div class=" lessons__body col col-xl-8 col-md-12">
@@ -18,13 +18,27 @@
                 <div class="lesson__overview">
                     <div class="lesson__overview-header">
                         <div class="tab">
-
+                            <button class="tabslink content-tab" onclick="openTab(event, 'content')">Content</button>
                             <button class="tabslink" id="Overview"
                                 onclick="openTab(event, 'overview')">Overview</button>
                             <button class="tabslink" onclick="openTab(event, 'note')">Notes</button>
                             <button class="tabslink" onclick="openTab(event, 'relate')">Question</button>
                         </div>
                         <div class="tabcontent" id="content">
+                            <div class="list">
+                                <div class="list__body">
+                                    <% lessons.forEach(function(lesson,index) { %>
+                                        <div>
+                                            <div class="list__body-details">
+
+
+                                                <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Lesson <%= index
+                                                        + 1 %>: <%= lesson.name %></a>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
                         </div>
                         <div class="tabcontent" id="overview">
                             <div class="overview__body">
@@ -53,7 +67,7 @@
                                                                             <input type="text" name="comment"
                                                                                 id="comment"
                                                                                 class="  comment-box-input  "
-                                                                                placeholder="What do you think about this course?"
+                                                                                placeholder="Do you have any question?"
                                                                                 onfocus="onFocus()"
                                                                                 oninput="onChange()">
                                                                         </div>
@@ -373,7 +387,7 @@
 
                                     <img class="card-img-top mr-2" style="width: 80px;" src="<%= lesson.image %>"
                                         alt="">
-                                    <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Bài <%= index + 1 %>: <%=
+                                    <a href="/lessons/<%- lesson.tag %>/<%- lesson.slug %>">Lesson <%= index + 1 %>: <%=
                                                 lesson.name %></a>
                                 </div>
                             </div>

@@ -4,21 +4,23 @@
     <div class="wrap p-0">
         <div class="header">
             <div class="container-fluid">
-                <div class="row flex-wrap">
+                <div class="row">
                     <div
-                        class="col col-lg-6 col-md-12 col-sm-12 header-img-section d-lg-flex justify-content-lg-center align-items-lg-center mb-5">
+                        class="col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-center mb-5 header-image">
                         <img src="/images/header.png" alt="header-img-section" />
                     </div>
                     <div
-                        class="col col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-start">
-                        <h1 class="header-subtitle px-2">Learn to code from ZERO to HERO</h1>
-                        <h1 class="header-title pb-3 px-2">FREE PROGRAMMING COMMUNITY</h1>
+                        class="col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-start">
+                        <h1 class="header-subtitle">Learn to code from ZERO to HERO</h1>
+                        <h1 class="header-title pb-3">FREE PROGRAMMING COMMUNITY</h1>
                         <p class="header-title-text pb-3">
                             Learn to code through hands-on learning with quality courses
                             amount!
                         </p>
                         <div class="learn-more-btn-section">
                             <a class="nav-link learn-more-btn" href="/courses">COURSES</a>
+
+
                         </div>
                     </div>
                 </div>
@@ -27,16 +29,16 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+            <div class="col-md-12 text-center">
                 <hr />
             </div>
         </div>
     </div>
     <div class="container-fluid mt-4 pt-5">
-        <div class="row">
+        <div class="d-flex flex-wrap">
             <div class="container">
                 <div class="row justify-content-center pt-3">
-                    <div class="col col-lg-8 col-md-12 col-sm-12">
+                    <div class="col-md-8">
                         <h2 class="text-center">Why should you study at IFE?</h2>
                         <p class="head">
                             IFE - <b>Information technology for everyone</b> is building the
@@ -47,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-5 d-flex flex-wrap">
+            <div class="row mt-5">
                 <div class="col col-lg-4 col-md-12 col-sm-12 mb-5 wrap-reason ">
                     <img src="../images/hoc-lap-trinh.png" alt="" />
                     <h4>Over 5,000 student</h4>
@@ -75,15 +77,15 @@
             </div>
             <div class="container-fluid content-2 py-5">
                 <div class="row justify-content-center pt-3">
-                    <div class="col col-lg-8 col-md-12 col-sm-12 pb-5">
+                    <div class="col-md-8 pb-5">
                         <h2 class="text-center"><b>What will you learn from IFE Education?</b></h2>
-                        <p class="head text-center">
+                        <p class="head align-items-center">
                             Coming to IFE, you will learn the in-depth knowledge, from basic to advanced, from
                             videos that are arranged according to the right route for the beginner.
                         </p>
                     </div>
                     <div class="row justify-content-between">
-                        <div class="col-md-12 col-lg-6 col-sm-12 d-lg-block ">
+                        <div class="col col-md-6 col-lg-6 ">
                             <ul class="process">
                                 <li class="process__item">
                                     <div class="process__number">
@@ -133,7 +135,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-6 d-none d-lg-block">
+                        <div class=" col-lg-6 welcome-image">
                             <img class='img-home' src="/images/code-editor.jpg" alt="">
                         </div>
                     </div>
@@ -141,4 +143,5 @@
             </div>
         </div>
     </div>
-    <%- include('./partials/footer')%>
+    <%- include('./partials/messenger')%>
+        <%- include('./partials/footer')%>

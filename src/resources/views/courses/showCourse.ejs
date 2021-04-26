@@ -1,7 +1,7 @@
 <%- include('../partials/header')%>
-    <div class="main-content px-4 pb-5 ">
+    <div class="main-content pb-5 ">
         <div class="row course__details">
-            <section class=" col col-lg-8 col-md-12 col-sm-12">
+            <section class="col-lg-8 col-md-12 col-sm-12">
                 <ul class="course__details-breadcrumb">
                     <li>
                         <a href="/courses">Courses</a>
@@ -79,7 +79,7 @@
                 </div>
 
                 <section class=comment>
-                    <div class="container">
+                    <div class="container-fluid p-0">
                         <h3 class="comment-heading">
                             <%=course.comments.length%> Comments
                         </h3>
@@ -105,10 +105,10 @@
                                                                 onfocus="onFocus()" oninput="onChange()">
                                                         </div>
                                                         <div class="btn-comment-group" id="btn-comment-group">
-                                                            <button type="button" class="btn btn-comment-cancel"
+                                                            <button type="button" class="btn btn-comment-cancel mb-3"
                                                                 onclick="onClick()">CANCEL</button>
                                                             <button type="submit" id="btn-comment"
-                                                                class="btn btn-comment">COMMENT</button>
+                                                                class="btn btn-comment mb-3">COMMENT</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -121,7 +121,7 @@
                 </section>
 
                 <section class="list-comment">
-                    <div class="container">
+                    <div class="container-fluid p-0">
                         <% course.comments=course.comments.reverse(); %>
                             <%course.comments.forEach(function(comment) {%>
                                 <div class="d-flex mb-4">
@@ -331,7 +331,7 @@
                     </div>
                 </section>
             </section>
-            <section class="col col-lg-4 col-md-12 col-sm-12 d-lg-block">
+            <section class="col-lg-4 col-md-12 col-sm-12 d-lg-block">
                 <div class="course__details-purchase">
                     <div class="course__details-preview">
                         <img src="<%= course.image %>" class="card-img" alt="">

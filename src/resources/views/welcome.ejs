@@ -6,11 +6,11 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div
-						class="col col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-center mb-5">
+						class="col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-center mb-5 header-image">
 						<img src="/images/header.png" alt="header-img-section" />
 					</div>
 					<div
-						class="col col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-start">
+						class="col-lg-6 col-md-12 col-sm-12 header-title-section justify-content-center align-items-start">
 						<h1 class="header-subtitle">Learn to code from ZERO to HERO</h1>
 						<h1 class="header-title pb-3">FREE PROGRAMMING COMMUNITY</h1>
 						<p class="header-title-text pb-3">
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<div class="container-fluid mt-4 pt-5">
-		<div class="row">
+		<div class="d-flex flex-wrap">
 			<div class="container">
 				<div class="row justify-content-center pt-3">
 					<div class="col-md-8">
@@ -79,7 +79,7 @@
 				<div class="row justify-content-center pt-3">
 					<div class="col-md-8 pb-5">
 						<h2 class="text-center"><b>What will you learn from IFE Education?</b></h2>
-						<p class="head text-center">
+						<p class="head align-items-center">
 							Coming to IFE, you will learn the in-depth knowledge, from basic to advanced, from
 							videos that are arranged according to the right route for the beginner.
 						</p>
@@ -135,7 +135,7 @@
 								</li>
 							</ul>
 						</div>
-						<div class="col col-md-6 d-sm-none d-md-none d-lg-block">
+						<div class=" col-lg-6 welcome-image">
 							<img class='img-home' src="/images/code-editor.jpg" alt="">
 						</div>
 					</div>
@@ -144,3 +144,35 @@
 		</div>
 	</div>
 	<%- include('./partials/footer')%>
+		<div class="loader loading-page">
+			<div class="loading-page__title">
+				IFE Education
+			</div>
+		</div>
+		<script>
+			const bodyLoading = document.querySelector('.loader');
+			let setLoad = sessionStorage.getItem('isLoad');
+			if (!setLoad) sessionStorage.setItem('isLoad', 1);
+			const loading = {
+				isLoad: Number(setLoad),
+				handle: function () {
+					if (this.isLoad < 1) {
+						setTimeout(
+							function () {
+								bodyLoading.classList.remove('loading-page');
+							}, 1800)
+						this.sumnumber()
+					} else {
+						bodyLoading.classList.remove('loading-page');
+					}
+				},
+				sumnumber: function () {
+					this.isLoad = this.isLoad + 1;
+					sessionStorage.setItem('isLoad', this.isLoad);
+				},
+				start: function () {
+					this.handle()
+				}
+			}
+			loading.start();
+		</script>
