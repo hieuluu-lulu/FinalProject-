@@ -343,26 +343,35 @@
                                                 Question: <%=quiz.question%>
                                             </h5>
                                             <div class="radiocontainer">
-                                                <input type="radio" value="<%=quiz.answer1%>" name="quiz">
+                                                <input type="radio" value="<%=quiz.answer1%>" name="quiz" id="quiz">
                                                 <%=quiz.answer1%>
                                             </div>
                                             <div class="radiocontainer">
-                                                <input type="radio" value="<%=quiz.answer2%>" name="quiz">
+                                                <input type="radio" value="<%=quiz.answer2%>" name="quiz" id="quiz">
                                                 <%=quiz.answer2%>
                                             </div>
                                             <div class="radiocontainer">
-                                                <input type="radio" value="<%=quiz.answer3%>" name="quiz">
+                                                <input type="radio" value="<%=quiz.answer3%>" name="quiz" id="quiz">
                                                 <%=quiz.answer3%>
                                             </div>
                                             <div class="radiocontainer">
-                                                <input type="radio" value="<%=quiz.answer4%>" name="quiz">
+                                                <input type="radio" value="<%=quiz.answer4%>" name="quiz" id="quiz">
                                                 <%=quiz.answer4%>
                                             </div>
-                                            <input type="hidden" value="<%=quiz.result%>" name="result">
-                                            <button type="submit" class="btn btn-primary">Answer</button>
+                                            <input type="hidden" value="<%=quiz._id%>" name="quiz_id" id="quiz_id">
+
+                                            <input type="hidden" value="<%=quiz.result%>" name="result" id="result">
+                                            <button type="submit" class="btn btn-primary" id="answer">Answer</button>
+                                            <p class="text-center mt-4 " id="did__excercise"
+                                                style="font-size:20px; display: none; color:#2780e3;">You have
+                                                completed
+                                                this exercise!</p>
+
                                         </div>
                                     </div>
                                 </form>
+
+
                                 <% } else {%>
                                     <div class="note-body">
                                         <p>This lesson has no questions yet!</p>
@@ -370,6 +379,30 @@
                                     <% } %>
 
                         </div>
+                        <%if(user) {%>
+                            <%user.answers.forEach(function(answer){ %>
+                                <input type="hidden" value="<%=answer._id%>" id="answer_id">
+                                <%}) %>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                                        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                                        crossorigin="anonymous"></script>
+                                    <script>
+
+                                        var userAnswer = document.querySelectorAll("#answer_id")
+                                        var quiz_id = document.getElementById("quiz_id").value;
+
+
+                                        var ansBtn = document.getElementById('answer')
+                                        var completed = document.getElementById('did__excercise');
+
+                                        for (var i = 0; i < userAnswer.length; i++) {
+                                            if (userAnswer[i].value === quiz_id) {
+                                                ansBtn.style.display = "none";
+                                                completed.style.display = "block"
+                                            }
+                                        }
+                                    </script>
+                                    <% } %>
                     </div>
                 </div>
             </div>

@@ -44,6 +44,11 @@ router.get('/change-password', userController.indexChangePassword);
 //login and resgister
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback', userController.loginFacebook);
+router.get('/auth/google/callback', userController.loginGoogle);
+router.get(
+    '/auth/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }),
+);
 router.get('/fail', userController.fail);
 router.get('/login', userController.indexLogin);
 router.post('/login', userController.loginHandler);

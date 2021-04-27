@@ -125,6 +125,12 @@ class UserController {
             failureRedirect: '/users/fail',
         })(req, res, next);
     }
+    loginGoogle(req, res, next) {
+        passport.authenticate('google', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/users/fail',
+        })(req, res, next);
+    }
     fail(req, res, next) {
         res.send('Failed attempting to login');
     }

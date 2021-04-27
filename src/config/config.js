@@ -5,8 +5,9 @@ module.exports = {
         callback_url: 'http://localhost:3000/users/auth/facebook/callback',
     },
     googleAuth: {
-        clientID: '',
-        clientSecret: '',
+        clientID:
+            '600260365139-7aphliqdh3249olmr38kc4tn3pnb443n.apps.googleusercontent.com',
+        clientSecret: 'R3mgYf0blpZrLG_gnBBsL2me',
         callbackURL: 'http://localhost:3000/users/auth/google/callback',
     },
     googleAPI: {

@@ -17,6 +17,7 @@ const UserSchema = new Schema(
         resetPasswordExpires: Date,
         learning: { type: Array },
         profile: { type: Object, default: '' },
+        answers: Array,
     },
     {
         timestamps: true,

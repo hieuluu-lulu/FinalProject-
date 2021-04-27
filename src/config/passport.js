@@ -2,6 +2,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // Load User model
 const User = require('../app/models/usersModel');
@@ -109,13 +110,40 @@ module.exports = (passport) => {
             },
         ),
     );
-    // passport.serializeUser(function(user, done) {
-    //     done(null, user);
-    //   });
+    passport.use(
+        new GoogleStrategy(
+            {
+                clientID: config.googleAuth.clientID,
+                clientSecret: config.googleAuth.clientSecret,
+                callbackURL: config.googleAuth.callbackURL,
+            },
+            function (token, refreshToken, profile, done) {
+                process.nextTick(function () {
+                    User.findOne(
+                        { googleId: profile.id },
+                        function (err, user) {
+                            if (err) return done(err);
+                            if (user) {
+                                return done(null, user);
+                            } else {
+                                var newUser = new User();
 
-    // passport.deserializeUser(function(obj, done) {
-    //   done(null, obj);
-    // });
+                                newUser.googleId = profile.id;
+                                newUser.token = token;
+                                newUser.name = profile.displayName;
+                                newUser.email = profile.emails[0].value;
+
+                                newUser.save(function (err) {
+                                    if (err) throw err;
+                                    return done(null, newUser);
+                                });
+                            }
+                        },
+                    );
+                });
+            },
+        ),
+    );
     passport.serializeUser((user, done) => {
         done(null, user.id);
     });

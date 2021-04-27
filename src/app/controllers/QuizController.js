@@ -1,21 +1,32 @@
 const Lesson = require('../models/lessonModel');
 const User = require('../models/usersModel');
 const Quiz = require('../models/quizModel');
-
+const { v4: uuidv4 } = require('uuid');
 class QuizController {
     quizHandler(req, res, next) {
-        User.findOne({ _id: req.user }).then((user) => {
-            if (req.body.quiz === req.body.result) {
-                user.coin = user.coin + 50;
-                user.save().then(() => {
-                    res.locals.title = 'Congratulation!!!';
-                    res.render('lessons/success');
-                });
-            } else {
-                res.locals.title = ' Fail!!!';
-                res.render('lessons/error');
-            }
-        });
+        if (req.body.quiz === req.body.result) {
+            User.updateOne(
+                { _id: req.user },
+                { coin: req.user.coin + 50 },
+            ).then();
+            User.updateOne(
+                { _id: req.user },
+                {
+                    $push: {
+                        answers: {
+                            _id: req.body.quiz_id,
+                            result: req.body.result,
+                        },
+                    },
+                },
+            ).then(() => {
+                res.locals.title = 'Congratulation!!!';
+                res.render('lessons/success');
+            });
+        } else {
+            res.locals.title = ' Fail!!!';
+            res.render('lessons/error');
+        }
     }
     createQuiz(req, res, next) {
         Lesson.find({})
