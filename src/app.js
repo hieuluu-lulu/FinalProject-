@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 app.set('view engine', 'ejs');
 // static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 // routes
