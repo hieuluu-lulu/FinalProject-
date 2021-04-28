@@ -19,5 +19,11 @@ class SiteController {
             });
         }
     }
+    pageNotFound(req, res, next) {
+        res.locals.title = "404"
+        res.render('partials/pageNotFound',{
+            user: req.user,
+        })
+    }
 }
 module.exports = new SiteController();
