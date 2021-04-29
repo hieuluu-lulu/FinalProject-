@@ -8,14 +8,12 @@
     "dev": "nodemon --inspect src/app.js",
     "start": "node src/app.js",
     "listen": "node-sass --watch src/resources/scss/ --output src/public/css/"
-   
   },
   "author": "hieuluu",
   "license": "ISC",
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write --tab-width 4"
   },
- 
   "dependencies": {
     "async": "^0.9.2",
     "bcrypt": "^5.0.1",
@@ -51,6 +49,7 @@
   "devDependencies": {
     "lint-staged": "^10.5.3",
     "node-sass": "^5.0.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
   }
 }
