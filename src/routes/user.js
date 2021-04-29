@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require('../app/controllers/UserController');
 const passport = require('passport');
 const { validate } = require('../app/middlewares/validate');
-
+const { ensureAuth, admin } = require('../config/auth');
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -23,23 +23,23 @@ router.get('/forgot', userController.forgotPassword);
 router.post('/forgot', userController.forgotPasswordHandler);
 
 //user profile
-router.get('/edit-profile', userController.indexEditProfile);
+router.get('/edit-profile', ensureAuth, userController.indexEditProfile);
 router.post(
     '/profile',
     upload,
     validate.validateUpdateProfile(),
     userController.addProfile,
 );
-router.get('/information', userController.indexInformation);
+router.get('/information', ensureAuth, userController.indexInformation);
 router.post('/change-username', userController.changeUsernameHandler);
-router.get('/change-username', userController.indexChangeUsername);
+router.get('/change-username', ensureAuth, userController.indexChangeUsername);
 router.post('/change-username', userController.changeUsernameHandler);
 router.post(
     '/change-password',
     validate.validateChangePassword(),
     userController.changePasswordHandler,
 );
-router.get('/change-password', userController.indexChangePassword);
+router.get('/change-password', ensureAuth, userController.indexChangePassword);
 
 //login and resgister
 router.get('/auth/facebook', passport.authenticate('facebook'));
