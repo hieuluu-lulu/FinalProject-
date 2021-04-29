@@ -20,10 +20,15 @@ class SiteController {
         }
     }
     pageNotFound(req, res, next) {
-        res.locals.title = "404"
-        res.render('partials/pageNotFound',{
+        res.locals.title = '404';
+        res.render('partials/pageNotFound', {
             user: req.user,
-        })
+        });
+
+        res.locals.title = 'Page Not Found';
+        res.status(404).render('partials/pageNotFound', {
+            user: req.user,
+        });
     }
 }
 module.exports = new SiteController();

@@ -202,12 +202,14 @@ class UserController {
                             'If you did not request this, please ignore this email and your password will remain unchanged.\n',
                     };
                     transport.sendMail(mailOptions, function (err) {
-                        req.flash(
-                            'success_message',
-                            'An e-mail has been sent to ' +
-                                user.email +
-                                ' with further instructions.',
-                        );
+                        res.locals.title = 'Success';
+                        res.render('account/success');
+                        // req.flash(
+                        //     'success_message',
+                        //     'An e-mail has been sent to ' +
+                        //         user.email +
+                        //         ' with further instructions.',
+                        // );
                         done(err, 'done');
                     });
                 },
