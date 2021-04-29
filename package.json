@@ -5,11 +5,11 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --inspect src/app.js",
-    "start": "node src/app.js",
+    "dev": "node src/app.js",
+    "start": "nodemon --inspect src/app.js",
     "listen": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "beautiful": "prettier --single-quote --trailing-comma all --write --tab-width 4 src/**/*.{js,json,scss,ejs}",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run dev"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install"
   },
   "author": "hieuluu",
   "license": "ISC",
