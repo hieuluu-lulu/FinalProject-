@@ -262,5 +262,55 @@ class CourseController {
                 .catch(next);
         });
     }
+    likeHandler(req, res, next) {
+        Course.findOne({ _id: req.body.course_id }).then((course) => {
+            let objIndex = course.comments.findIndex(
+                (x) => x._id.toString() == req.body.comment_id,
+            );
+            let liked = {
+                username: req.user.name,
+                userid: req.user.userID,
+            };
+            let arr = [];
+
+            if (Array.isArray(course?.comments[objIndex]?.islike)) {
+                arr = course.comments[objIndex].islike;
+            }
+            course.comments[objIndex].islike = [...arr, liked];
+
+            const newCourse = new Course(course);
+            var upsertData = newCourse.toObject();
+            Course.updateOne({ _id: req.body.course_id }, upsertData, {
+                upsert: true,
+            })
+
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
+    }
+    unlikeHandler(req, res, next) {
+        Course.findOne({ _id: req.body.course_id }).then((course) => {
+            let cmtIndex = course.comments.findIndex(
+                (x) => x._id.toString() === req.body.comment_id,
+            );
+
+            var arr = course.comments[cmtIndex].islike.filter((x) => {
+                return x.userid !== req.user.userID;
+            });
+
+            course.comments[cmtIndex].islike = arr;
+            const newCourse = new Course(course);
+            var upsertData = newCourse.toObject();
+            Course.updateOne({ _id: req.body.course_id }, upsertData, {
+                upsert: true,
+            })
+                .then(() => {
+                    res.redirect('back');
+                })
+                .catch(next);
+        });
+    }
 }
 module.exports = new CourseController();

@@ -11,6 +11,8 @@ router.post(
     validate.validateCreateCourses(),
     courseController.storedCourses,
 );
+router.put('/unlike', courseController.unlikeHandler);
+router.put('/like/:id', courseController.likeHandler);
 router.put('/comment/edit', courseController.editCommentHandler);
 router.put('/comment/:id', courseController.deleteCommentHandler);
 router.post('/comment', courseController.commentHandler);

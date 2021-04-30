@@ -153,7 +153,62 @@
                                                 <div class="comment-createAt">
                                                     <div class="comment-option">
                                                         <%if(user) { %>
-                                                            <a href class="comment-like">Like</a>
+
+                                                            <div class="like">
+                                                                <form
+                                                                    action="/courses/like/<%=comment._id%>?_method=PUT"
+                                                                    method="post" id="likeForm">
+                                                                    <input type="hidden" value="<%=course._id%>"
+                                                                        name="course_id">
+                                                                    <input type="hidden" value="<%=comment._id%>"
+                                                                        name="comment_id">
+                                                                    <%if(comment.islike) {%>
+                                                                        <%comment.islike.forEach(function(like) {%>
+                                                                            <%if(like.userid==user.userID) {%>
+                                                                                <input type="hidden"
+                                                                                    value="<%=like.userid%>" id="likeId"
+                                                                                    name="likeId">
+                                                                                <% }%>
+                                                                                    <%})%>
+                                                                                        <%}%>
+
+                                                                                            <button type="submit"
+                                                                                                class="comment-like "
+                                                                                                id="likeBtn">Like</button>
+                                                                                            <div>
+                                                                                                <%if(comment.islike) {%>
+                                                                                                    <%comment.islike.forEach(function(like)
+                                                                                                        {%>
+                                                                                                        <input
+                                                                                                            type="hidden"
+                                                                                                            value="<%=like.userid%>"
+                                                                                                            id="userId">
+                                                                                                        <script>
+                                                                                                            var userID = "<%=user.userID%>";
+                                                                                                            var isLike = document.querySelectorAll("#userId");
+                                                                                                            var likeBtn = document.querySelectorAll("#likeBtn");
+                                                                                                            var likeForm = document.querySelectorAll("#likeForm")
+                                                                                                            for (var i = 0; i < likeBtn.length; i++) {
+                                                                                                                for (var j = 0; j < isLike.length; j++) {
+                                                                                                                    for (var k = 0; k < likeForm.length; k++) {
+                                                                                                                        if (userID === isLike[j].value) {
+                                                                                                                            likeBtn[i].style.fontWeight = 700;
+                                                                                                                            likeBtn[i].innerHTML = "Liked";
+                                                                                                                            likeForm[k].action = "/courses/unlike?_method=PUT";
+                                                                                                                        }
+                                                                                                                    }
+
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </script>
+                                                                                                        <%})%>
+
+                                                                                                            <% } %>
+
+                                                                                            </div>
+                                                                </form>
+                                                            </div>
+
                                                             <p class="comment-reply" data-commentbox="<%=comment._id%>">
                                                                 Reply
                                                             </p>
@@ -346,7 +401,7 @@
                         do
                         exercise to get more coin.</p>
 
-                    <a href="/lessons/<%- course.tag %>" id="btn-register" class="course__details-learnNow">Resgister
+                    <a href="/lessons/<%- course.tag %>" id="btn-register" class="course__details-learnNow">Register
                         Now</a>
                     <input type="hidden" value="<%=course.tag%>">
                     <% if(user) { %>
