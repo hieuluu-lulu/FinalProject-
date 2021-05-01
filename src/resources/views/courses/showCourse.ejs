@@ -145,9 +145,16 @@
                                                         <%=comment.comment%>
                                                     </span>
                                                 </div>
+                                                <%if(comment.islike !="" ) { %>
+                                                    <div class="comment-like comment-like-icon"><i
+                                                            class="fas fa-thumbs-up"></i>
+                                                        <%=comment.islike.length%>
+                                                    </div>
+                                                    <%} %>
 
-                                                <input id="createAt" value="<%=comment.createAt%>"
-                                                    type="hidden"></input>
+
+                                                        <input id="createAt" value="<%=comment.createAt%>"
+                                                            type="hidden"></input>
                                             </div>
                                             <div class="comment-time">
                                                 <div class="comment-createAt">

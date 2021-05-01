@@ -7966,7 +7966,7 @@ body {
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  font-family: 'Nunito Sans', sans-serif; }
+  font-family: "Nunito Sans", sans-serif; }
 
 .progress {
   height: 20px;
@@ -8061,7 +8061,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01), 0 4px 12px rgba(0, 0, 0, 0.01); }
 
 .dropdown__user::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 200px;
@@ -8174,7 +8174,7 @@ body {
   color: var(--white); }
 
 .nav__user-name-seperate::after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   height: 18px;
@@ -8399,7 +8399,7 @@ body {
   margin-bottom: 15px; }
 
 .process::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 100%;
   top: 0;
@@ -8531,7 +8531,7 @@ body {
   position: relative; }
 
 .course__details-preview::after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   top: 0;
@@ -8721,7 +8721,7 @@ body {
 
 .comment-content {
   background-color: #e2e1e1;
-  border-radius: 18px;
+  border-radius: 15px;
   color: #1c1e21;
   display: inline-block;
   max-width: 586px;
@@ -8742,6 +8742,16 @@ body {
   color: var(--primary-color);
   margin: 5px;
   cursor: pointer; }
+
+.comment-like-icon {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-size: 12px;
+  background-color: white;
+  padding: 2px 5px;
+  border-radius: 8px;
+  transition: all 0.3s ease; }
 
 .comment-time {
   color: var(--gray-dark);
@@ -8955,7 +8965,7 @@ body {
 
 .has-arrows::after {
   position: absolute;
-  content: '';
+  content: "";
   width: 7px;
   height: 7px;
   border-width: 1px 0 0 1px;
@@ -9041,7 +9051,7 @@ button {
   position: relative; }
 
 .lessons__heading-title::after {
-  content: '';
+  content: "";
   border: 1px solid #e1e1e1;
   position: absolute;
   display: block;

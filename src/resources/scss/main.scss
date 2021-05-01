@@ -806,7 +806,7 @@ body {
 }
 .comment-content {
     background-color: #e2e1e1;
-    border-radius: 18px;
+    border-radius: 15px;
     color: #1c1e21;
     display: inline-block;
     max-width: 586px;
@@ -827,6 +827,16 @@ body {
     color: var(--primary-color);
     margin: 5px;
     cursor: pointer;
+}
+.comment-like-icon {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 12px;
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 .comment-time {
     color: var(--gray-dark);
