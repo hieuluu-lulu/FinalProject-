@@ -171,78 +171,83 @@
                                                                                 <% }%>
                                                                                     <%})%>
                                                                                         <%}%>
-
                                                                                             <button type="submit"
                                                                                                 class="comment-like "
                                                                                                 id="likeBtn">Like</button>
-                                                                                            <div>
-                                                                                                <%if(comment.islike) {%>
-                                                                                                    <%comment.islike.forEach(function(like)
-                                                                                                        {%>
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            value="<%=like.userid%>"
-                                                                                                            id="userId">
-                                                                                                        <script>
-                                                                                                            var userID = "<%=user.userID%>";
-                                                                                                            var isLike = document.querySelectorAll("#userId");
-                                                                                                            var likeBtn = document.querySelectorAll("#likeBtn");
-                                                                                                            var likeForm = document.querySelectorAll("#likeForm")
-                                                                                                            for (var i = 0; i < likeBtn.length; i++) {
-                                                                                                                for (var j = 0; j < isLike.length; j++) {
-                                                                                                                    for (var k = 0; k < likeForm.length; k++) {
-                                                                                                                        if (userID === isLike[j].value) {
-                                                                                                                            likeBtn[i].style.fontWeight = 700;
-                                                                                                                            likeBtn[i].innerHTML = "Liked";
-                                                                                                                            likeForm[k].action = "/courses/unlike?_method=PUT";
-                                                                                                                        }
-                                                                                                                    }
 
-                                                                                                                }
-                                                                                                            }
-                                                                                                        </script>
-                                                                                                        <%})%>
-
-                                                                                                            <% } %>
-
-                                                                                            </div>
                                                                 </form>
                                                             </div>
-
-                                                            <p class="comment-reply" data-commentbox="<%=comment._id%>">
-                                                                Reply
-                                                            </p>
-                                                            <% } %>
-                                                                <p class="comment-time" id="time-comment"></p>
-                                                                <%if(user) {%>
-                                                                    <div class="more__option ">
-                                                                        <p class="edit__comment"
-                                                                            data-id="<%=comment.commentId%>">Edit</p>
-                                                                        <input type="hidden" value="<%=comment.userId%>"
-                                                                            id="userId">
-                                                                        <form
-                                                                            action="/courses/comment/<%=comment._id%>?_method=PUT"
-                                                                            method="post">
-                                                                            <input type="hidden" name="course_id"
-                                                                                value="<%=course._id%>">
-                                                                            <input type="hidden" name="comment_id"
-                                                                                value="<%=comment._id%>">
-                                                                            <button type="submit"
-                                                                                class="delete__comment">Delete</button>
-                                                                        </form>
-                                                                    </div>
-                                                                    <script>
-                                                                        var userId = "<%=user._id%>";
-                                                                        var commentUserId = document.querySelectorAll('#userId');
-
-                                                                        var moreOptions = document.querySelectorAll('.more__option');
-                                                                        for (var i = 0; i < moreOptions.length; i++) {
-                                                                            if (userId !== commentUserId[i].value) {
-                                                                                moreOptions[i].style.display = "none";
+                                                            <%if(comment.islike) {%>
+                                                                <%comment.islike.forEach(function(like) {%>
+                                                                    <%if(like.userid==user.userID) {%>
+                                                                        <input type="hidden" value="<%=like.userid%>"
+                                                                            id="likeId" name="likeId">
+                                                                        <script>
+                                                                            var userID = "<%=user.userID%>";
+                                                                            var ID = parseInt(userID, 10)
+                                                                            var isLike = document.querySelectorAll("#likeId");
+                                                                            var likeBtn = document.querySelectorAll("#likeBtn");
+                                                                            var likeForm = document.querySelectorAll("#likeForm")
+                                                                            for (var i = 0; i < likeBtn.length; i++) {
+                                                                                for (var j = 0; j < isLike.length; j++) {
+                                                                                    for (var k = 0; k < likeForm.length; k++) {
+                                                                                        var like = parseInt(isLike[j].value, 10);
+                                                                                        if (ID !== like) {
+                                                                                            break;
+                                                                                        }
+                                                                                        else {
+                                                                                            likeBtn[i].style.fontWeight = 700;
+                                                                                            likeBtn[i].innerHTML = "Liked";
+                                                                                            likeForm[k].action = "/courses/unlike?_method=PUT";
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
-                                                                        }
-                                                                    </script>
-                                                                    <% } %>
+                                                                        </script>
+                                                                        <% }%>
+                                                                            <%})%>
+                                                                                <%}%>
+                                                                                    <p class="comment-reply"
+                                                                                        data-commentbox="<%=comment._id%>">
+                                                                                        Reply
+                                                                                    </p>
+                                                                                    <% } %>
+                                                                                        <p class="comment-time"
+                                                                                            id="time-comment"></p>
+                                                                                        <%if(user) {%>
+                                                                                            <div class="more__option ">
+                                                                                                <p class="edit__comment"
+                                                                                                    data-id="<%=comment.commentId%>">
+                                                                                                    Edit</p>
+                                                                                                <input type="hidden"
+                                                                                                    value="<%=comment.userId%>"
+                                                                                                    id="userId">
+                                                                                                <form
+                                                                                                    action="/courses/comment/<%=comment._id%>?_method=PUT"
+                                                                                                    method="post">
+                                                                                                    <input type="hidden"
+                                                                                                        name="course_id"
+                                                                                                        value="<%=course._id%>">
+                                                                                                    <input type="hidden"
+                                                                                                        name="comment_id"
+                                                                                                        value="<%=comment._id%>">
+                                                                                                    <button
+                                                                                                        type="submit"
+                                                                                                        class="delete__comment">Delete</button>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                            <script>
+                                                                                                var userId = "<%=user._id%>";
+                                                                                                var commentUserId = document.querySelectorAll('#userId');
+
+                                                                                                var moreOptions = document.querySelectorAll('.more__option');
+                                                                                                for (var i = 0; i < moreOptions.length; i++) {
+                                                                                                    if (userId !== commentUserId[i].value) {
+                                                                                                        moreOptions[i].style.display = "none";
+                                                                                                    }
+                                                                                                }
+                                                                                            </script>
+                                                                                            <% } %>
 
                                                     </div>
                                                     <% if (user) {%>
