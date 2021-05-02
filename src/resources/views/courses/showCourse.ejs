@@ -145,14 +145,19 @@
                                                         <%=comment.comment%>
                                                     </span>
                                                 </div>
-                                                <%if(comment.islike !="" ) { %>
-                                                    <div class="comment-like comment-like-icon"><i
-                                                            class="fas fa-thumbs-up"></i>
-                                                        <%=comment.islike.length%>
-                                                    </div>
-                                                    <%} %>
-                                                        <input id="createAt" value="<%=comment.createAt%>"
-                                                            type="hidden"></input>
+                                                <%if( comment.islike) { %>
+                                                    <%if( comment.islike !="" ) { %>
+                                                        <div class="comment-like comment-like-icon"><i
+                                                                class="fas fa-thumbs-up"></i>
+
+                                                            <%=comment.islike.length%>
+
+
+                                                        </div>
+                                                        <%}%>
+                                                            <%} %>
+                                                                <input id="createAt" value="<%=comment.createAt%>"
+                                                                    type="hidden"></input>
                                             </div>
                                             <div class="comment-time">
                                                 <div class="comment-createAt">
@@ -190,16 +195,21 @@
                                                                                 var userID = "<%=user.userID%>";
                                                                                 var ID = parseInt(userID, 10)
                                                                                 var isLike = document.querySelectorAll("#user");
+
                                                                                 var likeBtn = document.querySelectorAll("#likeBtn");
                                                                                 var likeForm = document.querySelectorAll("#likeForm")
                                                                                 for (var i = 0; i < likeBtn.length; i++) {
                                                                                     for (var j = 0; j < isLike.length; j++) {
                                                                                         for (var k = 0; k < likeForm.length; k++) {
                                                                                             var like = parseInt(isLike[j].value, 10);
-                                                                                            if (ID !== like) {
+                                                                                            if (ID === like) {
                                                                                                 likeBtn[i].style.fontWeight = 700;
                                                                                                 likeBtn[i].innerHTML = "Liked";
                                                                                                 likeForm[k].action = "/courses/unlike?_method=PUT";
+                                                                                            }
+                                                                                            else {
+                                                                                                likeBtn[i].style.fontWeight = "unset";
+                                                                                                likeBtn[i].innerHTML = "Like";
                                                                                             }
 
                                                                                         }
