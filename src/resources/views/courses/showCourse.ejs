@@ -197,13 +197,11 @@
                                                                                         for (var k = 0; k < likeForm.length; k++) {
                                                                                             var like = parseInt(isLike[j].value, 10);
                                                                                             if (ID !== like) {
-                                                                                                break;
-                                                                                            }
-                                                                                            else {
                                                                                                 likeBtn[i].style.fontWeight = 700;
                                                                                                 likeBtn[i].innerHTML = "Liked";
                                                                                                 likeForm[k].action = "/courses/unlike?_method=PUT";
                                                                                             }
+
                                                                                         }
                                                                                     }
                                                                                 }
