@@ -28,7 +28,9 @@
                     <ul class="user__profile-list-function">
                         <li><a href="/users/information" class="user__profile-active">Information & Contact</a></li>
                         <li><a href="/users/change-username"> Change user name</a></li>
-                        <li><a href="/users/change-password"> Change password</a></li>
+                        <% if(user.password) { %>
+                            <li><a href="/users/change-password"> Change password</a></li>
+                            <% } %>
                     </ul>
                 </div>
             </div>

@@ -12,9 +12,11 @@ class LessonController {
     //[GET] /learning/:slug
     checkLesson(req, res, next) {
         Lesson.findOne({ tag: req.params.slug }).then((lesson) => {
-            lesson
-                ? res.redirect('/lessons/' + lesson.tag + '/' + lesson.slug)
-                : res.status(404).json('Chưa có bài học nào trong khóa này');
+            if (lesson) {
+                res.redirect('/lessons/' + lesson.tag + '/' + lesson.slug);
+            }
+            res.locals.title = 'No Lesson ';
+            res.render('lessons/no-lesson');
         });
     }
     //GET learning/:tag/:slug
